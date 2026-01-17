@@ -1,3 +1,9 @@
+# Quick Switch, please remove all rpm-ostree packages prior to running
+
+```
+ghcr.io/mrgrappleman/aldehyde-lx:latest
+```
+
 # <div align="center">🚀 Aldehyde: The Ultimate Productivity Powerhouse 🚀</div>
 
 <div align="center">
