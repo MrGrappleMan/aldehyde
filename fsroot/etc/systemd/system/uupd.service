@@ -1,0 +1,33 @@
+[Unit]
+Description=🔄️ UUpd, Updates system to get possible latest changes, bug fixes, security patches
+Documentation=https://github.com/ublue-os/uupd
+After=network-online.target 
+Wants=network-online.target
+StartLimitBurst=3
+StartLimitIntervalSec=600
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/uupd --log-level debug --json -c --quiet
+User=root
+# Minimum battery percent should be 20
+Environment="UUPD_BATTERY_MIN_PERCENT=20"
+Environment="UUPD_MEMORY_MAX_PERCENT=100"
+Environment="UUPD_CPU_MAX_LOAD_PERCENT=100"
+# Set SELinux context unconfined as bootc requires some special perms for relabeling (install_t????)
+SELinuxContext=system_u:unconfined_r:unconfined_t:s0
+# Hardware checks (-c flag) for battery level check.
+
+# CommonSnippet - Daemons
+IOSchedulingClass=2
+IOSchedulingPriority=7
+Nice=16
+RestrictRealtime=True
+CPUWeight=1
+
+# CommonSnippet - Daemons
+Restart=on-failure
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

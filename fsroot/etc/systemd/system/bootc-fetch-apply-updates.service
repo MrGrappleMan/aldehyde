@@ -1,0 +1,27 @@
+[Unit]
+Description=🔄️ Get BootC updates
+Documentation=https://bootc-dev.github.io/ man:bootc(8)
+ConditionPathExists=/run/ostree-booted
+Wants=network-online.target
+After=network-online.target
+StartLimitBurst=3
+StartLimitIntervalSec=600
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/bin/bootc upgrade --quiet
+# Get silently, let user reboot w/o interruption
+
+# CommonSnippet - Daemons
+IOSchedulingClass=2
+IOSchedulingPriority=7
+Nice=19
+Restart=on-failure
+RestrictRealtime=false
+RestartSec=60
+StartLimitBurst=5
+StartLimitIntervalSec=300
+
+[Install]
+WantedBy=multi-user.target

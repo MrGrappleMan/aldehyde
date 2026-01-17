@@ -1,0 +1,22 @@
+[Unit]
+Description=An adaptive readahead daemon for loading frequently used parts of the filesystem into the RAM to increase performance
+After=basic.target local-fs.target systemd-udev-settle.service
+Wants=systemd-udev-settle.service
+StartLimitBurst=5
+StartLimitIntervalSec=300
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/preload -n 19
+User=root
+
+# CommonSnippet - Daemons
+IOSchedulingClass=2
+IOSchedulingPriority=7
+Nice=19
+Restart=on-failure
+RestrictRealtime=false
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=💽 Discard unused filesystem blocks to help storage efficiency and longevity
+Documentation=man:fstrim
+ConditionVirtualization=!container
+ConditionPathExists=!/etc/initrd-release
+
+# 2xDaily execution is enough, hourly is for datacenter type machines. Theres no harm in frequent execution though
+
+[Timer]
+Persistent=true
+OnCalendar=00,12:00:00 UTC
+AccuracySec=12h
+
+[Install]
+WantedBy=timers.target

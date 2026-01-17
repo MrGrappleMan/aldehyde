@@ -1,0 +1,15 @@
+[copr:copr.fedorainfracloud.org:ackerman:mission-center]
+name=C ackerman mission-center
+baseurl=https://download.copr.fedorainfracloud.org/results/ackerman/mission-center/fedora-$releasever-$basearch/
+gpgkey=https://download.copr.fedorainfracloud.org/results/ackerman/mission-center/pubkey.gpg
+type=rpm-md
+gpgcheck=1
+repo_gpgcheck=0
+enabled_metadata=1
+enabled=1
+skip_if_unavailable=True
+deltarpm=True
+fastestmirror=True
+max_parallel_downloads=20
+metadata_expire=1h
+countme=1

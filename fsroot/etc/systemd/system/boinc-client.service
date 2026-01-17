@@ -1,0 +1,40 @@
+[Unit]
+Description=⚛️ Science United / BOINC - help scientific research projects by giving them idle computing power
+Documentation=https://scienceunited.org/ man:boinc(1) https://boinc.berkeley.edu/
+Wants=podman.service vboxdrv.service network-online.target
+StartLimitBurst=5
+StartLimitIntervalSec=300
+
+[Service]
+Type=simple
+SupplementaryGroups=video render
+DeviceAllow=/dev/dri/renderD128 rw
+DeviceAllow=/dev/dri/card0 rw
+Environment=DRI_NAME=renderD128
+# If using rootless Podman, allow access to its home
+ProtectHome=read-only
+# Ensure cgroups are accessible for container management
+ProtectControlGroups=false
+# Add the specific path where Podman stores its data
+ReadWritePaths=-/var/lib/boinc -/etc/boinc-client -/tmp -/var/tmp -/var/lib/containers -/dev/dri
+User=boinc
+Group=boinc
+Delegate=yes
+WorkingDirectory=/var/lib/boinc
+ExecStart=/usr/bin/boinc --allow_remote_gui_rpc --check_all_logins
+ExecStop=/usr/bin/boinccmd --quit
+ExecReload=/usr/bin/boinccmd --read_cc_config
+ExecStopPost=/usr/bin/rm -f lockfile
+IOSchedulingClass=2
+IOSchedulingPriority=7
+CPUSchedulingPolicy=idle
+Nice=19
+CPUWeight=1
+
+# CommonSnippet - Daemons
+Restart=on-failure
+RestrictRealtime=true
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

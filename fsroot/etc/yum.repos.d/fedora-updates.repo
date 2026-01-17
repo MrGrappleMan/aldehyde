@@ -1,0 +1,29 @@
+[updates]
+name=T Fedora Updates
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+enabled=1
+skip_if_unavailable=True
+deltarpm=True
+fastestmirror=True
+max_parallel_downloads=20
+metadata_expire=1h
+countme=1
+
+[updates-rawhide]
+name=T Fedora Updates Rawhide
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-frawhide&arch=$basearch
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
+enabled=1
+skip_if_unavailable=True
+deltarpm=True
+fastestmirror=True
+max_parallel_downloads=20
+metadata_expire=1h
+countme=1

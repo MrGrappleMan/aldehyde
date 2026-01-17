@@ -1,0 +1,29 @@
+[tailscale-stable]
+name=T Tailscale Stable
+baseurl=https://pkgs.tailscale.com/stable/fedora/$basearch
+type=rpm
+repo_gpgcheck=1
+gpgcheck=1
+gpgkey=https://pkgs.tailscale.com/stable/fedora/repo.gpg
+enabled=1
+skip_if_unavailable=True
+deltarpm=True
+fastestmirror=True
+max_parallel_downloads=20
+metadata_expire=1h
+countme=1
+
+[tailscale-unstable]
+name=T Tailscale Unstable
+baseurl=https://pkgs.tailscale.com/unstable/fedora/$basearch
+type=rpm
+repo_gpgcheck=1
+gpgcheck=1
+gpgkey=https://pkgs.tailscale.com/unstable/fedora/repo.gpg
+enabled=1
+skip_if_unavailable=True
+deltarpm=True
+fastestmirror=True
+max_parallel_downloads=20
+metadata_expire=1h
+countme=1

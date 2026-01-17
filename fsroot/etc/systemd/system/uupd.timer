@@ -1,0 +1,29 @@
+[Unit]
+Description=🔄️ UUpd, Updates system to get possible latest changes, bug fixes, security patches
+After=network-online.target
+Wants=network-online.target
+
+[Timer]
+# The Fedora Project's own docs suggest updating "on an almost daily basis", and this uses experimental/prerelease versions of software
+
+# Method A: - Based on wall-clock
+# AccuracySec=4h - allows timers to be auto-rescheduled and coalesced within the NEXT 4 hours to prevent unnecessary CPU wake-ups and energy efficiency
+# Persistent=true - tries to run the target if the time to be ran is due
+# OnCalendar=00,04,08,12,16,20:00:00 UTC - attempt to run 6 times day, and this can be forced to follow a specific timezone, here UTC
+Persistent=true
+OnCalendar=00,04,08,12,16,20:00:00 UTC
+AccuracySec=4h
+
+# Method B: - Monotomic, based on actual run time of the service
+# Ensures the system always has a 4-hour "breather" after the service actually finishes
+# It "naturally" staggers updates across devices due to some processing updates fast or slow, the package download speeds per region, etc.
+# Fires 4 hours later, relative to the end(when the program quit) time of previous run of the service
+# If a service unit never deactivates because it crashes or hangs indefinitely, the OnUnitInactiveSec timer will not restart
+# it automatically because the inactive state is never reached. This can definitely cause issues, so OnBootSec can help resolve that by providing a definite time.
+# If the service state is lost or it has never run, this guarantees the first run, providing a reference timestamp for OnUnitInactiveSec
+#OnBootSec=20min
+#OnUnitInactiveSec=4h
+#Persistent=true - does not work with monotonic timers
+
+[Install]
+WantedBy=timers.target
