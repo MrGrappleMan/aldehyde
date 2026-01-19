@@ -15,5 +15,5 @@ fish /ctx/script/dnf5.fish
 fish /ctx/script/flatpak.fish
 fish /ctx/script/systemd.fish
 fish /ctx/script/fwupdmgr.fish
-fish /ctx/script/dconf.fish
-fish /ctx/script/ujust.fish
+#fish /ctx/script/dconf.fish
+#fish /ctx/script/ujust.fish

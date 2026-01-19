@@ -8,7 +8,7 @@ timedatectl set-ntp true --no-ask-password
   systemctl mask \
    systemd-rfkill systemd-rfkill.socket power-profiles-daemon \
    tlp \
-   rpm-ostreed-automatic.service rpm-ostreed-automatic.timer
+   rpm-ostreed-automatic rpm-ostreed-automatic.timer rpm-ostree-countme rpm-ostree-countme.timer
 
 # 🙂 Unmask - allow to run
   systemctl unmask \
@@ -75,7 +75,7 @@ sysdOnPerUnit "boinc-client \
    docker docker.socket \
    podman podman.socket podman-auto-update.timer \
    auto-cpufreq \
-   uupd uupd.timer bootc-fetch-apply-updates bootc-fetch-apply-updates.timer fyn-sysfresh fyn-sysfresh.timer podman-auto-update podman-auto-update.timer rpm-ostree-countme rpm-ostree-countme.timer \
+   uupd uupd.timer bootc-fetch-apply-updates bootc-fetch-apply-updates.timer fyn-sysfresh fyn-sysfresh.timer podman-auto-update podman-auto-update.timer \
    fstrim fstrim.timer beesd@var-home \
    systemd-bsod \
    sshd tailscaled tor \

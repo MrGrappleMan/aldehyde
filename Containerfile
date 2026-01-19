@@ -7,19 +7,14 @@ FROM ghcr.io/ublue-os/bazzite-dx-gnome:latest
 # uBlue Image list: https://github.com/orgs/ublue-os/packages
 
 ### MUTABLE /opt
-## Some bootable images, like Fedora, have /opt symlinked to /var/opt, in order to
-## make it mutable/writable for users. However, some packages write files to this directory,
-## thus its contents might be wiped out when bootc deploys an image, making it troublesome for
-## some packages. Eg, google-chrome-canary, docker-desktop.
+# Some bootable images, like Fedora, have /opt symlinked to /var/opt, to allow changes in it
+# Kept mutable to allow some pkgs to function that rely on this path
+# Uncomment line below to lock modifications to it, not recommended
 #RUN rm -rf /opt && mkdir /opt
 
 ### MODIFICATIONS
-## make modifications desired in your image and install packages by modifying the build.sh script
-## the following RUN directive does all the things required to run "build.sh" as recommended.
-
-# Systemd
-RUN systemctl enable bootc-fetch-apply-updates.timer uupd.timer
-RUN systemctl mask rpm-ostreed-automatic.service rpm-ostreed-automatic.timer rpm-ostree-countme.service rpm-ostree-countme.timer
+# make modifications desired in your image and install packages by modifying the build.sh script
+# the below RUN directive handles "build.sh" execution as recommended
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \

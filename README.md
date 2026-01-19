@@ -1,6 +1,6 @@
-# Run this in a bootc image distro / Bazzite
+## Run this in a bootc image distro / Bazzite
 ```
-curl | pkexec bash
+curl "https://raw.githubusercontent.com/MrGrappleMan/aldehyde-lx/refs/heads/main/switch2img.fish" | pkexec fish
 ```
 
 # <div align="center">🚀 Aldehyde: The Ultimate Productivity Powerhouse 🚀</div>
