@@ -10,4 +10,4 @@ ostree admin pin -u 3
 ostree admin pin -u 4
 
 # 🎛️ Switch bootc base to Aldehyde
-bootc switch ghcr.io/MrGrappleMan/aldehyde-lx:latest --quiet
+bootc switch ghcr.io/mrgrappleman/aldehyde-lx:latest --quiet
