@@ -1,7 +1,6 @@
-# Quick Switch, please remove all rpm-ostree packages prior to running
-
+# Run this in a bootc image distro / Bazzite
 ```
-ghcr.io/mrgrappleman/aldehyde-lx:latest
+curl | pkexec bash
 ```
 
 # <div align="center">🚀 Aldehyde: The Ultimate Productivity Powerhouse 🚀</div>
@@ -13,7 +12,7 @@ ghcr.io/mrgrappleman/aldehyde-lx:latest
 
 ## 📖 Overview
 
-Aldehyde is a pre-configured Linux bootc image based on [Bazzite-DX](). It combines a sleek Cosmic desktop environment with performance tweaks, essential tools, and automation for a practical user enviroment. Whether you're coding, browsing, gaming, or managing servers, this image has you covered. 🌟
+Aldehyde is a pre-configured Linux bootc image based on [Bazzite-DX](). It combines the performant COSMIC desktop with performance tweaks, essential tools, and automation for a practical user enviroment. Whether you're coding, browsing, gaming, or managing servers, this image has you covered. 🌟
 
 No more post install scripts – everything is baked in and ready to roll! 🎉
 
