@@ -15,12 +15,15 @@ FROM ghcr.io/ublue-os/bazzite-dx-gnome:latest
 ### MODIFICATIONS
 # make modifications desired in your image and install packages by modifying the build.sh script
 # the below RUN directive handles "build.sh" execution as recommended
+# avoid doing stuff from the Containerfile to avoid complexities, only minimal initialization
+
+RUN dnf5 install -y fish && dnf clean all
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    /ctx/build.sh
+    /ctx/build.fish
     
 ### LINTING
 ## Verify final image and contents
