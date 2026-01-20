@@ -6,8 +6,9 @@
 # FROM in here explicitly connects the 'ctx' name to the target=/ctx folder, is where that directory name actually comes from.
 FROM scratch AS ctx
 
-# COPY in this file serves as a 'bridge' from the repo's root and the image
+# COPY in this file serves as a 'bridge' from the repo's root and the image. The first string references the repo root, the other is the image /ctx/
 # All the files in the repo will end up in /ctx/ when seen from inside the image instance, look at the '..AS ctx' line above, thats why it is /ctx/
+# Whenever you want reference anything from /ctx/ from the Containerfile with RUN, always include '--mount=type=bind,from=ctx,source=/,target=/ctx'
 COPY / /
 
 # This is the image you want to begin modifying
@@ -25,7 +26,8 @@ FROM ghcr.io/ublue-os/bazzite-dx-gnome:latest
 # To know of any errors that might occur
 
 # List our that our repo to ctx copy was successful
-RUN tree /ctx/
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    tree /ctx/
 RUN uname -a
 
 ### MODIFICATIONS
@@ -35,7 +37,7 @@ RUN uname -a
 
 RUN dnf5 install -y fish && dnf clean all
 
-# we explicitly call fish, to ensure the the correct interprete is run, though the shebang is present
+# we explicitly call fish, to ensure the the correct interpreter is run, though the shebang is present
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
