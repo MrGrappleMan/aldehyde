@@ -4,6 +4,7 @@
 echo ---Copying over filesystem components---
 
 cp -r /ctx/fsroot/etc/* /etc/
+cp -r /ctx/fsroot/usr/* /usr/
 cp -r /ctx/fsroot/var/* /var/
 cp -r /ctx/fsroot/opt/* /opt/
 
