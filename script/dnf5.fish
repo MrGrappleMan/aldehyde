@@ -140,8 +140,7 @@ echo "🗣️ Modify kargs"
 rpm-ostree kargs \
   --delete-if-present=rhgb \
   --delete-if-present=profile \
-  --delete-if-present=nomodeset \
-  --delete-if-present=zswap.compressor=lzo --delete-if-present=zswap.compressor=zstd
+  --delete-if-present=nomodeset
 
 # intel_pstate=guided does not exist
 # lz4 > lzo in terms of efficiency and modernity. zstd fine for speed but great for balanced usage. brotli is unsuitable for this, as memory content is dynamic.
