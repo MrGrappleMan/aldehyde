@@ -25,9 +25,7 @@ timedatectl set-ntp true --no-ask-password
 # This is intentional, to avoid half-applied boot states.
 # ⚠️ systemd does not roll back, and does not warn which units were skipped.
 
-#reenable ensures that precedence set by Systemd's developers is followed in the [Install] section, but can cause issues if the top file as by precedence does not contain an [Install] section
-
-# The functions are mainly for opportunistic enablement of units, in case some units fail to activate - invalid units poison the rest of the targetted batch
+# The functions are mainly for successful opportunistic enablement of units, if a unit fails to do so, its ignored - invalid units poison the rest of the targetted batch
 
 # 🟢 Enable - Run at startup
 

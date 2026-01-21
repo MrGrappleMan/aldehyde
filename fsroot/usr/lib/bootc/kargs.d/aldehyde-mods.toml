@@ -1,0 +1,27 @@
+kargs = [
+  "quiet",
+  "threadirqs",
+  "sysrq_always_enabled=1",
+  "consoleblank=180",
+  "bluetooth.disable_ertm=0",
+  "loglevel=3",
+  "preempt=full",
+  "systemd.zram=0",
+  "zswap.enabled=1",
+  "zswap.shrinker_enabled=Y",
+  "zswap.zpool=zsmalloc",
+  "zswap.compressor=lz4",
+  "zswap.max_pool_percent=100",
+  "zswap.accept_threshold_percent=100",
+  "nowatchdog",
+  "clocksource=tsc",
+  "pcie_aspm=on",
+  "amd_pstate=guided",
+  "amd_pstate.enable=1",
+  "amd_pstate.shared_mem=1",
+  "intel_pstate=active",
+  "intel_pstate.enable=1",
+  "amdgpu.sg_display=1",
+  "pci=realloc=on"
+]
+
