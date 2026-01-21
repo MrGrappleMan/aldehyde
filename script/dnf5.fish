@@ -1,4 +1,7 @@
 #!/usr/bin/env fish
+echo "⚠️ --- Run 'dnf5.fish' ---"
+
+# DNF5: For installing essential packages to the system's base - these will be unremoveable
 
 # NOTICE: rpm-ostree is deprecated for bootc
 # Transitioning to bootc is intended to move system management toward a pure image-based model,
@@ -7,68 +10,59 @@
 # Highly stable, faster to update and universally standardized.
 # Never layer any packages onto the image and thus, avoid rpm-ostree as much as you can
 
-# 📛 Alias
-function Pkg+ -d "Add pkg if present(dependancy checks not implemented yet)"
-    set packages $argv
-    if test (count $argv) -eq 1 -a -n (string match '* *' $argv[1])
+# 📛 Aliases - For easier handling of commands
+function Pkg+ -d "Add pkg if present in dnf5 repos"
+    set -l packages $argv
+    # Handle cases where packages are passed as a single quoted string with spaces
+    if test (count $argv) -eq 1; and string match -q '* *' $argv[1]
         set packages (string split ' ' $argv[1])
     end
 
     set -l install_list
 
     for pkg in $packages
-        set -l output (rpm-ostree search $pkg)
-        set -l lines (string split \n -- $output)
-        set -l found false
-
-        for line in $lines
-            if string match -q '* *' $line
-                set -l candidate (string split -m 1 ' ' $line)[1]
-                if test "$candidate" = "$pkg"
-                    set found true
-                    break
-                end
-            end
-        end
-
-        if $found
-            set install_list $install_list $pkg
+        # 'dnf5 list' with --available is fast and returns exit code 0 if found
+        if dnf5 list --quiet --available $pkg >/dev/null 2>&1
+            set -a install_list $pkg
+        else
+            echo "Package '$pkg' not found in repos, skipping..."
         end
     end
 
     if test (count $install_list) -gt 0
-        rpm-ostree install --allow-inactive --idempotent -y $install_list
+        # dnf5 install is inherently idempotent (won't re-install if present)
+        dnf5 install -y $install_list
     end
 end
-alias Pkg+Adv "rpm-ostree install --allow-inactive --idempotent -y" # Use if you know the package exists and there won't be dependency conflicts
-alias Pkg- "rpm-ostree uninstall --allow-inactive --idempotent -y"
+alias Pkg+Adv "dnf5 install -y"
+alias Pkg- "dnf5 remove -y"
 
 # PKG ADD
-echo "🢷 Adding system packages"
+echo "⚠️ --- Add system packages ---"
 
 ### Notes:
-### Always update system before installing packages. Avoid layering packages that end up in InactiveRequests
+### Always update system before installing packages.
 ### Packages are now uncategorized, this is to simplify drop-in from 'rpm-ostree status' 
-###  Systemd unit files in /etc/systemd/system/ may cause an rpm-ostree hardlinking 
+### Systemd unit files in /etc/systemd/system/ may cause an rpm-ostree hardlinking 
 ### file exists error when you try to install the actual packages that provide those same files later. 
 ### Systemd units placed in /etc/systemd/system/ are part of the mutable host configuration, 
 ### which rpm-ostree attempts to manage or migrate across deployments. When a package providing the exact same 
 ### file is introduced, the conflict occurs. It it happens, rename the doubtful one to *.bak, do the rpm-ostree operation, rename to original if successful.
 
-   #Pkg+ "boinc-client boinc-client-static brotli cargo clippy code-insiders \
-    #                       cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop \
-     #                      cosmic-edit cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
-      #                     cosmic-settings-daemon cosmic-store distcc distcc-server dnf-plugins-core dnf-repo \
-       #                    dnfdaemon dnfdaemon-selinux etckeeper-dnf featherpad fedora-release-cosmic-atomic \
-        #                   fedora-repos-ostree fedora-repos-rawhide flatseal gemini-cli gh \
-         #                  google-chrome-canary greetd hblock host-spawn initial-setup-gui-wayland-cosmic \
-          #                 inkscape java-latest-openjdk krita krita-libs libei-utils libreoffice \
-           #                libvirt-daemon-kvm mcpelauncher-manifest mcpelauncher-ui-manifest mission-center \
-            #               mosh msa-manifest nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
-             #              obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis plymouth-kcm \
-              #             pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm rust \
-               #            rust-zram-generator-devel rustup snapd systemd-swap thunar tor torbrowser-launcher \
-                #           trayscale uget uutils-coreutils warp-terminal xdg-desktop-portal-cosmic"
+   Pkg+ "boinc-client boinc-client-static brotli cargo clippy code-insiders \
+                           cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop \
+                           cosmic-edit cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
+                           cosmic-settings-daemon cosmic-store distcc distcc-server dnf-plugins-core dnf-repo \
+                           dnfdaemon dnfdaemon-selinux etckeeper-dnf featherpad fedora-release-cosmic-atomic \
+                           fedora-repos-ostree fedora-repos-rawhide flatseal gemini-cli gh \
+                           google-chrome-canary greetd hblock host-spawn initial-setup-gui-wayland-cosmic \
+                           inkscape java-latest-openjdk krita krita-libs libei-utils libreoffice \
+                           libvirt-daemon-kvm mcpelauncher-manifest mcpelauncher-ui-manifest mission-center \
+                           mosh msa-manifest nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
+                           obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis plymouth-kcm \
+                           pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm rust \
+                           rust-zram-generator-devel rustup snapd systemd-swap thunar tor torbrowser-launcher \
+                           trayscale uget uutils-coreutils warp-terminal xdg-desktop-portal-cosmic"
 
 ### Reserved/reference pacakges:
 
@@ -135,13 +129,6 @@ echo "🢷 Adding system packages"
 # intel_pstate=active        # 🏎️ Enabled: Uses Intel's hardware-managed P-states (HWP) for superior efficiency compared to legacy ACPI.
 # amdgpu.sg_display=1        # 📽️ Enabled: Enables Scatter/Gather display; allows the GPU to use non-contiguous memory for frame buffers.
 # pci=realloc=on             # 🗺️ Enabled: Allows the kernel to re-map PCI resources if the BIOS didn't allocate enough space (BAR).
-
-echo "🗣️ Modify kargs"
-rpm-ostree kargs \
-  --delete-if-present=rhgb \
-  --delete-if-present=profile \
-  --delete-if-present=nomodeset
-
 # intel_pstate=guided does not exist
 # lz4 > lzo in terms of efficiency and modernity. zstd fine for speed but great for balanced usage. brotli is unsuitable for this, as memory content is dynamic.
 # lz4 overall lowest latency
