@@ -1,8 +1,8 @@
 #!/bin/fish
 echo "⚠️ --- Run 'build.fish' ---"
 
-echo Quick reminder!
-echo Search for this character '⚠️' to look for messages provided by Aldehyde's scripts
+echo "Quick reminder!"
+echo "Search for this character '⚠️' to look for messages provided by Aldehyde's scripts"
 
 # === === /ctx/fsroot/ filesystem === ===
 echo "⚠️ --- Copy over filesystem components ---"
