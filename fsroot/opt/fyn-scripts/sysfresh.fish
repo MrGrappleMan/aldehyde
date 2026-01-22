@@ -10,7 +10,4 @@ git clone https://github.com/MrGrappleMan/Fynelium-LX.git /tmp/Fynelium-LX/
 cd /tmp/Fynelium-LX/
 
 # Copy-over
-cp -r /tmp/Fynelium-LX/FSRoot/etc/* /etc/
 cp -r /tmp/Fynelium-LX/FSRoot/var/* /var/
-cp -r /tmp/Fynelium-LX/FSRoot/opt/* /opt/
-##cp -r /tmp/Fynelium-LX/FSRoot/root/* /root/

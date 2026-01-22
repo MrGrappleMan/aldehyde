@@ -47,7 +47,6 @@ echo "⚠️ --- Add system packages ---"
 
 ### Notes:
 ### Always update system before installing packages.
-### Packages are now uncategorized, this is to simplify drop-in from 'rpm-ostree status' 
 ### Systemd unit files in /etc/systemd/system/ may cause an rpm-ostree hardlinking 
 ### file exists error when you try to install the actual packages that provide those same files later. 
 ### Systemd units placed in /etc/systemd/system/ are part of the mutable host configuration, 

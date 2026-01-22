@@ -28,4 +28,28 @@ fish /ctx/script/systemd.fish
 #fish /ctx/script/fwupdmgr.fish
 #fish /ctx/script/ujust.fish
 
+# === === /var/ cleanup === ===
+echo "⚠️ --- Clean var ---"
 
+# 1. Standard log and cache cleanup
+rm -rf /var/log/*
+rm -rf /var/cache/*
+rm -rf /var/tmp/*
+
+# 2. Deep DNF5/PackageKit cleanup (Satisfies the 'terra-mesa' and 'PackageKit' warnings)
+rm -rf /var/lib/dnf/*
+rm -rf /var/lib/dnf5/*
+rm -rf /var/lib/PackageKit/*
+
+# 3. Clean up non-compliant spool and db files (Fixes anacron and firebird warnings)
+rm -rf /var/spool/anacron/*
+rm -rf /var/lib/firebird/*
+
+# 4. Remove Greetd user-state that was generated during the build
+rm -rf /var/lib/greetd/.config/*
+rm -rf /var/lib/greetd/.cache/*
+
+# 5. Final safety wipe of /var/tmp and /tmp
+# (Sometimes files are hidden or have restricted permissions)
+find /var/tmp -mindepth 1 -delete
+find /tmp -mindepth 1 -delete
