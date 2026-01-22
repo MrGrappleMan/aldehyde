@@ -38,12 +38,11 @@ RUN uname -a
 RUN dnf5 install -y fish
 
 # We explicitly call fish, to ensure the the correct interpreter is run, though the shebang is present
-# Home as /tmp to ultimately let it get cleared out
+# Never make $Home as /tmp, lots of problems in fish will happen
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    HOME=/tmp \
     fish /ctx/build.fish
     
 ### LINTING
