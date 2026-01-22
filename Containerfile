@@ -35,15 +35,17 @@ RUN uname -a
 # the below RUN directive handles "build.fish" execution as recommended while initializing the rest of familiar UNIX file paths
 # avoid doing stuff from the Containerfile to avoid complexities, only minimal initialization
 
-RUN dnf5 install -y fish && dnf clean all
+RUN dnf5 install -y fish
 
-# we explicitly call fish, to ensure the the correct interpreter is run, though the shebang is present
+# We explicitly call fish, to ensure the the correct interpreter is run, though the shebang is present
+# Home as /tmp to ultimately let it get cleared out
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
+    HOME=/tmp \
     fish /ctx/build.fish
     
 ### LINTING
 ## Verify final image and contents
-RUN bootc container lint
+RUN bootc container lint --no-truncate

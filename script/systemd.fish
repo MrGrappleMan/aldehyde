@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-echo "⚠️ --- Run 'systemd.fish' ---"
+echo "🚩 --- Run 'systemd.fish' ---"
 
 # ⚜️ System-D: The core of Linux for its functioning and handling essential system functions, beside being just an init system
 
@@ -120,3 +120,5 @@ function sysdOffPerUnit
 end
 
 sysdOffPerUnit "tlp"
+
+echo "🏁 --- Run 'build.fish' ---"
