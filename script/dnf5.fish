@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-echo "⚠️ --- Run 'dnf5.fish' ---"
+echo "🚩 --- Run 'dnf5.fish' ---"
 
 # DNF5: For installing essential packages to the system's base - these will be unremoveable
 
@@ -141,3 +141,5 @@ echo "⚠️ --- Add system packages ---"
 echo "⚠️ --- Clean DNF5 cache ---"
 
 dnf5 clean all -y
+
+echo "🏁 --- Run 'dnf5.fish' ---"
