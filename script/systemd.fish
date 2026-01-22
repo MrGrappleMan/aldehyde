@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/fish
 echo "🚩 --- Run 'systemd.fish' ---"
 
 # ⚜️ System-D: The core of Linux for its functioning and handling essential system functions, beside being just an init system

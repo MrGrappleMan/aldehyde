@@ -1,4 +1,4 @@
-#!/bin/fish
+#!/usr/bin/fish
 echo "🚩 --- Run 'build.fish' ---"
 
 echo "Quick reminder!"
