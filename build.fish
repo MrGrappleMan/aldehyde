@@ -1,4 +1,4 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 echo "🚩 --- Run 'build.fish' ---"
 
 echo "Quick reminder!"
@@ -7,10 +7,12 @@ echo "'⭕' --- Start of a section"
 echo "'✅' --- End of a section"
 echo "'🚩' --- Start of script"
 echo "'🏁' --- End of a script"
-echo "to look for messages provided by Aldehyde's scripts"
+echo "to look for messages provided by Aldehyde scripts"
 
 # === === /ctx/fsroot/ filesystem, using factory === ===
 echo "⭕ --- Copy over filesystem components ---"
+
+chmod -R a+rx /ctx/
 
 cp -r /ctx/fsroot/usr/* /usr/
 cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # user modify
