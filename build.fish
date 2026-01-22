@@ -42,16 +42,27 @@ echo "⭕ --- Clean /var/ ---"
 # Clear, Opportunistically clean /var/ without failing on active mounts
 # We use 'find' with '-xdev' to stay on the same filesystem
 # and avoid trying to delete the actual mount points.
+#for item in (find /var -mindepth 1 -maxdepth 1)
+#	# Try to delete all contents INSIDE the item (files and hidden files)
+#	if test -d "$item"
+#		# We use 'find' inside to avoid 'argument list too long' errors
+#		find "$item" -mindepth 1 -delete 2>/dev/null
+#		rmdir "$item" 2>/dev/null # Directory deletion, but fail silently even if it's a busy mount point
+#	else
+#		rm -f "$item" 2>/dev/null # File deletion
+#	end # This 'end' closes the 'if/else' block
+#end # This 'end' closes the 'for' loop
+
+# tf is wrong here, correct syntax
+
 for item in (find /var -mindepth 1 -maxdepth 1)
-	# Try to delete all contents INSIDE the item (files and hidden files)
-	if test -d "$item"
-		# We use 'find' inside to avoid 'argument list too long' errors
-		find "$item" -mindepth 1 -delete 2>/dev/null
-		rmdir "$item" 2>/dev/null # Directory deletion, but fail silently even if it's a busy mount point
-	else
-		rm -f "$item" 2>/dev/null # File deletion
-	end # This 'end' closes the 'if/else' block
-end # This 'end' closes the 'for' loop
+    if test -d "$item"
+        find "$item" -mindepth 1 -delete 2>/dev/null
+        rmdir "$item" 2>/dev/null
+     else
+        rm -f "$item" 2>/dev/null
+    end
+end
 
 echo "✅ --- Clean /var/ ---"
 
