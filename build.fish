@@ -54,6 +54,7 @@ echo "⭕ --- Clean /var/ ---"
 #end # This 'end' closes the 'for' loop
 
 # tf is wrong here, correct syntax
+# First ever instance of if it works, do not touch it I have experienced
 
 for item in (find /var -mindepth 1 -maxdepth 1)
     if test -d "$item"

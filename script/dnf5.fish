@@ -11,7 +11,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 # Never layer any packages onto the image or use rpm-ostree
 
 # 📛 Aliases - For easier handling of commands
-function Pkg+Adv -d "Add pkg if present in dnf5 repos"
+function sysPkg+Adv -d "Add pkg if present in dnf5 repos"
     set -l packages $argv
     # Handle cases where packages are passed as a single quoted string with spaces
     if test (count $argv) -eq 1; and string match -q '* *' $argv[1]
@@ -34,16 +34,15 @@ function Pkg+Adv -d "Add pkg if present in dnf5 repos"
         dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $install_list
     end
 end
-alias Pkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade"
-alias Pkg- "dnf5 remove -y"
+alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade"
+alias sysPkg- "dnf5 remove -y"
 
 # PKG UPD
-echo "⚠️ --- Update system packages ---"
-
+echo "⭕ --- Update system packages ---"
 dnf5 update -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade
-
+echo "⭕ --- Update system packages ---"
 # PKG ADD
-echo "⚠️ --- Add system packages ---"
+echo "⭕ --- Add system packages ---"
 
 ### Notes:
 ### Always update system before installing packages.
@@ -53,20 +52,22 @@ echo "⚠️ --- Add system packages ---"
 ### which rpm-ostree attempts to manage or migrate across deployments. When a package providing the exact same 
 ### file is introduced, the conflict occurs. It it happens, rename the doubtful one to *.bak, do the rpm-ostree operation, rename to original if successful.
 
-   Pkg+ boinc-client boinc-client-static brotli cargo clippy code-insiders \
-                           cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop \
-                           cosmic-edit cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
-                           cosmic-settings-daemon cosmic-store distcc distcc-server dnf-plugins-core dnf-repo \
-                           dnfdaemon dnfdaemon-selinux etckeeper-dnf featherpad fedora-release-cosmic-atomic \
-                           fedora-repos-ostree fedora-repos-rawhide flatseal gemini-cli gh \
-                           google-chrome-canary greetd hblock host-spawn initial-setup-gui-wayland-cosmic \
-                           inkscape java-latest-openjdk krita krita-libs libei-utils libreoffice \
-                           libvirt-daemon-kvm mcpelauncher-manifest mcpelauncher-ui-manifest mission-center \
-                           mosh msa-manifest nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
-                           obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis plymouth-kcm \
-                           pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm rust \
-                           rust-zram-generator-devel rustup snapd systemd-swap thunar tor torbrowser-launcher \
-                           trayscale uget uutils-coreutils warp-terminal xdg-desktop-portal-cosmic
+   sysPkg+ boinc-client-static brotli cargo clippy code-insiders \
+        cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop \
+        cosmic-edit cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
+        cosmic-settings-daemon cosmic-store distcc distcc-server dnf-plugins-core dnf-repo \
+        dnfdaemon dnfdaemon-selinux etckeeper-dnf featherpad fedora-release-cosmic-atomic \
+        fedora-repos-ostree fedora-repos-rawhide flatseal gemini-cli gh \
+        google-chrome-canary greetd hblock host-spawn initial-setup-gui-wayland-cosmic \
+        inkscape java-latest-openjdk krita krita-libs libei-utils libreoffice \
+        libvirt-daemon-kvm mcpelauncher-manifest mcpelauncher-ui-manifest mission-center \
+        mosh msa-manifest nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
+        obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis plymouth-kcm \
+        pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm rust \
+        rust-zram-generator-devel rustup snapd systemd-swap thunar tor torbrowser-launcher \
+        trayscale uget uutils-coreutils warp-terminal xdg-desktop-portal-cosmic
+        
+echo "⭕ --- Add system packages ---"
 
 ### Reserved/reference pacakges:
 
@@ -109,8 +110,8 @@ echo "⚠️ --- Add system packages ---"
 
 # Kernel Arguments
 # 🛠️ UNIVERSAL KERNEL ARGUMENT EXPLANATIONS
-# rhgb                       # 🏙 Disabled: Less boot overhead and less conflicts with drivers, at the cost of UX beauty
-# quiet                      # 🤫 Enabled: Simpler, focused debugging on errors than general stats
+# rhgb     # 🏙 Disabled: Less boot overhead and less conflicts with drivers, at the cost of UX beauty
+# quiet    # 🤫 Enabled: Simpler, focused debugging on errors than general stats
 # threadirqs                 # 🧵 Enabled: Moves hardware interrupt handlers into threads, allowing the scheduler to prioritize tasks.
 # sysrq_always_enabled=1     # 🔑 Enabled: Provides a low-level interface to rescue a frozen system (e.g., REISUB), regardless of UI state.
 # consoleblank=180           # 🖥️ Enabled: Prevents TTY from display burn in and efficiency
@@ -137,9 +138,14 @@ echo "⚠️ --- Add system packages ---"
 # lz4 > lzo in terms of efficiency and modernity. zstd fine for speed but great for balanced usage. brotli is unsuitable for this, as memory content is dynamic.
 # lz4 overall lowest latency
 
-# === Clean ===
-echo "⚠️ --- Clean DNF5 cache ---"
+# === List ===
+echo "⭕ --- List DNF5 packages ---"
+dnf5 list --installed
+echo "⭕ --- List DNF5 packages ---"
 
+# === Clean ===
+echo "⭕ --- List DNF5 packages ---"
 dnf5 clean all -y
+echo "⭕ --- List DNF5 packages ---"
 
 echo "🏁 --- Run 'dnf5.fish' ---"
