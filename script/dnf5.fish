@@ -34,13 +34,13 @@ function sysPkg+Adv -d "Add pkg if present in dnf5 repos"
         dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $install_list
     end
 end
-alias sysPkg+A "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade"
-alias sysPkg+ "echo bruh"
+alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade"
+alias sysPkg+A "echo bruh"
 alias sysPkg- "dnf5 remove -y"
 
 # PKG UPD
 echo "⭕ --- Update system packages ---"
-dnf5 update -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade
+dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
 echo "⭕ --- Update system packages ---"
 # PKG ADD
 echo "⭕ --- Add system packages ---"
@@ -53,7 +53,7 @@ echo "⭕ --- Add system packages ---"
 ### which rpm-ostree attempts to manage or migrate across deployments. When a package providing the exact same 
 ### file is introduced, the conflict occurs. It it happens, rename the doubtful one to *.bak, do the rpm-ostree operation, rename to original if successful.
 
-   sysPkg+ boinc-client-static brotli cargo clippy code-insiders \
+   sysPkg+A boinc-client-static brotli cargo clippy code-insiders \
         cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop \
         cosmic-edit cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
         cosmic-settings-daemon cosmic-store distcc distcc-server dnf-plugins-core dnf-repo \
