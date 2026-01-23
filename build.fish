@@ -2,7 +2,7 @@
 echo "🚩 --- Run 'build.fish' ---"
 
 echo "Quick reminder!"
-echo "Search for these characters,
+echo "Search for these characters,"
 echo "'⭕' --- Start of a section"
 echo "'✅' --- End of a section"
 echo "'🚩' --- Start of script"
