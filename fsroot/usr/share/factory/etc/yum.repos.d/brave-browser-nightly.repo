@@ -1,0 +1,7 @@
+[brave-browser-nightly]
+name=Brave Browser - Nightly
+enabled=1
+gpgcheck=1
+gpgkey=https://brave-browser-rpm-nightly.s3.brave.com/brave-core-nightly.asc
+baseurl=https://brave-browser-rpm-nightly.s3.brave.com/$basearch
+

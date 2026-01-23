@@ -5,13 +5,18 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 
 # NOTICE: rpm-ostree is deprecated for bootc
 # Transitioning to bootc is intended to move system management toward a pure image-based model,
-# which effectively removes the client-side package layering and management functionality that rpm-ostree supports. The core idea is that the entire operating system state is defined by a container image.
+# which effectively removes the client-side package layering and management functionality.
+# The core idea is that the entire operating system state is defined by a container image.
 # The entire package management part will be removed, requiring you to shift to userspace components, like Flatpak and Distrobox
 # Highly stable, faster to update and universally standardized.
-# Never layer any packages onto the image or use rpm-ostree
+# Never layer any packages onto the image or use rpm-ostree.
+# Flatpak is indeed somewhat of of a terrible choice not because how corporations want it, but the way it is built in terms of architecture.
+# As terrible as Electron in my opinion. Tauri is like distrobox but x100 resource efficient. Snapd is even worse.
+# I try to package as much of good software that follows logical philosophies, performance and efficiency requirements into the base image as much as I can for best integration.
+# See https://youtu.be/f_Xa_JvpfK0 for a rough overview
 
 # 📛 Aliases - For easier handling of commands
-function sysPkg+Adv -d "Add pkg if present in dnf5 repos"
+function sysPkg+Obsolete -d "Add pkg if present in dnf5 repos, was originally for rpm-ostree"
     set -l packages $argv
     # Handle cases where packages are passed as a single quoted string with spaces
     if test (count $argv) -eq 1; and string match -q '* *' $argv[1]
@@ -34,41 +39,38 @@ function sysPkg+Adv -d "Add pkg if present in dnf5 repos"
         dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $install_list
     end
 end
-alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade"
-alias sysPkg+A "echo bruh"
+alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade --setopt=install_weak_deps=False"
+alias sysPkg+A "echo redneck method to temporarily disable package installation, just add an A at the install instruction"
 alias sysPkg- "dnf5 remove -y"
 
 # PKG UPD
 echo "⭕ --- Update system packages ---"
 dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
-echo "⭕ --- Update system packages ---"
+echo "✅ --- Update system packages ---"
 # PKG ADD
 echo "⭕ --- Add system packages ---"
 
 ### Notes:
-### Always update system before installing packages.
-### Systemd unit files in /etc/systemd/system/ may cause an rpm-ostree hardlinking 
-### file exists error when you try to install the actual packages that provide those same files later. 
-### Systemd units placed in /etc/systemd/system/ are part of the mutable host configuration, 
-### which rpm-ostree attempts to manage or migrate across deployments. When a package providing the exact same 
-### file is introduced, the conflict occurs. It it happens, rename the doubtful one to *.bak, do the rpm-ostree operation, rename to original if successful.
+# Always update system before installing packages.
+# Brave - resource efficient, actually aligned with the community a lot more than most browser, good practical features, includes Tor
+# COSMIC - future desktop environment, idc about polished, just better performance and efficiency
 
-   sysPkg+A boinc-client-static brotli cargo clippy code-insiders \
+   sysPkg+ boinc-client boinc-client-static brotli cargo clippy code-insiders \
         cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop \
         cosmic-edit cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
         cosmic-settings-daemon cosmic-store distcc distcc-server dnf-plugins-core dnf-repo \
         dnfdaemon dnfdaemon-selinux etckeeper-dnf featherpad fedora-release-cosmic-atomic \
-        fedora-repos-ostree fedora-repos-rawhide flatseal gemini-cli gh \
-        google-chrome-canary greetd hblock host-spawn initial-setup-gui-wayland-cosmic \
+        fedora-repos-rawhide gemini-cli gh \
+        brave-browser-nightly greetd hblock host-spawn initial-setup-gui-wayland-cosmic \
         inkscape java-latest-openjdk krita krita-libs libei-utils libreoffice \
         libvirt-daemon-kvm mcpelauncher-manifest mcpelauncher-ui-manifest mission-center \
         mosh msa-manifest nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
         obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis plymouth-kcm \
-        pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm rust \
-        rust-zram-generator-devel rustup snapd systemd-swap thunar tor torbrowser-launcher \
+        pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm \
+        rustup thunar tor \
         trayscale uget uutils-coreutils warp-terminal xdg-desktop-portal-cosmic
         
-echo "⭕ --- Add system packages ---"
+echo "✅ --- Add system packages ---"
 
 ### Reserved/reference pacakges:
 
@@ -142,11 +144,11 @@ echo "⭕ --- Add system packages ---"
 # === List ===
 echo "⭕ --- List DNF5 packages ---"
 dnf5 list --installed
-echo "⭕ --- List DNF5 packages ---"
+echo "✅ --- List DNF5 packages ---"
 
 # === Clean ===
 echo "⭕ --- List DNF5 packages ---"
 dnf5 clean all -y
-echo "⭕ --- List DNF5 packages ---"
+echo "✅ --- List DNF5 packages ---"
 
 echo "🏁 --- Run 'dnf5.fish' ---"

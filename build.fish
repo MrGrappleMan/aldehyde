@@ -55,11 +55,13 @@ echo "⭕ --- Clean /var/ ---"
 #	end # This 'end' closes the 'if/else' block
 #end # This 'end' closes the 'for' loop
 
-# tf is wrong here, correct syntax
+# Something is wrong here, correct syntax
 # First ever instance of if it works, do not touch it I have experienced
 
 rm -rf /var/*
 rm -rf /var/log/*
+rm -rf /var/cache/libdnf5/*
+rm -rf /var/lib/dnf5/history/*
 for item in (find /var -mindepth 1 -maxdepth 1)
     if test -d "$item"
         find "$item" -mindepth 1 -delete 2>/dev/null
