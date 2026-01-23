@@ -30,11 +30,11 @@ echo "✅ --- Install fish shell ---"
 # === === /ctx/script/ subscripts === ===
 echo "⭕ --- Run subscripts ---"
 
-#fish /ctx/script/dnf5.fish
-fish /ctx/script/systemd.fish
+fish /ctx/script/dnf5.fish # System packages
+fish /ctx/script/systemd.fish # System services
 #fish /ctx/script/flatpak.fish # Writes to /var/, so no
-#fish /ctx/script/fwupdmgr.fish
-#fish /ctx/script/ujust.fish
+#fish /ctx/script/fwupdmgr.fish # Some weird d-bus issues
+#fish /ctx/script/ujust.fish # this is for user environment
 
 echo "✅ --- Run subscripts ---"
 

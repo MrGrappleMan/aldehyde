@@ -34,7 +34,8 @@ function sysPkg+Adv -d "Add pkg if present in dnf5 repos"
         dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $install_list
     end
 end
-alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade"
+alias sysPkg+A "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade"
+alias sysPkg+ "echo bruh"
 alias sysPkg- "dnf5 remove -y"
 
 # PKG UPD
