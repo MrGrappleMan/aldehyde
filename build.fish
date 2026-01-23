@@ -30,7 +30,7 @@ echo "✅ --- Install fish shell ---"
 # === === /ctx/script/ subscripts === ===
 echo "⭕ --- Run subscripts ---"
 
-fish /ctx/script/dnf5.fish
+#fish /ctx/script/dnf5.fish
 fish /ctx/script/systemd.fish
 #fish /ctx/script/flatpak.fish # Writes to /var/, so no
 #fish /ctx/script/fwupdmgr.fish
