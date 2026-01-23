@@ -58,6 +58,8 @@ echo "⭕ --- Clean /var/ ---"
 # tf is wrong here, correct syntax
 # First ever instance of if it works, do not touch it I have experienced
 
+rm -rf /var/*
+rm -rf /var/log/*
 for item in (find /var -mindepth 1 -maxdepth 1)
     if test -d "$item"
         find "$item" -mindepth 1 -delete 2>/dev/null
