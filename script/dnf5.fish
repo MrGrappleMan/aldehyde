@@ -40,18 +40,13 @@ function sysPkg+Obsolete -d "Add pkg if present in dnf5 repos, was originally fo
     end
 end
 alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade --setopt=install_weak_deps=False"
-alias sysPkg+A "echo redneck method to temporarily disable package installation, just add an A at the install instruction"
+alias sysPkgq "echo Temporarily disable package modification, just add a 'q'"
 alias sysPkg- "dnf5 remove -y"
-
-# PKG UPD
-echo "⭕ --- Update system packages ---"
-dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
-echo "✅ --- Update system packages ---"
 
 # PKG DEL
 echo "⭕ --- Delete system packages ---"
 
-sysPkg- @gnome-desktop \
+sysPkgq @gnome-desktop \
         gnome-software gnome-shell-extension-common \
         'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' \
         'adwaita-icon-theme*' 'baobab' 'evince' \
@@ -59,6 +54,11 @@ sysPkg- @gnome-desktop \
         'docker' 'docker-compose' 'moby-engine' 'podman-docker'
         
 echo "✅ --- Delete system packages ---"
+
+# PKG UPD
+echo "⭕ --- Update system packages ---"
+dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
+echo "✅ --- Update system packages ---"
 
 # PKG ADD
 echo "⭕ --- Add system packages ---"
@@ -68,7 +68,7 @@ echo "⭕ --- Add system packages ---"
 # Brave - resource efficient, actually aligned with the community a lot more than most browser, good practical features, includes Tor
 # COSMIC - future desktop environment, idc about polished, just better performance and efficiency
 
-sysPkg+ boinc-client boinc-client-static cargo clippy \
+sysPkgq boinc-client boinc-client-static cargo clippy \
         cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop \
         cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
         cosmic-settings-daemon distcc distcc-server dnf-plugins-core dnf-repo \
