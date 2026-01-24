@@ -47,6 +47,19 @@ alias sysPkg- "dnf5 remove -y"
 echo "⭕ --- Update system packages ---"
 dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
 echo "✅ --- Update system packages ---"
+
+# PKG DEL
+echo "⭕ --- Delete system packages ---"
+
+sysPkg- @gnome-desktop \
+        gnome-software gnome-shell-extension-common \
+        'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' \
+        'adwaita-icon-theme*' 'baobab' 'evince' \
+        'firefox' 'google-gnu-free-*' \
+        'docker' 'docker-compose' 'moby-engine' 'podman-docker'
+        
+echo "✅ --- Delete system packages ---"
+
 # PKG ADD
 echo "⭕ --- Add system packages ---"
 
@@ -55,19 +68,19 @@ echo "⭕ --- Add system packages ---"
 # Brave - resource efficient, actually aligned with the community a lot more than most browser, good practical features, includes Tor
 # COSMIC - future desktop environment, idc about polished, just better performance and efficiency
 
-sysPkg+ boinc-client boinc-client-static brotli cargo clippy code-insiders \
+sysPkg+ boinc-client boinc-client-static cargo clippy \
         cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop \
-        cosmic-edit cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
-        cosmic-settings-daemon cosmic-store distcc distcc-server dnf-plugins-core dnf-repo \
-        dnfdaemon dnfdaemon-selinux etckeeper-dnf featherpad fedora-release-cosmic-atomic \
+        cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
+        cosmic-settings-daemon distcc distcc-server dnf-plugins-core dnf-repo \
+        dnfdaemon dnfdaemon-selinux etckeeper-dnf fedora-release-cosmic-atomic \
         fedora-repos-rawhide gemini-cli gh \
         brave-browser-nightly greetd hblock host-spawn \
-        inkscape java-latest-openjdk krita krita-libs libei-utils libreoffice \
-        libvirt-daemon-kvm mcpelauncher-manifest mcpelauncher-ui-manifest mission-center \
-        mosh msa-manifest nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
-        obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis plymouth-kcm \
+        inkscape java-latest-openjdk krita krita-libs libei-utils \
+        libvirt-daemon-kvm mission-center \
+        mosh nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
+        obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis \
         pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm \
-        rustup thunar tor \
+        rustup tor \
         trayscale uget uutils-coreutils warp-terminal xdg-desktop-portal-cosmic
         
 echo "✅ --- Add system packages ---"
