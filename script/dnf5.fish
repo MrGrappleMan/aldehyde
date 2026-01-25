@@ -69,12 +69,10 @@ echo "⭕ --- Add system packages ---"
 # COSMIC - future desktop environment, idc about polished, just better performance and efficiency
 
 sysPkgq boinc-client boinc-client-static cargo clippy \
-        cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop \
-        cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
         cosmic-settings-daemon distcc distcc-server dnf-plugins-core dnf-repo \
         dnfdaemon dnfdaemon-selinux etckeeper-dnf fedora-release-cosmic-atomic \
         fedora-repos-rawhide gemini-cli gh \
-        brave-browser-nightly greetd hblock host-spawn \
+        greetd hblock host-spawn \
         inkscape java-latest-openjdk krita krita-libs libei-utils \
         libvirt-daemon-kvm mission-center \
         mosh nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
@@ -82,6 +80,10 @@ sysPkgq boinc-client boinc-client-static cargo clippy \
         pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm \
         rustup tor \
         trayscale uget uutils-coreutils warp-terminal xdg-desktop-portal-cosmic
+
+sysPkg+ cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
+        brave-browser-nightly \
+        hblock
         
 echo "✅ --- Add system packages ---"
 
