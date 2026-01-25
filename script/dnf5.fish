@@ -69,7 +69,7 @@ echo "⭕ --- Add system packages ---"
 # COSMIC - Modern DE, better performance and efficiency over being polished
 
 sysPkgq clippy \
-        cosmic-config-fedora fedora-release-cosmic-atomic dnf-plugins-core dnf-repo etckeeper-dnf fedora-repos-rawhide \
+        dnf-plugins-core dnf-repo etckeeper-dnf fedora-repos-rawhide \
         distcc distcc-server \
         dnfdaemon dnfdaemon-selinux \
         gemini-cli gh \
@@ -83,8 +83,9 @@ sysPkgq clippy \
         uget warp-terminal
 
 sysPkg+ \
-        boinc-client boinc-client-static \
-        cosmic-app-library cosmic-applets cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
+        boinc-client boinc-client-static boinc-manager \
+        cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
+        cosmic-config-fedora fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic \
         uutils-coreutils \
         brave-browser-nightly \
         hblock mosh \
