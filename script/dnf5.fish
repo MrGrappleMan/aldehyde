@@ -85,6 +85,7 @@ sysPkgq clippy \
 sysPkg+ \
         boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
+        sddm \
         cosmic-config-fedora fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic \
         uutils-coreutils \
         brave-browser-nightly \
