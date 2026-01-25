@@ -68,7 +68,7 @@ echo "⭕ --- Add system packages ---"
 # Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
 # COSMIC - Modern DE, better performance and efficiency over being polished
 
-sysPkgq cargo clippy rustup \
+sysPkgq clippy \
         cosmic-config-fedora fedora-release-cosmic-atomic dnf-plugins-core dnf-repo etckeeper-dnf fedora-repos-rawhide \
         distcc distcc-server \
         dnfdaemon dnfdaemon-selinux \
@@ -83,11 +83,13 @@ sysPkgq cargo clippy rustup \
         uget warp-terminal
 
 sysPkg+ \
-        cosmic-app-library cosmic-applets cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic \
+        boinc-client boinc-client-static \
+        cosmic-app-library cosmic-applets cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
         uutils-coreutils \
         brave-browser-nightly \
         hblock mosh \
-        mission-center
+        mission-center \
+        rustup cargo
         
 echo "✅ --- Add system packages ---"
 
@@ -111,10 +113,6 @@ echo "✅ --- Add system packages ---"
 
      ## Pentesting / Hacking:
       # aircrack-ng turbo-attack golang-github-redteampentesting-monsoon
-     ## Docker:
-      # docker-cli docker-compose docker-compose-switch docker-buildx docker-buildkit
-     ## C / C++:
-      # gcc gcc-c++ cpp
     ### Gaming:-
      ## Steam:
       # steam steam-devices
