@@ -16,6 +16,8 @@ COPY / /
 FROM ghcr.io/ublue-os/bazzite-dx-gnome:latest
 # uBlue Image list: https://github.com/orgs/ublue-os/packages
 
+LABEL containers.bootc 1
+
 ### MUTABLE /opt
 # Some images have /opt symlinked to /var/opt, to allow changes in it
 # Kept mutable to allow some pkgs to function that rely on this path

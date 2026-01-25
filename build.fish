@@ -1,4 +1,13 @@
 #!/usr/bin/env fish
+
+## Functions
+function diskfree
+	echo "📊 --- DISK SPACE REPORT ---"
+	df -h
+	#df -h / | awk 'NR==2 {print "Total: " $2 " | Used: " $3 " | Available: " $4}'
+end
+
+## User Instructions
 echo "🚩 --- Run 'build.fish' ---"
 
 echo "Quick reminder!"
@@ -8,6 +17,8 @@ echo "'✅' --- End of a section"
 echo "'🚩' --- Start of script"
 echo "'🏁' --- End of a script"
 echo "to look for messages provided by Aldehyde scripts"
+
+## Image modification
 
 # === === /ctx/fsroot/ filesystem, using factory === ===
 echo "⭕ --- Copy over filesystem components ---"
@@ -73,7 +84,7 @@ end
 
 echo "✅ --- Clean /var/ ---"
 
-# Essential directories reconstruct
+# === === Essential directories reconstruct === ===
 echo "⭕ --- Remake essential directories ---"
 
 mkdir -p /var/tmp

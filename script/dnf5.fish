@@ -46,7 +46,7 @@ alias sysPkg- "dnf5 remove -y"
 # PKG DEL
 echo "⭕ --- Delete system packages ---"
 
-sysPkgq @gnome-desktop \
+sysPkg- @gnome-desktop \
         gnome-software gnome-shell-extension-common \
         'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' \
         'adwaita-icon-theme*' 'baobab' 'evince' \
@@ -65,25 +65,29 @@ echo "⭕ --- Add system packages ---"
 
 ### Notes:
 # Always update system before installing packages.
-# Brave - resource efficient, actually aligned with the community a lot more than most browser, good practical features, includes Tor
-# COSMIC - future desktop environment, idc about polished, just better performance and efficiency
+# Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
+# COSMIC - Modern DE, better performance and efficiency over being polished
 
-sysPkgq boinc-client boinc-client-static cargo clippy \
-        cosmic-settings-daemon distcc distcc-server dnf-plugins-core dnf-repo \
-        dnfdaemon dnfdaemon-selinux etckeeper-dnf fedora-release-cosmic-atomic \
-        fedora-repos-rawhide gemini-cli gh \
-        greetd hblock host-spawn \
-        inkscape java-latest-openjdk krita krita-libs libei-utils \
-        libvirt-daemon-kvm mission-center \
-        mosh nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
+sysPkgq cargo clippy rustup \
+        cosmic-config-fedora fedora-release-cosmic-atomic dnf-plugins-core dnf-repo etckeeper-dnf fedora-repos-rawhide \
+        distcc distcc-server \
+        dnfdaemon dnfdaemon-selinux \
+        gemini-cli gh \
+        host-spawn \
+        inkscape krita krita-libs libei-utils \
+        libvirt-daemon-kvm \
+        nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
         obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis \
         pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm \
-        rustup tor \
-        trayscale uget uutils-coreutils warp-terminal xdg-desktop-portal-cosmic
+        tor \
+        uget warp-terminal
 
-sysPkg+ cosmic-app-library cosmic-applets cosmic-comp cosmic-config-fedora cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings \
+sysPkg+ \
+        cosmic-app-library cosmic-applets cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic \
+        uutils-coreutils \
         brave-browser-nightly \
-        hblock
+        hblock mosh \
+        mission-center
         
 echo "✅ --- Add system packages ---"
 
