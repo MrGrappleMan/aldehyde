@@ -69,7 +69,6 @@ echo "⭕ --- Add system packages ---"
 # COSMIC - Modern DE, better performance and efficiency over being polished
 
 sysPkgq clippy \
-        dnf-plugins-core dnf-repo etckeeper-dnf fedora-repos-rawhide \
         distcc distcc-server \
         dnfdaemon dnfdaemon-selinux \
         gemini-cli gh \
@@ -83,10 +82,11 @@ sysPkgq clippy \
         uget warp-terminal
 
 sysPkg+ \
+        dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
-        sddm gdm \
-        cosmic-config-fedora fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic \
+        sddm \
+        xorg-x11-server-Xwayland \
         uutils-coreutils \
         brave-browser-nightly \
         hblock mosh \
@@ -95,7 +95,7 @@ sysPkg+ \
         
 echo "✅ --- Add system packages ---"
 
-### Reserved/reference pacakges:
+### Reserved:
 
 ## REFERENCE ##
 #cpp fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
@@ -104,8 +104,12 @@ echo "✅ --- Add system packages ---"
 #tailscale util-linux vim xdg-desktop-portal
 
 ## CONFLICTS ##
-# warp-cli | warp-terminal ( it already includes warp-cli )
-# tlp, tlp-rdw | tuned-ppd, power-profiles-daemon ( architectural shift in tlp. great but inconvenient, therefore it conflicts with the base image, error: Checkout tlp-1.9.0-6.fc44.noarch: Hardlinking 22/4ea4cdcf902e721f5550bca4e5e6e1630672751aa0931cdad5634f7eb49201.file to net.hadess.PowerProfiles.service: File exists )
+# warp-cli | warp-terminal, already includes warp-cli
+# tlp, tlp-rdw | tuned-ppd, power-profiles-daemon ( architectural shift in tlp therefore it conflicts with them )
+# fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, spoofing it as one will cause conflicts )
+# fedora-repos-rawhide ( only obey this image yum.repos.d, nothing else )
+# cosmic-config-fedora ( We have our own config files )
+
 
 ## PORTS ## for GUI/applications that work better on other package managers
 # boinc-manager | fpk:edu.berkeley.BOINC
