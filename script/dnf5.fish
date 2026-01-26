@@ -46,7 +46,7 @@ alias sysPkg- "dnf5 remove -y"
 # PKG DEL
 echo "⭕ --- Delete system packages ---"
 
-sysPkg- 'docker' 'docker-compose' 'moby-engine' 'podman-docker' \
+sysPkg- 'docker' 'docker-compose' 'moby-engine' \
         'firefox'
 
 # @gnome-desktop gnome-software gnome-shell-extension-common 'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' 'adwaita-icon-theme*' 'baobab' 'evince' 'google-gnu-free-*'
@@ -67,15 +67,13 @@ echo "⭕ --- Add system packages ---"
 # COSMIC - Modern DE, better performance and efficiency over being polished
 
 sysPkgq distcc distcc-server \
-        dnfdaemon dnfdaemon-selinux \
-        gemini-cli gh \
         host-spawn \
         inkscape krita krita-libs libei-utils \
         libvirt-daemon-kvm \
         nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
         obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis \
         pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm \
-        tor gemini-cli \
+        tor \
         uget warp-terminal
 
 sysPkg+ \
@@ -87,7 +85,8 @@ sysPkg+ \
         brave-browser-nightly \
         hblock mosh \
         mission-center \
-        rustup cargo clippy
+        rustup cargo clippy \
+        podman podman-docker
         
 echo "✅ --- Add system packages ---"
 
@@ -95,9 +94,9 @@ echo "✅ --- Add system packages ---"
 
 ## REFERENCE ##
 #cpp fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
-#flatpak-session-helper gcc git kernel-modules-extra libei libportal openssh
-#openssh-server p7zip p7zip-plugins plymouth plymouth-core-libs plymouth-scripts
-#tailscale util-linux vim xdg-desktop-portal
+#flatpak-session-helper git kernel-modules-extra libei libportal openssh
+#openssh-server p7zip p7zip-plugins
+#tailscale util-linux xdg-desktop-portal
 
 ## CONFLICTS ##
 # warp-cli | warp-terminal, already includes warp-cli
