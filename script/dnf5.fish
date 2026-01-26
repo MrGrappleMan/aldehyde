@@ -46,13 +46,15 @@ alias sysPkg- "dnf5 remove -y"
 # PKG DEL
 echo "⭕ --- Delete system packages ---"
 
-sysPkgq @gnome-desktop \
+sysPkgq \
         gnome-software gnome-shell-extension-common \
         'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' \
         'adwaita-icon-theme*' 'baobab' 'evince' \
         'firefox' 'google-gnu-free-*' \
         'docker' 'docker-compose' 'moby-engine' 'podman-docker'
-        
+
+# @gnome-desktop
+
 echo "✅ --- Delete system packages ---"
 
 # PKG UPD
