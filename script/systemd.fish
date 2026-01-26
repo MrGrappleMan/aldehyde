@@ -42,6 +42,7 @@ function sysdOnPerUnit
 	else
 		echo "✅ sysdOnPerUnit — all units enabled successfully"
 	end
+end
 
 function sysdOffPerUnit
 	set units (string split ' ' -- (string replace -ar '\s+' ' ' -- $argv))
