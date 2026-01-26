@@ -46,14 +46,9 @@ alias sysPkg- "dnf5 remove -y"
 # PKG DEL
 echo "⭕ --- Delete system packages ---"
 
-sysPkg- \
-        gnome-software gnome-shell-extension-common \
-        'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' \
-        'adwaita-icon-theme*' 'baobab' 'evince' \
-        'firefox' 'google-gnu-free-*' \
-        'docker' 'docker-compose' 'moby-engine' 'podman-docker'
+sysPkg- 'docker' 'docker-compose' 'moby-engine' 'podman-docker'
 
-# @gnome-desktop
+# @gnome-desktop gnome-software gnome-shell-extension-common 'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' 'adwaita-icon-theme*' 'baobab' 'evince' 'firefox' 'google-gnu-free-*'
 
 echo "✅ --- Delete system packages ---"
 
@@ -70,8 +65,7 @@ echo "⭕ --- Add system packages ---"
 # Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
 # COSMIC - Modern DE, better performance and efficiency over being polished
 
-sysPkgq clippy \
-        distcc distcc-server \
+sysPkgq distcc distcc-server \
         dnfdaemon dnfdaemon-selinux \
         gemini-cli gh \
         host-spawn \
@@ -87,13 +81,13 @@ sysPkg+ \
         dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
-        sddm \
-        xorg-x11-server-Xwayland \
+        kernel-cachyos \
         uutils-coreutils \
+        git gh gemini-cli \
         brave-browser-nightly \
         hblock mosh \
         mission-center \
-        rustup cargo
+        rustup cargo clippy
         
 echo "✅ --- Add system packages ---"
 
