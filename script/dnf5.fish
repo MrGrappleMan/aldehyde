@@ -46,9 +46,11 @@ alias sysPkg- "dnf5 remove -y"
 # PKG DEL
 echo "⭕ --- Delete system packages ---"
 
-sysPkg- 'docker' 'docker-compose' 'moby-engine' 'podman-docker'
+sysPkg- 'docker' 'docker-compose' 'moby-engine' 'podman-docker' \
+        'kernel*' \
+        'firefox'
 
-# @gnome-desktop gnome-software gnome-shell-extension-common 'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' 'adwaita-icon-theme*' 'baobab' 'evince' 'firefox' 'google-gnu-free-*'
+# @gnome-desktop gnome-software gnome-shell-extension-common 'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' 'adwaita-icon-theme*' 'baobab' 'evince' 'google-gnu-free-*'
 
 echo "✅ --- Delete system packages ---"
 
@@ -74,7 +76,7 @@ sysPkgq distcc distcc-server \
         nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
         obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis \
         pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm \
-        tor gemini-cli clippy \
+        tor gemini-cli \
         uget warp-terminal
 
 sysPkg+ \
@@ -83,11 +85,11 @@ sysPkg+ \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
         kernel-cachyos \
         uutils-coreutils \
-        git gh \
+        git gh gemini-cli \
         brave-browser-nightly \
         hblock mosh \
         mission-center \
-        rustup cargo
+        rustup cargo clippy
         
 echo "✅ --- Add system packages ---"
 
