@@ -1,12 +1,8 @@
 #!/usr/bin/env fish
 
 # FS Perms
-echo __Setup permissions__
+echo --- Setup permissions ---
 chmod a+x /opt/Fyn-scripts
-mkdir -p /etc/playit
-mkdir -p /opt/playit
-chmod a+x /opt/playit/playit
-chmod a+x /opt/mc-server/mc-server
 chown -R boinc:boinc /var/lib/boinc/
 chmod -R 755 /var/lib/boinc/
 chmod 600 /var/lib/boinc/gui_rpc_auth.cfg

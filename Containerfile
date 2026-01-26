@@ -17,6 +17,8 @@ FROM ghcr.io/ublue-os/bazzite-dx-gnome:latest
 # uBlue Image list: https://github.com/orgs/ublue-os/packages
 
 LABEL containers.bootc 1
+LABEL org.opencontainers.image.source="https://github.com/MrGrappleMan/aldehyde-lx"
+LABEL org.opencontainers.image.description="Rust-centric COSMIC Desktop on Bootc"
 
 ### MUTABLE /opt
 # Some images have /opt symlinked to /var/opt, to allow changes in it

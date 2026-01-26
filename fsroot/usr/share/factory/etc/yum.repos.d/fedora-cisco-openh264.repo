@@ -10,7 +10,7 @@ skip_if_unavailable=True
 deltarpm=True
 fastestmirror=True
 max_parallel_downloads=20
-metadata_expire=1h
+metadata_expire=8h
 countme=1
 
 [fedora-cisco-openh264-rawhide]
@@ -25,5 +25,5 @@ skip_if_unavailable=True
 deltarpm=True
 fastestmirror=True
 max_parallel_downloads=20
-metadata_expire=1h
+metadata_expire=8h
 countme=1
