@@ -46,7 +46,7 @@ alias sysPkg- "dnf5 remove -y"
 # PKG DEL
 echo "⭕ --- Delete system packages ---"
 
-sysPkgq \
+sysPkg- \
         gnome-software gnome-shell-extension-common \
         'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' \
         'adwaita-icon-theme*' 'baobab' 'evince' \
