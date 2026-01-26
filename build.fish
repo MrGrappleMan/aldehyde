@@ -42,6 +42,7 @@ echo "✅ --- Install fish shell ---"
 echo "⭕ --- Run subscripts ---"
 
 fish /ctx/script/dnf5.fish # System packages
+fish /ctx/script/kernel.fish # Kernel modification
 fish /ctx/script/systemd.fish # System services
 #fish /ctx/script/flatpak.fish # Writes to /var/, so no
 #fish /ctx/script/fwupdmgr.fish # Some weird d-bus issues
