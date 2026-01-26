@@ -74,7 +74,7 @@ sysPkgq distcc distcc-server \
         nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
         obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis \
         pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm \
-        tor \
+        tor gemini-cli clippy \
         uget warp-terminal
 
 sysPkg+ \
@@ -83,11 +83,11 @@ sysPkg+ \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
         kernel-cachyos \
         uutils-coreutils \
-        git gh gemini-cli \
+        git gh \
         brave-browser-nightly \
         hblock mosh \
         mission-center \
-        rustup cargo clippy
+        rustup cargo
         
 echo "✅ --- Add system packages ---"
 
