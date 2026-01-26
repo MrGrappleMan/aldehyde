@@ -168,8 +168,8 @@ dnf5 list --installed
 echo "✅ --- List DNF5 packages ---"
 
 # === Clean ===
-echo "⭕ --- List DNF5 packages ---"
+echo "⭕ --- Clean DNF5 packages ---"
 dnf5 clean all -y
-echo "✅ --- List DNF5 packages ---"
+echo "✅ --- Clean DNF5 packages ---"
 
 echo "🏁 --- Run 'dnf5.fish' ---"
