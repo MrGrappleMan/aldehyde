@@ -92,8 +92,7 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
     io.frama.tractor.carburetor com.termius.Termius dev.deedles.Trayscale \
     io.github.qwersyk.Newelle org.upscayl.Upscayl \
     org.telegram.desktop io.github.tobagin.karere dev.vencord.Vesktop \
-    com.github.wwmm.easyeffects org.nickvision.cavalier com.spotify.Client \
-    io.missioncenter.MissionCenter
+    com.github.wwmm.easyeffects org.nickvision.cavalier com.spotify.Client
 
 # Although more feature rich, "com.rtosta.zapzap" has several inconsitencies and higher resource consumption. "io.github.tobagin.karere" just works well with native libraries
 # No using VSCode flatpaks "com.visualstudio.code com.visualstudio.code.tool.fish com.visualstudio.code.tool.podman" - Bazzite-DX already has it
