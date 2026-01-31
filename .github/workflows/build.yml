@@ -52,6 +52,7 @@ jobs:
         uses: ublue-os/remove-unwanted-software@695eb75bc387dbcd9685a8e72d23439d8686cba6
 
       - name: 🚮 Free up space Method 2
+        if: false
         run: |
           echo "🚩 --- Starting Manual Disk Purge ---"
           # 1. No swap, user can make it later
