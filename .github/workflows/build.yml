@@ -5,12 +5,12 @@ on:
     branches:
       - main
   schedule:
-    - cron: '00 00 * * *'' # Daily
+    - cron: "00 00 * * *" # Daily
   push:
     branches:
       - main
     paths-ignore:
-      - '**/README.md'
+      - "**/README.md"
   workflow_dispatch:
 
 env:
