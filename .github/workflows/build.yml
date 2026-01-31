@@ -5,12 +5,12 @@ on:
     branches:
       - main
   schedule:
-    - cron: "00 00 * * *" # Daily
+    - cron: '00 00 * * *'' # Daily
   push:
     branches:
       - main
     paths-ignore:
-      - "**/README.md"
+      - '**/README.md'
   workflow_dispatch:
 
 env:
@@ -28,7 +28,7 @@ concurrency:
 jobs:
   build_push:
     name: 🧑‍🏭 Build and push image
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     permissions:
       contents: read
@@ -86,7 +86,7 @@ jobs:
         continue-on-error: true
         with:
           target-dir: /var/lib/containers
-          mount-opts: compress-force=zstd:2
+          mount-opts: compress-force=zstd:3
 
       - name: ⏱️ Get timestamp
         id: date
@@ -210,5 +210,5 @@ jobs:
           done
         env:
           TAGS: ${{ steps.push.outputs.digest }}
-          COSIGN_EXPERIMENTAL: false
+          COSIGN_EXPERIMENTAL: true
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
