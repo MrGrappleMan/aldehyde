@@ -41,14 +41,14 @@ RUN uname -a
 
 RUN dnf5 install -y fish
 
-# We explicitly call fish, to ensure the the correct interpreter is run, though the shebang is present
+# Explicitly call fish so correct interpreter is run, despite correct shebang
 # Never make $Home as /tmp, lots of problems in fish will happen
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     fish /ctx/build.fish
-    
+
 ### LINTING
 ## Verify final image and contents
 RUN bootc container lint --no-truncate

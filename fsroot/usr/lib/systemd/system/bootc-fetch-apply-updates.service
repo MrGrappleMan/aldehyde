@@ -11,7 +11,7 @@ StartLimitIntervalSec=600
 Type=oneshot
 User=root
 ExecStart=/usr/bin/bootc upgrade --quiet
-# Get silently, let user reboot w/o interruption
+# Get w/o interuping user, reboot when they need to
 
 # CommonSnippet - Daemons
 IOSchedulingClass=2
