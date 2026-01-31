@@ -5,21 +5,21 @@ on:
     branches:
       - main
   schedule:
-    - cron: "00 00 * * *" # Midnight UTC daily
+    - cron: '00 00 * * *' # Midnight UTC daily
   push:
     branches:
       - main
     paths-ignore:
-      - "**/README.md"
+      - '**/README.md'
   workflow_dispatch:
 
 env:
   IMAGE_DESC: "A workstation that focuses on modernity and performance"
   IMAGE_KEYWORDS: "bootc,ublue,universal-blue"
-  IMAGE_LOGO_URL: "https://avatars.githubusercontent.com/u/120078124?s=200&v=4" # Put your own image here, or try https://artifacthub.io/
-  IMAGE_NAME: "${{ github.event.repository.name }}" # do not edit, output image name, 'github.event.repository.name' derives it from repo name
-  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}" # do not edit, image registry, 'github.repository_owner' indicates that your username is the image registry
-  DEFAULT_TAG: "latest" # safest, what bootc switch assumes by default as its tag when rebasing
+  IMAGE_LOGO_URL: "https://avatars.githubusercontent.com/u/120078124?s=200&v=4"  # Put your own image here, or try https://artifacthub.io/
+  IMAGE_NAME: "${{ github.event.repository.name }}"  # do not edit, output image name, 'github.event.repository.name' derives it from repo name
+  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit, image registry, 'github.repository_owner' indicates that your username is the image registry
+  DEFAULT_TAG: "latest"  # safest, what bootc switch assumes by default as its tag when rebasing
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.brand_name}}-${{ inputs.stream_name }}
@@ -44,20 +44,20 @@ jobs:
 
       # These stage versions are pinned by https://github.com/renovatebot/renovate
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       # Only use this step if the container-storage-action proves to be unreliable, you don't need to enable both
       # Use if you see that your builds are way too big for runners/build time, debloat stuff
       - name: 🚮 Free up space
-        uses: ublue-os/remove-unwanted-software@main
+        uses: ublue-os/remove-unwanted-software@695eb75bc387dbcd9685a8e72d23439d8686cba6
 
       - name: 🚮 Free up space V2
         run: |
-          echo "🚩 --- Manual Disk Purge ---"
+          echo "🚩 --- Starting Manual Disk Purge ---"
           # 1. No swap, user can make it later
           sudo swapoff -a || true
           sudo rm -f /swapfile || true
-          # 2. Parallel remove the heaviest hitters
+          # 2. Parallel remove the heaviest hitters 
           # This combines the uBlue list with the 'extra-squeeze' targets
           printf '%s\0' \
           /usr/local/lib/android \
@@ -80,14 +80,14 @@ jobs:
 
       - name: 🖴 Mount BTRFS for Podman storage
         id: container-storage-action
-        uses: ublue-os/container-storage-action@main
+        uses: ublue-os/container-storage-action@911baca08baf30c8654933e9e9723cb399892140
 
         # Fallback to the remove-unwanted-software-action if github doesn't allocate enough space
         # See: https://github.com/ublue-os/container-storage-action/pull/11
-        continue-on-error: true
+        continue-on-error: true 
         with:
           target-dir: /var/lib/containers
-          mount-opts: compress-force=zstd:3
+          mount-opts: compress-force=zstd:2
 
       - name: ⏱️ Get timestamp
         id: date
@@ -101,7 +101,7 @@ jobs:
       # Image metadata for https://artifacthub.io/ - This is optional but is highly recommended so we all can get a index of all the custom images
       # The metadata by itself is not going to do anything, you choose if you want your image to be on ArtifactHub or not.
       - name: 📜 Image Metadata
-        uses: docker/metadata-action@main
+        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
         id: metadata
         with:
           # This generates all the tags for your image, you can add custom tags here too!
@@ -133,7 +133,7 @@ jobs:
 
       - name: 🏗 Build Image
         id: build_image
-        uses: redhat-actions/buildah-build@main
+        uses: redhat-actions/buildah-build@7a95fa7ee0f02d552a32753e7414641a04307056 # v2
         with:
           containerfiles: |
             ./Containerfile
@@ -172,10 +172,14 @@ jobs:
       # They also check if the runner is on the default branch so that things like the merge queue (if you enable it), are going to work
       - name: ⤠ Login to GHCR
 <<<<<<< HEAD
+<<<<<<< HEAD
         uses: docker/login-action@main # v3
 =======
         uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3
 >>>>>>> parent of e39d6d7 (Merge pull request #2 from MrGrappleMan/dependabot/github_actions/docker/login-action-3.7.0)
+=======
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+>>>>>>> parent of 7e90848 (Commits no longer on specifics, only latest(risky idk))
         if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         with:
           registry: ghcr.io
@@ -183,7 +187,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ⤜ Push To GHCR
-        uses: redhat-actions/push-to-registry@main
+        uses: redhat-actions/push-to-registry@5ed88d269cf581ea9ef6dd6806d01562096bee9c # v2
         if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         id: push
         env:
@@ -201,10 +205,10 @@ jobs:
       # using Cosign locally and save the private key(cat the entire contents of the yet) as a repository secret in Github for this workflow
       # to utilize. For more details, review the image signing section of the README.
       - name: ✅ Install Cosign
-        uses: sigstore/cosign-installer@main
+        uses: sigstore/cosign-installer@faadad0cce49287aee09b3a48701e75088a2c6ad # v4.0.0
         if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         with:
-          cosign-release: "v2.6.1"
+          cosign-release: 'v2.6.1'
 
       - name: 🪶 Sign container image
         if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
