@@ -23,12 +23,10 @@ echo "to look for messages provided by Aldehyde scripts"
 # === === /ctx/fsroot/ filesystem, using factory === ===
 echo "⭕ --- Copy over filesystem components ---"
 
-chmod -R a+rx /ctx/
-
-cp -r /ctx/fsroot/usr/* /usr/
-cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # user modify
-#cp -r /ctx/fsroot/usr/share/factory/var/* /var/ # Never copy to base while building in progress
-#cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Include files in it only if it will be immutable directory
+cp -r /ctx/fsroot/usr/* /usr/ # Immutable
+cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # User modifiable
+#cp -r /ctx/fsroot/usr/share/factory/var/* /var/ # This won't be preserved
+#cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Include files in it only if /opt/ immutable directory, which is not the case here
 
 
 # === Install fish ===
@@ -45,7 +43,7 @@ fish /ctx/script/dnf5.fish # System packages
 #fish /ctx/script/kernel.fish # Kernel modification
 fish /ctx/script/systemd.fish # System services
 #fish /ctx/script/flatpak.fish # Writes to /var/, so no
-#fish /ctx/script/fwupdmgr.fish # Some weird d-bus issues
+#fish /ctx/script/fwupdmgr.fish # DBus issues, execute once deployed into user's PC
 #fish /ctx/script/ujust.fish # this is for user environment
 
 echo "✅ --- Run subscripts ---"
@@ -53,7 +51,7 @@ echo "✅ --- Run subscripts ---"
 # === === /var/ cleanup === ===
 echo "⭕ --- Clean /var/ ---"
 
-# Clear, Opportunistically clean /var/ without failing on active mounts
+# Opportunistically clean /var/ without failing on active mounts
 # We use 'find' with '-xdev' to stay on the same filesystem
 # and avoid trying to delete the actual mount points.
 #for item in (find /var -mindepth 1 -maxdepth 1)

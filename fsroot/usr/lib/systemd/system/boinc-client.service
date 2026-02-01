@@ -2,38 +2,53 @@
 Description=⚛️ Science United / BOINC - help scientific research projects by giving them idle computing power
 Documentation=https://scienceunited.org/ man:boinc(1) https://boinc.berkeley.edu/
 Wants=podman.service vboxdrv.service network-online.target
+After=podman.service vboxdrv.service network-online.target time-sync.target
 StartLimitBurst=5
 StartLimitIntervalSec=300
 
 [Service]
 Type=simple
+
+## GPU ACCESS ##
 SupplementaryGroups=video render
 DeviceAllow=/dev/dri/renderD128 rw
 DeviceAllow=/dev/dri/card0 rw
 Environment=DRI_NAME=renderD128
+
+## PROTECTION ##
 ProtectHome=true
 ProtectSystem=true
 ProtectControlGroups=true
-# Add the specific path where Podman stores its data
+# Whitelist write access to own paths + Podman Container directories
 ReadWritePaths=-/var/lib/boinc -/etc/boinc-client -/tmp -/var/tmp -/var/lib/containers -/dev/dri
 User=boinc
 Group=boinc
 Delegate=yes
 WorkingDirectory=/var/lib/boinc
+
+## EXECUTION ##
 ExecStart=/usr/bin/boinc
 ExecStop=/usr/bin/boinccmd --quit
 ExecReload=/usr/bin/boinccmd --read_cc_config
+# Clean up lockfile on exit
 ExecStopPost=/usr/bin/rm -f lockfile
+
+## RESOURCE MANAGEMENT ##
+# 'idle' keeps the content to be written to storage in RAM as 'dirty' and to be rescheduled to
+# be written actually later but appears as written to disk for BOINC
+# 'best-effort' does parallelization of I/O operations provided we give BOINC least priority
+Slice=background.slice
 IOSchedulingClass=2
 IOSchedulingPriority=7
 CPUSchedulingPolicy=idle
 Nice=19
 CPUWeight=1
+OOMScoreAdjust=1000
 
-# CommonSnippet - Daemons
+## RESTART ##
 Restart=on-failure
 RestrictRealtime=true
-RestartSec=60
+RestartSec=300
 
 [Install]
 WantedBy=multi-user.target

@@ -4,7 +4,7 @@ Documentation=man:fstrim
 ConditionVirtualization=!container
 ConditionPathExists=!/etc/initrd-release
 
-# 2xDaily execution is enough, hourly is for datacenter type machines. Theres no harm in frequent execution though
+# 2xDaily execution is enough. Theres no harm in frequent execution though. async + discard is recommended for modern NVMe drives.
 
 [Timer]
 Persistent=true

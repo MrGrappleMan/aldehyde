@@ -7,6 +7,7 @@ kargs = [
   "bluetooth.disable_ertm=0",
   "loglevel=3",
   "preempt=full",
+  "psi=1",
   "systemd.zram=0",
   "zswap.enabled=1",
   "zswap.shrinker_enabled=Y",
@@ -23,5 +24,6 @@ kargs = [
   "intel_pstate=active",
   "intel_pstate.enable=1",
   "amdgpu.sg_display=1",
-  "pci=realloc=on"
+  "pci=realloc=on",
+  "rootflags=noatime,nodiratime,compress-force=zstd:1,discard=async,space_cache=v2,commit=120" # Better storage performance
 ]

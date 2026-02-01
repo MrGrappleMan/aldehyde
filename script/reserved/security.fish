@@ -1,12 +1,5 @@
 #!/usr/bin/env fish
 
-# FS Perms
-echo --- Setup permissions ---
-chmod a+x /opt/Fyn-scripts
-chown -R boinc:boinc /var/lib/boinc/
-chmod -R 755 /var/lib/boinc/
-chmod 600 /var/lib/boinc/gui_rpc_auth.cfg
-
 # User perms
 usermod -aG video,render boinc
 usermod -aG boinc root
