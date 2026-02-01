@@ -1,5 +1,8 @@
 #!/usr/bin/env fish
 
+# Notes:
+# Actively avoid electron-based applications to ensure efficient resource utilization - use native counterparts
+
 # 📛 Alias
 alias fpk "flatpak --system" # Main alias
 alias fpkRep+ "flatpak --system remote-add --if-not-exists" # Repository add
@@ -43,9 +46,9 @@ end
 alias fpkPkg+Adv "flatpak --system install -y --noninteractive --or-update"
 alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
 
-# REP ( - Removal )
+# -----------------------------------------------------------------------------------------------------------------------------------------------
 
-# REP ( + Install )
+# ADD REPOS +
   fpkRep+ flathub https://flathub.org/repo/flathub.flatpakrepo
   fpkRep+ flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
   ###fpkRep+ eos-sdk https://ostree.endlessm.com/ostree/eos-sdk
@@ -64,18 +67,19 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
   fpkRep+ kde-runtime-nightly https://cdn.kde.org/flatpak/kde-runtime-nightly/kde-runtime-nightly.flatpakrepo
   fpkRep+ cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
 
-# PKG ( - Removal )
-   flatpak uninstall -u --all -y --noninteractive --force-remove ## System wide Flatpaks standardize location and save storage, yet data stays separate for users.
+# DEL PKGS -
+   flatpak uninstall -u --all -y --noninteractive --force-remove # Remove all user Flatpaks
+   # System wide Flatpaks standardize location and save storage, yet data stays separate for users.
 
-# PKG ( + Install )
+# ADD PKGS +
 
-    fpkPkg+Adv \
+  fpkPkg+Adv \
       org.gnome.Platform org.gnome.Sdk \
       org.freedesktop.Platform org.freedesktop.Sdk.Extension.rust-nightly org.freedesktop.Platform.ClInfo org.freedesktop.Platform.codecs-extra org.freedesktop.Platform.ffmpeg-full org.freedesktop.Platform.GL.default org.freedesktop.Platform.GL.mesa-git org.freedesktop.Platform.GL32.default org.freedesktop.Platform.GL32.mesa-git org.freedesktop.Platform.GlxInfo org.freedesktop.Platform.GStreamer.openmpt org.freedesktop.Platform.openh264 org.freedesktop.Platform.VAAPI.Intel org.freedesktop.Platform.VAAPI.nvidia org.freedesktop.Platform.VaInfo org.freedesktop.Platform.VdpauInfo org.freedesktop.Platform.VulkanInfo \
       org.freedesktop.Platform.VulkanLayer.gamescope org.freedesktop.Platform.VulkanLayer.MangoHud org.freedesktop.Platform.VulkanLayer.OBSVkCapture org.freedesktop.Platform.VulkanLayer.vkBasalt \
       org.kde.Platform org.kde.Sdk org.kde.PlatformTheme.QtSNI org.kde.PlatformTheme.QGnomePlatform
-    
-    fpkPkg+Adv \
+
+  fpkPkg+Adv \
       org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08 org.freedesktop.Platform.VulkanLayer.lsfgvk//24.08
 
 # Use "app.zen_browser.zen" over "org.mozilla.firefox" - Polished experience
@@ -83,7 +87,6 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
 
   fpkPkg+Adv flathub \
     com.rafaelmardojai.Blanket \
-    edu.berkeley.BOINC \
     io.github.flattool.Warehouse com.github.tchx84.Flatseal \
     org.vinegarhq.Sober io.mrarm.mcpelauncher app.twintaillauncher.ttl com.heroicgameslauncher.hgl \
     rocks.shy.VacuumTube com.spotify.Client org.js.nuclear.Nuclear com.warlordsoftwares.youtube-downloader-4ktube io.github.ecotubehq.player \
@@ -91,11 +94,12 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
     io.github.brunofin.Cohesion org.onlyoffice.desktopeditors \
     io.frama.tractor.carburetor com.termius.Termius dev.deedles.Trayscale \
     io.github.qwersyk.Newelle org.upscayl.Upscayl \
-    org.telegram.desktop io.github.tobagin.karere dev.vencord.Vesktop \
-    com.github.wwmm.easyeffects org.nickvision.cavalier com.spotify.Client
+    org.telegram.desktop io.github.tobagin.karere org.equicord.equibop \
+    com.github.wwmm.easyeffects com.spotify.Client
 
-# Although more feature rich, "com.rtosta.zapzap" has several inconsitencies and higher resource consumption. "io.github.tobagin.karere" just works well with native libraries
-# No using VSCode flatpaks "com.visualstudio.code com.visualstudio.code.tool.fish com.visualstudio.code.tool.podman" - Bazzite-DX already has it
+# "com.rtosta.zapzap" More features but electron based  < "io.github.tobagin.karere" Uses GTK4 and is lightweight + native integration
+# "dev.vencord.Vesktop" More features but electron based < "org.equicord.equibop" Uses GTK4 and is lightweight
+# No VSCode, Zed is inbuilt
 
     fpkPkg+Adv cosmic \
       io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager \

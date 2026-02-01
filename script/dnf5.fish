@@ -16,7 +16,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 # See https://youtu.be/f_Xa_JvpfK0 for a rough overview
 
 # 📛 Aliases - For easier handling of commands
-function sysPkg+Obsolete -d "Add pkg if present in dnf5 repos, was originally for rpm-ostree"
+function sysPkg+Obsolete -d "Add pkg if present in dnf repos, was originally for rpm-ostree"
     set -l packages $argv
     # Handle cases where packages are passed as a single quoted string with spaces
     if test (count $argv) -eq 1; and string match -q '* *' $argv[1]
@@ -39,15 +39,16 @@ function sysPkg+Obsolete -d "Add pkg if present in dnf5 repos, was originally fo
         dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $install_list
     end
 end
-alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade --setopt=install_weak_deps=False"
+alias sysPkg+ "dnf install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade --setopt=install_weak_deps=False"
 alias sysPkgq "echo Temporarily disable package modification, just add a 'q'"
-alias sysPkg- "dnf5 remove -y"
+alias sysPkg- "dnf remove -y"
 
 # PKG DEL
 echo "⭕ --- Delete system packages ---"
 
-sysPkg- 'docker' 'docker-compose' 'moby-engine' \
-        'firefox'
+sysPkg- docker docker-compose moby-engine \
+        firefox \
+        code
 
 # @gnome-desktop gnome-software gnome-shell-extension-common 'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' 'adwaita-icon-theme*' 'baobab' 'evince' 'google-gnu-free-*'
 
@@ -55,7 +56,7 @@ echo "✅ --- Delete system packages ---"
 
 # PKG UPD
 echo "⭕ --- Update system packages ---"
-dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
+dnf update -y --allowerasing --skip-unavailable --allow-downgrade
 echo "✅ --- Update system packages ---"
 
 # PKG ADD
@@ -64,14 +65,14 @@ echo "⭕ --- Add system packages ---"
 ### Notes:
 # Always update system before installing packages.
 # Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
-# COSMIC - Modern DE, better performance and efficiency over being polished
+# COSMIC - Modern DE, better performance and efficiency
 
 sysPkgq distcc distcc-server \
         host-spawn \
         inkscape krita krita-libs libei-utils \
         libvirt-daemon-kvm \
-        nodejs obs-studio obs-studio-libs obs-studio-plugin-browser \
-        obs-studio-plugin-droidcam obs-studio-plugin-vaapi ollama persepolis \
+        nodejs obs-studio-plugin-browser \
+        obs-studio-plugin-droidcam obs-studio-plugin-vaapi persepolis \
         pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm \
         tor \
         uget warp-terminal
@@ -81,13 +82,15 @@ sysPkg+ \
         boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
         uutils-coreutils \
-        git gh gemini-cli \
-        brave-browser-nightly \
+        obs-studio obs-studio-libs \
+        git gh zed \
+        gemini-cli ollama \
+        brave-browser-nightly brave-keyring \
         hblock mosh \
         mission-center \
         rustup cargo clippy \
         podman podman-docker
-        
+
 echo "✅ --- Add system packages ---"
 
 ### Reserved:

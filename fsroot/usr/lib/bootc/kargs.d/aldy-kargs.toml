@@ -12,7 +12,7 @@ kargs = [
   "zswap.enabled=1",
   "zswap.shrinker_enabled=Y",
   "zswap.zpool=zsmalloc",
-  "zswap.compressor=lz4",
+  "zswap.compressor=zstd",
   "zswap.max_pool_percent=100",
   "zswap.accept_threshold_percent=100",
   "nowatchdog",
