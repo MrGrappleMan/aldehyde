@@ -7,7 +7,6 @@ gpgcheck=1
 gpgkey=https://minecraft-linux.github.io/pkg/deb/pubkey.gpg
 enabled=1
 skip_if_unavailable=True
-deltarpm=True
 fastestmirror=True
 max_parallel_downloads=20
 metadata_expire=8h

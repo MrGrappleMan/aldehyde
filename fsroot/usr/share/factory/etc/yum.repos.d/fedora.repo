@@ -39,3 +39,5 @@ fastestmirror=True
 max_parallel_downloads=20
 metadata_expire=8h
 countme=1
+
+# WARNING: 

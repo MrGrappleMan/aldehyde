@@ -1,4 +1,5 @@
 kargs = [
+  "splash",
   "quiet",
   "threadirqs",
   "sysrq_always_enabled=1",
@@ -24,4 +25,3 @@ kargs = [
   "amdgpu.sg_display=1",
   "pci=realloc=on"
 ]
-
