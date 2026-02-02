@@ -20,11 +20,25 @@ LABEL containers.bootc 1
 LABEL org.opencontainers.image.source="https://github.com/MrGrappleMan/aldehyde-lx"
 LABEL org.opencontainers.image.description="Rust-centric COSMIC Desktop on Bootc"
 
-### MUTABLE /opt
-# Some images have /opt symlinked to /var/opt, to allow changes in it
-# Kept mutable to allow some pkgs to function that rely on this path
-# Uncomment line below to lock modifications to it, not recommended
-#RUN rm -rf /opt && mkdir /opt
+### IMMUTABLE /opt
+# In other images, /opt is symlinked to /var/opt, to allow changes in it by the user
+# Some pkgs need this path to get installed into it
+# However since it is symlinked to /var/, it is all useless as /var/ is wiped out after building and thus /var/opt is wiped out too
+# And the user won't be able to install anything to it, there's no point in leaving it mutable. This made sense when rpm-ostree was used to layer packages.
+# Thus, some of those needed /opt to be mutable
+# Comment line below to allow modifications to it when user will be using the image, but its pointless - they can just use distrobox or other solutions
+# It makes the /opt/ directory genuine and not just a symlink
+# Brave and its keyring work best when it is inside /opt/ and is not a Flatpak
+#
+# Legacy OSTree systems symlink /opt -> /var/opt to allow runtime changes with apply-live or even layering packages on the user side.
+# In a bootc build, this causes RPMs to install data into /var (that's /var/opt/) , which is
+# discarded during deployment, leaving the application missing at on the user end.
+#
+# By forcing /opt to be a real directory, we ensure that Brave Browser and
+# other /opt-resident packages are captured in the immutable image layers.
+# host-side mutability is deferred to Distrobox/Containers.
+
+RUN rm -rf /opt && mkdir /opt
 
 ### INFO
 # To know of any errors that might occur

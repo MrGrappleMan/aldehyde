@@ -24,10 +24,9 @@ echo "to look for messages provided by Aldehyde scripts"
 echo "⭕ --- Copy over filesystem components ---"
 
 cp -r /ctx/fsroot/usr/* /usr/ # Immutable
-cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # User modifiable
+cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # User modifiable, maybe should include a post install script that does this on user end
 #cp -r /ctx/fsroot/usr/share/factory/var/* /var/ # This won't be preserved
-#cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Include files in it only if /opt/ immutable directory, which is not the case here
-
+#cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Include files in it only if /opt/ immutable directory else it will all be wiped out, see Containerfile for better explanation
 
 # === Install fish ===
 echo "⭕ --- Install fish shell ---"
