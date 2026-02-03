@@ -80,6 +80,7 @@ sysPkgq distcc distcc-server \
 sysPkg+ \
         dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
+        tlp \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
         uutils-coreutils \
         obs-studio obs-studio-libs \
@@ -87,7 +88,7 @@ sysPkg+ \
         gemini-cli ollama \
         brave-browser-nightly brave-keyring \
         hblock mosh \
-        mission-center \
+        neohtop \
         rustup cargo clippy \
         podman podman-docker
 
@@ -105,7 +106,7 @@ echo "✅ --- Add system packages ---"
 # warp-cli | warp-terminal, already includes warp-cli
 # tlp, tlp-rdw | tuned-ppd, power-profiles-daemon ( architectural shift in tlp therefore it conflicts with them )
 # fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, spoofing it as one will cause conflicts )
-# fedora-repos-rawhide ( only obey this image yum.repos.d, nothing else )
+# fedora-repos-rawhide ( only use pre-provided yum.repos.d repos )
 # cosmic-config-fedora ( We have our own config files )
 
 

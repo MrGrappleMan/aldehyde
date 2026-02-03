@@ -84,8 +84,7 @@ timedatectl set-ntp true --no-ask-password
 
 # 🫥 Mask - never run
   systemctl mask \
-   systemd-rfkill systemd-rfkill.socket power-profiles-daemon \
-   tlp \
+   systemd-rfkill systemd-rfkill.socket power-profiles-daemon auto-cpufreq \
    rpm-ostreed-automatic rpm-ostreed-automatic.timer rpm-ostree-countme rpm-ostree-countme.timer
 
 # 🙂 Unmask - allow to run
@@ -97,12 +96,11 @@ timedatectl set-ntp true --no-ask-password
 # does not exist
 # is masked
 # has invalid install info
-
 # 👉 the commit phase becomes partial or skipped
 # This is intentional, to avoid half-applied boot states.
 # ⚠️ systemd does not roll back, and does not warn which units were skipped.
 
-# The functions are mainly for successful opportunistic enablement of units, if a unit fails to do so, its ignored - invalid units poison the rest of the targetted batch
+# The functions to opportunistically modify unit characteristics, if a unit fails to do so, its ignored - invalid units poison the rest of the targetted batch
 
 # 🟢 Enable - Run at startup
 
@@ -111,7 +109,7 @@ sysdOnPerUnit "boinc-client \
    gdm \
    docker docker.socket \
    podman podman.socket podman-auto-update.timer \
-   auto-cpufreq \
+   tlp \
    uupd uupd.timer bootc-fetch-apply-updates bootc-fetch-apply-updates.timer fyn-sysfresh fyn-sysfresh.timer podman-auto-update podman-auto-update.timer \
    fstrim fstrim.timer beesd@var-home \
    systemd-bsod \
@@ -121,6 +119,6 @@ sysdOnPerUnit "boinc-client \
 
 # 🟥 Disable - Do not run at startup
 
-sysdOffPerUnit "tlp"
+sysdOffPerUnit "auto-cpufreq"
 
 echo "🏁 --- Run 'build.fish' ---"
