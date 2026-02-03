@@ -107,14 +107,13 @@ timedatectl set-ntp true --no-ask-password
 sysdOnPerUnit "boinc-client \
    systemd-timesyncd \
    gdm \
-   docker docker.socket \
    podman podman.socket podman-auto-update.timer \
    tlp \
-   uupd uupd.timer bootc-fetch-apply-updates bootc-fetch-apply-updates.timer fyn-sysfresh fyn-sysfresh.timer podman-auto-update podman-auto-update.timer \
-   fstrim fstrim.timer beesd@var-home \
+   uupd.timer bootc-fetch-apply-updates.timer \
+   fstrim.timer beesd@var-home \
    systemd-bsod \
    sshd tailscaled tor \
-   hblock hblock.timer \
+   hblock.timer \
    preload"
 
 # 🟥 Disable - Do not run at startup

@@ -88,7 +88,6 @@ sysPkg+ \
         gemini-cli ollama \
         brave-browser-nightly brave-keyring \
         hblock mosh \
-        neohtop \
         rustup cargo clippy \
         podman podman-docker
 
@@ -97,10 +96,14 @@ echo "✅ --- Add system packages ---"
 ### Reserved:
 
 ## REFERENCE ##
-#cpp fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
+#fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
 #flatpak-session-helper git kernel-modules-extra libei libportal openssh
 #openssh-server p7zip p7zip-plugins
 #tailscale util-linux xdg-desktop-portal
+#obs-studio-plugin-vaapi obs-studio-plugin-vkcapture obs-studio-plugin-droidcam
+#ghostty-nightly ghostty-nightly-fish-completion ghostty-nightly-shell-integration
+#amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
+#nvidia-gpu-firmware libva-nvidia-driver envytools nvidia-patch
 
 ## CONFLICTS ##
 # warp-cli | warp-terminal, already includes warp-cli
@@ -111,57 +114,17 @@ echo "✅ --- Add system packages ---"
 
 
 ## PORTS ## for GUI/applications that work better on other package managers
-# boinc-manager | fpk:edu.berkeley.BOINC
 
-#obs-studio-plugin-vaapi obs-studio-plugin-vkcapture obs-studio-plugin-droidcam
-## GhosTTY ## ghostty-nightly ghostty-nightly-fish-completion ghostty-nightly-shell-integration
-
-     ## Pentesting / Hacking:
+     ## Pentesting:
       # aircrack-ng turbo-attack golang-github-redteampentesting-monsoon
     ### Gaming:-
      ## Steam:
       # steam steam-devices
-     ## Vavoom:
-      # vavoom vavoom-engine
-
-    ### Graphics:-
      ## Mesa:
       # mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld
       # mesa-dri-drivers
       # mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers
       # mesa-libOSMesa mesa-compat-libOSMesa
-     ## AMD: amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
-     ## Nvidia: nvidia-gpu-firmware libva-nvidia-driver envytools nvidia-patch
-
-# Kernel Arguments
-# 🛠️ UNIVERSAL KERNEL ARGUMENT EXPLANATIONS
-# rhgb     # 🏙 Disabled: Less boot overhead and less conflicts with drivers, at the cost of UX beauty
-# quiet    # 🤫 Enabled: Simpler, focused debugging on errors than general stats
-# threadirqs                 # 🧵 Enabled: Moves hardware interrupt handlers into threads, allowing the scheduler to prioritize tasks.
-# sysrq_always_enabled=1     # 🔑 Enabled: Provides a low-level interface to rescue a frozen system (e.g., REISUB), regardless of UI state.
-# consoleblank=180           # 🖥️ Enabled: Prevents TTY from display burn in and efficiency
-# (n) profile                # 🚫 Disabled: Stops the kernel from collecting profiling data, saving CPU cycles.
-# bluetooth.disable_ertm=0   # 📶 Enabled: Enhanced Retransmission Mode for modern BT peripherals.
-# (n) nomodeset              # 🚫 Disabled: Allows the kernel to use high-performance GPU drivers (KMS) instead of slow VESA fallbacks.
-# loglevel=3                 # 📉 Enabled: Limits logging to 'Error' level; prevents the 'dmesg' buffer from being flooded by minor warnings.
-# preempt=full               # ⚡ Enabled: Allows the kernel to be interrupted more aggressively; improves desktop and audio responsiveness.
-# systemd.zram=0             # 🛑 Disabled: Never use with zswap
-# zswap.enabled=1            # 🗜️ Enabled: Intercepts pages moving to swap and compresses them in RAM to reduce physical Disk I/O.
-# zswap.shrinker_enabled=Y   # ♻️ Enabled: Automatically evicts the coldest compressed pages to disk when RAM is needed elsewhere.
-# zswap.zpool=zsmalloc       # 🏗️ Enabled: Uses a highly efficient memory allocator that reduces fragmentation in compressed memory pools.
-# zswap.compressor=lz4       # 🚀 Enabled: Prioritizes decompression speed over compression ratio; ideal for modern high-frequency CPUs.
-# nowatchdog                 # 🐕 Enabled: Disables the 'hang' detector; frees up a hardware timer and prevents NMI-related latency spikes.
-# clocksource=tsc            # ⏱️ Enabled: Forces the 'Time Stamp Counter'; the lowest latency method for the OS to track time on x86.
-# pcie_aspm=on               # 🍃 Enabled: Enables Active State Power Management; allows PCIe links to enter low-power states when idle.
-# amd_pstate=guided          # 💎 Enabled: Requests the hardware to manage its own clock speeds based on workload, rather than OS-fixed steps.
-# amd_pstate.enable=1        # ✅ Enabled: Activates the modern AMD P-State driver for finer-grained power/performance control on Zen CPUs.
-# amd_pstate.shared_mem=1    # 🧠 Enabled: Allows the CPU and OS to communicate via shared memory for faster frequency transitions.
-# intel_pstate=active        # 🏎️ Enabled: Uses Intel's hardware-managed P-states (HWP) for superior efficiency compared to legacy ACPI.
-# amdgpu.sg_display=1        # 📽️ Enabled: Enables Scatter/Gather display; allows the GPU to use non-contiguous memory for frame buffers.
-# pci=realloc=on             # 🗺️ Enabled: Allows the kernel to re-map PCI resources if the BIOS didn't allocate enough space (BAR).
-# intel_pstate=guided does not exist
-# lz4 > lzo in terms of efficiency and modernity. zstd fine for speed but great for balanced usage. brotli is unsuitable for this, as memory content is dynamic.
-# lz4 overall lowest latency
 
 # === List ===
 echo "⭕ --- List DNF5 packages ---"
