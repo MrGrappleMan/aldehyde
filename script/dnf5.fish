@@ -39,16 +39,17 @@ function sysPkg+Obsolete -d "Add pkg if present in dnf repos, was originally for
         dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $install_list
     end
 end
-alias sysPkg+ "dnf install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade --setopt=install_weak_deps=False"
+alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade --setopt=install_weak_deps=True"
 alias sysPkgq "echo Temporarily disable package modification, just add a 'q'"
-alias sysPkg- "dnf remove -y"
+alias sysPkg- "dnf5 remove -y"
 
 # PKG DEL
 echo "⭕ --- Delete system packages ---"
 
 sysPkg- docker docker-compose moby-engine \
         firefox \
-        code
+        code \
+        tuned tuned-ppd power-profiles-daemon
 
 # @gnome-desktop gnome-software gnome-shell-extension-common 'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' 'adwaita-icon-theme*' 'baobab' 'evince' 'google-gnu-free-*'
 
@@ -56,7 +57,7 @@ echo "✅ --- Delete system packages ---"
 
 # PKG UPD
 echo "⭕ --- Update system packages ---"
-dnf update -y --allowerasing --skip-unavailable --allow-downgrade
+dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
 echo "✅ --- Update system packages ---"
 
 # PKG ADD
@@ -80,7 +81,7 @@ sysPkgq distcc distcc-server \
 sysPkg+ \
         dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
-        tlp \
+        tlp tlp-pd tlp-rdw \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
         uutils-coreutils \
         obs-studio obs-studio-libs \

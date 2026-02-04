@@ -108,7 +108,7 @@ sysdOnPerUnit "boinc-client \
    systemd-timesyncd \
    gdm \
    podman podman.socket podman-auto-update.timer \
-   tlp \
+   tlp tlp-pd \
    uupd.timer bootc-fetch-apply-updates.timer \
    fstrim.timer beesd@var-home \
    systemd-bsod \
