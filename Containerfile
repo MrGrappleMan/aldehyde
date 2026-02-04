@@ -1,5 +1,5 @@
 # Are you a beginner and want to know how the creation of a bootc image actually works?
-# See the comments below and correlate them with the repo's file structure
+# Check out the comments below and correlate them with the repo's file structure
 
 # Context stage: The repo is the source of truth
 # 'ctx' means context
@@ -12,8 +12,9 @@ FROM scratch AS ctx
 COPY / /
 
 # This is the image you want to begin modifying
-# Base Image - We use Bazzite-DX GNOME, check the currently used one on your device with 'sudo bootc status'
-FROM ghcr.io/ublue-os/bazzite-dx-gnome:latest
+# Base Image - We use Bazzite GNOME, check the currently used one on your device with 'sudo bootc status'
+# We did not use Bazzite GNOME DX because the pre-included tools are redundant and bloated we do not want to waste resources removing them.
+FROM ghcr.io/ublue-os/bazzite-gnome:latest
 # uBlue Image list: https://github.com/orgs/ublue-os/packages
 
 LABEL containers.bootc 1
@@ -43,9 +44,9 @@ RUN rm -rf /opt && mkdir /opt
 ### INFO
 # To know of any errors that might occur
 
-# List our that our repo to ctx copy was successful
-RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
-    tree /ctx/
+# The below lists our that our repo to ctx copy was successful
+#RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+#    tree /ctx/
 RUN uname -a
 
 ### MODIFICATIONS
@@ -56,12 +57,12 @@ RUN uname -a
 RUN dnf5 install -y fish
 
 # Explicitly call fish so correct interpreter is run, despite correct shebang
-# Never make $Home as /tmp, lots of problems in fish will happen
+# Never make $home as /tmp, lots of problems in fish will happen
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    fish /ctx/build.fish
+    fish /ctx/main.fish
 
 ### LINTING
 ## Verify final image and contents

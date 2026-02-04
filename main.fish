@@ -47,8 +47,8 @@ fish /ctx/script/systemd.fish # System services
 
 echo "✅ --- Run subscripts ---"
 
-# === === /var/ cleanup === ===
-echo "⭕ --- Clean /var/ ---"
+# === === Cleanup === ===
+echo "⭕ --- Cleanup directories ---"
 
 # Opportunistically clean /var/ without failing on active mounts
 # We use 'find' with '-xdev' to stay on the same filesystem
@@ -71,6 +71,10 @@ rm -rf /var/*
 rm -rf /var/log/*
 rm -rf /var/cache/libdnf5/*
 rm -rf /var/lib/dnf5/history/*
+rm -rf /tmp/*
+rm -rf /var/log/dnf5.log
+rm -rf /boot/*
+rm -rf /boot/.*
 for item in (find /var -mindepth 1 -maxdepth 1)
     if test -d "$item"
         find "$item" -mindepth 1 -delete 2>/dev/null
@@ -80,7 +84,7 @@ for item in (find /var -mindepth 1 -maxdepth 1)
     end
 end
 
-echo "✅ --- Clean /var/ ---"
+echo "✅ --- Cleanup directories ---"
 
 # === === Essential directories reconstruct === ===
 echo "⭕ --- Remake essential directories ---"
