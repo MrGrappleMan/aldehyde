@@ -48,7 +48,7 @@ jobs:
 
       # Use if you see that your builds are way too big for runners/build time, it debloats stuff
       - name: 🚮 Free up space
-        uses: ublue-os/remove-unwanted-software@v10
+        uses: ublue-os/remove-unwanted-software@v9
 
       - name: 🚮 Free up space Method 2
         if: false
