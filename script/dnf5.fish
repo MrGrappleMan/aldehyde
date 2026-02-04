@@ -15,15 +15,19 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 # I try to package as much of good software that follows logical philosophies, performance and efficiency requirements into the base image as much as I can for best integration.
 # See https://youtu.be/f_Xa_JvpfK0 for a rough overview
 
-# 📛 Aliases - For easier handling of commands
+# 📛 Aliases
 alias sysPkg- "dnf5 remove -y"
-function sysPkg+ -d "Install packages individually to prevent transaction poisoning, unfortunatelly reduces parallelism"
-    for pkg in $argv
-        echo "Trying to install: $pkg"
-        dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $pkg
+function sysPkg+ -d "Install packages individually to prevent transaction poisoning, at the cost of reducing parallelism"
+    set -l pkgs (string split -n " " -- (string join " " $argv))
+
+    for pkg in $pkgs
+        echo "🛠️ Attempting to install: $pkg"
+        dnf5 install -y allowerasing --skip-broken --skip-unavailable-allow-downgrade $pkg
 
         if test $status -ne 0
             echo "⚠️  Failed to install $pkg, skipping to next..."
+        else
+            echo "✅ Successfully installed $pkg"
         end
     end
 end
