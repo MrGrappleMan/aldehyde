@@ -22,7 +22,7 @@ function sysPkg+ -d "Install packages individually to prevent transaction poison
 
     for pkg in $pkgs
         echo "🛠️ Attempting to install: $pkg"
-        dnf5 install -y allowerasing --skip-broken --skip-unavailable-allow-downgrade $pkg
+        dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $pkg
 
         if test $status -ne 0
             echo "⚠️  Failed to install $pkg, skipping to next..."
