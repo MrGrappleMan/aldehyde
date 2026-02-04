@@ -16,32 +16,18 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 # See https://youtu.be/f_Xa_JvpfK0 for a rough overview
 
 # 📛 Aliases - For easier handling of commands
-function sysPkg+Obsolete -d "Add pkg if present in dnf repos, was originally for rpm-ostree"
-    set -l packages $argv
-    # Handle cases where packages are passed as a single quoted string with spaces
-    if test (count $argv) -eq 1; and string match -q '* *' $argv[1]
-        set packages (string split ' ' $argv[1])
-    end
+alias sysPkg- "dnf5 remove -y"
+function sysPkg+ -d "Install packages individually to prevent transaction poisoning, unfortunatelly reduces parallelism"
+    for pkg in $argv
+        echo "Trying to install: $pkg"
+        dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $pkg
 
-    set -l install_list
-
-    for pkg in $packages
-        # 'dnf5 list' with --available is fast and returns exit code 0 if found
-        if dnf5 list --quiet --available $pkg >/dev/null 2>&1
-            set -a install_list $pkg
-        else
-            echo "Package '$pkg' not found in repos, skipping..."
+        if test $status -ne 0
+            echo "⚠️  Failed to install $pkg, skipping to next..."
         end
     end
-
-    if test (count $install_list) -gt 0
-        # dnf5 install is inherently idempotent (won't re-install if present)
-        dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $install_list
-    end
 end
-alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade --setopt=install_weak_deps=True"
 alias sysPkgq "echo Temporarily disable package modification, just add a 'q'"
-alias sysPkg- "dnf5 remove -y"
 
 # PKG DEL
 echo "⭕ --- Delete system packages ---"
@@ -78,8 +64,9 @@ sysPkgq distcc distcc-server \
         tor \
         uget warp-terminal
 
-sysPkg+ \
-        dnf-plugins-core etckeeper-dnf dnf-repo \
+fish /ctx/script/manual-edits/removePPD.fish # Let TLP manage power properly
+
+sysPkg+ "dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
         tlp tlp-pd tlp-rdw \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
@@ -90,7 +77,7 @@ sysPkg+ \
         brave-browser-nightly brave-keyring \
         hblock mosh \
         rustup cargo clippy \
-        podman podman-docker
+        podman podman-docker"
 
 echo "✅ --- Add system packages ---"
 
