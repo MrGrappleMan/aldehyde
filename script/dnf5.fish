@@ -17,7 +17,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 
 # 📛 Aliases
 alias sysPkg- "dnf5 remove -y"
-function sysPkg+ -d "Install packages individually to prevent transaction poisoning, at the cost of reducing parallelism"
+function sysPkg+Trial -d "Install packages individually to prevent transaction poisoning, at the cost of reducing parallelism"
     set -l pkgs (string split -n " " -- (string join " " $argv))
 
     for pkg in $pkgs
@@ -31,6 +31,7 @@ function sysPkg+ -d "Install packages individually to prevent transaction poison
         end
     end
 end
+alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade"
 alias sysPkgq "echo Temporarily disable package modification, just add a 'q'"
 
 # PKG DEL
@@ -70,9 +71,8 @@ sysPkgq distcc distcc-server \
 
 fish /ctx/script/manual-edits/removePPD.fish # Let TLP manage power properly
 
-sysPkg+ "dnf-plugins-core etckeeper-dnf dnf-repo \
+sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
-        tlp tlp-pd tlp-rdw \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
         uutils-coreutils \
         obs-studio obs-studio-libs \
@@ -81,7 +81,7 @@ sysPkg+ "dnf-plugins-core etckeeper-dnf dnf-repo \
         brave-browser-nightly brave-keyring \
         hblock mosh \
         rustup cargo clippy \
-        podman podman-docker"
+        podman podman-docker
 
 echo "✅ --- Add system packages ---"
 
@@ -96,6 +96,7 @@ echo "✅ --- Add system packages ---"
 #ghostty-nightly ghostty-nightly-fish-completion ghostty-nightly-shell-integration
 #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
 #nvidia-gpu-firmware libva-nvidia-driver envytools nvidia-patch
+#tlp tlp-pd tlp-rdw 
 
 ## CONFLICTS ##
 # warp-cli | warp-terminal, already includes warp-cli
