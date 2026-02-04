@@ -3,12 +3,12 @@
 if test (id -u) -eq 0
     echo "Running as root, proceeding"
 else
-    echo "Not running as root, beginning re-execute"
-    echo "Please run this script as root by pkexec"
-    exit 1
-
+    echo "Not running as root, beginning re-execute..."
+    echo "Please insert the proper password for your user"
+    sleep 3
+    curl "https://raw.githubusercontent.com/MrGrappleMan/aldehyde-lx/refs/heads/main/User-SwitchToImage.fish" | pkexec fish
+    exit
 end
-
 
 # ⛑️ Cleanup legacy
 echo "Canceling any ongoing operations"
@@ -27,3 +27,4 @@ ostree admin pin -u 4
 # 🎛️ Switch image
 echo "Switching to new image"
 bootc switch ghcr.io/mrgrappleman/aldehyde-lx:latest --apply
+bootc update
