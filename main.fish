@@ -50,39 +50,19 @@ echo "✅ --- Run subscripts ---"
 # === === Cleanup === ===
 echo "⭕ --- Cleanup directories ---"
 
-# Opportunistically clean /var/ without failing on active mounts
-# We use 'find' with '-xdev' to stay on the same filesystem
-# and avoid trying to delete the actual mount points.
-#for item in (find /var -mindepth 1 -maxdepth 1)
-#	# Try to delete all contents INSIDE the item (files and hidden files)
-#	if test -d "$item"
-#		# We use 'find' inside to avoid 'argument list too long' errors
-#		find "$item" -mindepth 1 -delete 2>/dev/null
-#		rmdir "$item" 2>/dev/null # Directory deletion, but fail silently even if it's a busy mount point
-#	else
-#		rm -f "$item" 2>/dev/null # File deletion
-#	end # This 'end' closes the 'if/else' block
-#end # This 'end' closes the 'for' loop
-
-# Something is wrong here, correct syntax
-# First ever instance of if it works, do not touch it I have experienced
-
-rm -rf /var/*
+# Only target specific directories
+rm -rf /var/cache/*
 rm -rf /var/log/*
-rm -rf /var/cache/libdnf5/*
-rm -rf /var/lib/dnf5/history/*
 rm -rf /tmp/*
-rm -rf /var/log/dnf5.log
-rm -rf /boot/*
-rm -rf /boot/.*
-for item in (find /var -mindepth 1 -maxdepth 1)
-    if test -d "$item"
-        find "$item" -mindepth 1 -delete 2>/dev/null
-        rmdir "$item" 2>/dev/null
-     else
-        rm -f "$item" 2>/dev/null
-    end
-end
+
+#for item in (find /var -mindepth 1 -maxdepth 1)
+#    if test -d "$item"
+#        find "$item" -mindepth 1 -delete 2>/dev/null
+#        rmdir "$item" 2>/dev/null
+#     else
+#        rm -f "$item" 2>/dev/null
+#    end
+#end
 
 echo "✅ --- Cleanup directories ---"
 
