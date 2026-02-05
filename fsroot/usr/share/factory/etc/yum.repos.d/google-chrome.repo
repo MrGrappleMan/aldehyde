@@ -1,5 +1,5 @@
 [google-chrome]
-name=google-chrome
+name=T Google Chrome
 baseurl=https://dl.google.com/linux/chrome/rpm/stable/$basearch
 skip_if_unavailable=True
 gpgcheck=1

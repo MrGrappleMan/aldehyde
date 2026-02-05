@@ -19,7 +19,7 @@ function sysPkg+Trial -d "Install packages individually to prevent transaction p
         end
     end
 end
-alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade"
+alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade" # Best overall, dnf batches operations and leads to faster image builds
 alias sysPkgq "echo Temporarily disable package modification, just add a 'q'"
 
 # PKG DEL
@@ -46,19 +46,19 @@ echo "⭕ --- Add system packages ---"
 # Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
 # COSMIC - Modern DE, better performance and efficiency
 
-sysPkg+Trial "dnf-plugins-core etckeeper-dnf dnf-repo \
+sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
         power-profiles-daemon tuned tuned-ppd \
         uutils-coreutils \
         obs-studio obs-studio-libs \
-        git gh zed \
+        git gh zed-nightly \
         neohtop \
         gemini-cli ollama \
         brave-browser-nightly brave-keyring \
         hblock mosh tor \
         rustup cargo clippy \
-        podman podman-docker"
+        podman podman-docker
 
 #fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
 #flatpak-session-helper git kernel-modules-extra libei libportal openssh

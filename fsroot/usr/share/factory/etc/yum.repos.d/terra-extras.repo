@@ -1,6 +1,6 @@
-[terra]
-name=T Terra
-metalink=https://tetsudou.fyralabs.com/metalink?repo=terrarawhide&arch=$basearch
+[terra-extras]
+name=T Terra Extras
+metalink=https://tetsudou.fyralabs.com/metalink?repo=terrarawhide-extras&arch=$basearch
 metadata_expire=8h
 type=rpm
 gpgcheck=0
@@ -9,3 +9,4 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 countme=1
+
