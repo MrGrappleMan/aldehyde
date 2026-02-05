@@ -62,11 +62,10 @@ Predictable Boot Behavior: Combined with Silverblue's immutability, this can res
 
 4. Improvements to Push Silverblue and GNOME Further
 
+
 1. Autonomous Configuration: Imagine Silverblue pre-configured to handle hardware detection and system settings via systemd autonomously, removing the need for user tweaks.
 
-
 2. Better Onboarding: Interactive tutorials on GNOME or Silverblue could guide users through key concepts like OSTree and Toolbox.
-
 
 3. Third-Party App Ecosystem: Strengthening Flatpak adoption among developers to rival macOS App Store's seamless experience.
 
@@ -80,6 +79,12 @@ It’s a promising direction for bridging the gap between Linux enthusiasts and 
 
 And I am here to try fixing it in the back end.
 
-The below, updated on 19-07-2025 BC:
+The below, I wrote a long time ago, but now I laugh at:
 
-Alright I have made the decision to go back to Windows from a 4 year Linux user. I learnt a lot about it and I feel satisfied. Despite the security that Silverblue/Bazzite provides or the ability to use it however you want to is there, I am going back. Linux was made in mind as a hobby project and a general purpose free software kernel, not meant(this is an important word) for users, but works surprisingly well. The lack of some drivers makes it unsuitable for my AL/ML training needs as well as ROCm support for HPC. Fare well to the Linux Foundation and the community. I will indeed keep a copy of the OS on a type 1 hypervisor on Windows, so that I can keep developing from it. For some, privacy matters a lot, but for me, the experience does. The seamlessness of some proprietary services is unmatched as compared to that of open source solutions, due to the intentions of the suppressment made by some of the mafias of capitalism of big tech. Ads in Windows? I think they need a fair share for making one of the best consumer operating systems. They can be useful at times. Some people think about privacy or freedom to fork into their own self declared project when they see open source, I think about freelanced development, verifiability of the source of a program, accelerated speed of development. Copilot is AI slop? No, I believe in its use for great assistance and productivity, even if the user interface is not customizable. I believe it is not proprietary vs OSS, but the power of the best of both worlds that can be acheived with a hybrid model. Lets see what Bruce Perens, The founder of the OSD has to offer in his post open model.
+Alright I have made the decision to go back to Windows from a 4 year Linux user. I learnt a lot about it and I feel satisfied.
+Despite the security that Silverblue/Bazzite provides or the ability to use it however you want to is there, I am going back.
+Linux was made in mind as a hobby project and a general purpose free software kernel, not meant(this is an important word) for users, but works surprisingly well.
+The lack of some drivers makes it unsuitable for my AL/ML training needs as well as ROCm support for HPC. Fare well to the Linux Foundation and the community.
+I will indeed keep a copy of the OS on a type 1 hypervisor on Windows, so that I can keep developing from it. For some, privacy matters a lot, but for me, the experience does.
+The seamlessness of some proprietary services is unmatched as compared to that of open source solutions, due to the intentions of the suppressment made by some of the mafias of capitalism of big tech. Ads in Windows? I think they need a fair share for making one of the best consumer operating systems. They can be useful at times. Some people think about privacy or freedom to fork into their own self declared project when they see open source, I think about freelanced development, verifiability of the source of a program, accelerated speed of development. Copilot is AI slop? No, I believe in its use for great assistance and productivity, even if the user interface is not customizable. I believe it is not proprietary vs OSS,
+but the power of the best of both worlds that can be acheived with a hybrid model. Lets see what Bruce Perens, The founder of the OSD has to offer in his post open model.

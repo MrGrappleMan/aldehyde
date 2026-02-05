@@ -5,7 +5,7 @@ echo "🚩 --- Run 'systemd.fish' ---"
 
 ## Functions
 
-function sysdOnPerUnit
+function sysdOn
 	# Join multiline string into a clean list
 	set units (string split ' ' -- (string replace -ar '\s+' ' ' -- $argv))
 
@@ -14,6 +14,9 @@ function sysdOnPerUnit
 
 	for unit in $units
 		set log (mktemp)
+
+        # Unmask unit first
+        systemctl unmask $unit
 
 		# Enable per unit with full debug
 		env SYSTEMD_LOG_LEVEL=debug \
@@ -30,7 +33,7 @@ function sysdOnPerUnit
 	# ----- Report -----
 	if test (count $failed_units) -gt 0
 		echo
-		echo "❌ sysdOnPerUnit — failures detected:"
+		echo "❌ sysdOn — failures detected:"
 		echo "────────────────────────────────────"
 
 		for i in (seq (count $failed_units))
@@ -40,11 +43,11 @@ function sysdOnPerUnit
 			echo $failed_reasons[$i]
 		end
 	else
-		echo "✅ sysdOnPerUnit — all units enabled successfully"
+		echo "✅ sysdOn — all units enabled successfully"
 	end
 end
 
-function sysdOffPerUnit
+function sysdOff
 	set units (string split ' ' -- (string replace -ar '\s+' ' ' -- $argv))
 
 	set failed_units
@@ -66,7 +69,7 @@ function sysdOffPerUnit
 
 	if test (count $failed_units) -gt 0
 		echo
-		echo "❌ sysdOffPerUnit — failures detected:"
+		echo "❌ sysdOff — failures detected:"
 		echo "────────────────────────────────────"
 
 		for i in (seq (count $failed_units))
@@ -76,7 +79,7 @@ function sysdOffPerUnit
 			echo $failed_reasons[$i]
 		end
 	else
-		echo "✅ sysdOffPerUnit — all units disabled successfully"
+		echo "✅ sysdOff — all units disabled successfully"
 	end
 end
 
@@ -84,7 +87,7 @@ timedatectl set-ntp true --no-ask-password
 
 # 🫥 Mask - never run
   systemctl mask \
-   systemd-rfkill systemd-rfkill.socket power-profiles-daemon auto-cpufreq \
+   systemd-rfkill systemd-rfkill.socket tlp tlp-pd auto-cpufreq \
    rpm-ostreed-automatic rpm-ostreed-automatic.timer rpm-ostree-countme rpm-ostree-countme.timer
 
 # 🙂 Unmask - allow to run
@@ -97,27 +100,26 @@ timedatectl set-ntp true --no-ask-password
 # is masked
 # has invalid install info
 # 👉 the commit phase becomes partial or skipped
-# This is intentional, to avoid half-applied boot states.
+# That move by systemd is intentional, to avoid half-applied states to a batch of units requested to do a specific action.
 # ⚠️ systemd does not roll back, and does not warn which units were skipped.
 
 # The functions to opportunistically modify unit characteristics, if a unit fails to do so, its ignored - invalid units poison the rest of the targetted batch
 
-# 🟢 Enable - Run at startup
+# 🟢 Enable (+Unmask) - Run at startup
 
-sysdOnPerUnit "boinc-client \
+sysdOn "boinc-client \
    systemd-timesyncd \
    gdm \
    podman podman.socket podman-auto-update.timer \
-   tlp tlp-pd \
+   tuned tuned-ppd power-profiles-daemon \
    uupd.timer bootc-fetch-apply-updates.timer \
    fstrim.timer beesd@var-home \
    systemd-bsod \
-   sshd tailscaled tor \
-   hblock.timer \
+   sshd tailscaled tor hblock.timer \
    preload"
 
 # 🟥 Disable - Do not run at startup
 
-sysdOffPerUnit "auto-cpufreq"
+sysdOff "auto-cpufreq"
 
 echo "🏁 --- Run 'build.fish' ---"

@@ -10,7 +10,7 @@ StartLimitIntervalSec=600
 [Service]
 Type=oneshot
 User=root
-ExecStart=/usr/bin/bootc upgrade --quiet
+ExecStart=/usr/bin/bootc upgrade
 # Get w/o interuping user, reboot when they need to
 
 # CommonSnippet - Daemons
