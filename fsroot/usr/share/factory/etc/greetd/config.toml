@@ -1,0 +1,10 @@
+[terminal]
+vt = 1
+
+[default_session]
+# The command to run the greeter. This launches cosmic-comp which then runs cosmic-greeter.
+command = "cosmic-comp /bin/cosmic-greeter"
+
+# The user to run the greeter command as. This should be the dedicated greeter user.
+user = "cosmic-greeter"
+

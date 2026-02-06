@@ -55,14 +55,14 @@ rm -rf /var/log/dnf5.log
 rm -rf /boot/*
 rm -rf /boot/.*
 
-#for item in (find /var -mindepth 1 -maxdepth 1)
-#    if test -d "$item"
-#        find "$item" -mindepth 1 -delete 2>/dev/null
-#        rmdir "$item" 2>/dev/null
-#     else
-#        rm -f "$item" 2>/dev/null
-#    end
-#end
+for item in (find /var -mindepth 1 -maxdepth 1)
+    if test -d "$item"
+        find "$item" -mindepth 1 -delete 2>/dev/null
+        rmdir "$item" 2>/dev/null
+     else
+        rm -f "$item" 2>/dev/null
+    end
+end
 
 echo "✅ --- Cleanup directories ---"
 

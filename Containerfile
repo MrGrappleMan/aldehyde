@@ -14,7 +14,7 @@ COPY / /
 # This is the image you want to begin modifying
 # Base Image - We use Bazzite GNOME's Testing branch, check the currently used one on your device with 'sudo bootc status'
 # We did not use Bazzite GNOME DX because the pre-included tools are redundant and bloated we do not want to waste resources removing them.
-FROM ghcr.io/ublue-os/bazzite-gnome:testing
+FROM ghcr.io/ublue-os/bazzite-gnome:latest
 # uBlue Image list: https://github.com/orgs/ublue-os/packages
 
 LABEL containers.bootc 1
