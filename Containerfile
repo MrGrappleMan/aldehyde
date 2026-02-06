@@ -19,7 +19,7 @@ FROM ghcr.io/ublue-os/bazzite-gnome:latest
 
 LABEL containers.bootc 1
 LABEL org.opencontainers.image.source="https://github.com/MrGrappleMan/aldehyde-lx"
-LABEL org.opencontainers.image.description="Rust-centric COSMIC Desktop on Bootc"
+LABEL org.opencontainers.image.description="A "
 
 ### IMMUTABLE /opt
 # In other images, /opt is symlinked to /var/opt, to allow changes in it by the user
@@ -38,7 +38,6 @@ LABEL org.opencontainers.image.description="Rust-centric COSMIC Desktop on Bootc
 # By forcing /opt to be a real directory, we ensure that Brave Browser and
 # other /opt-resident packages are captured in the immutable image layers.
 # host-side mutability is deferred to Distrobox/Containers.
-
 RUN rm -rf /opt && mkdir /opt
 
 ### INFO
@@ -63,6 +62,8 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     fish /ctx/main.fish
+
+RUN ln -s sysroot/ostree /ostree
 
 ### LINTING
 ## Verify final image and contents
