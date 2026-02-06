@@ -28,7 +28,7 @@ echo "⭕ --- Delete system packages ---"
 sysPkg- docker docker-compose moby-engine \
         firefox \
         code \
-        @gnome-desktop gnome-software gnome-shell-extension-common 'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' 'adwaita-icon-theme*' 'baobab' 'evince' 'google-gnu-free-*'
+        @gnome-desktop gnome-software gnome-shell-extension-common 'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' 'adwaita-icon-theme*' 'baobab' 'evince' 'google-gnu-free-*' dconf
 
 echo "✅ --- Delete system packages ---"
 
@@ -51,6 +51,7 @@ sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
         uutils-coreutils \
         obs-studio obs-studio-libs \
         git gh zed-nightly \
+        tuned \
         neohtop \
         ollama \
         brave-browser-nightly brave-keyring \
