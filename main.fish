@@ -23,10 +23,10 @@ echo "to look for messages provided by Aldehyde scripts"
 # === === /ctx/fsroot/ filesystem, using factory === ===
 echo "⭕ --- Copy over filesystem components ---"
 
-cp -r /ctx/fsroot/usr/* /usr/ # Immutable
-cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # User modifiable, maybe should include a post install script that does this on user end
-#cp -r /ctx/fsroot/usr/share/factory/var/* /var/ # This won't be preserved
-#cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Include files in it only if /opt/ immutable directory else it will all be wiped out, see Containerfile for better explanation
+cp -r /ctx/fsroot/usr/* /usr/ # Mutable during build, immutable on user end
+cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # script/postinstall.fish will handle that on user end as well
+cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Include files in it only if /opt/ immutable directory else it will all be wiped out, see Containerfile for better explanation
+#cp -r /ctx/fsroot/usr/share/factory/var/* /var/ # Buid time only
 
 # === Install fish ===
 echo "⭕ --- Install fish shell ---"
@@ -38,12 +38,8 @@ echo "✅ --- Install fish shell ---"
 # === === /ctx/script/ subscripts === ===
 echo "⭕ --- Run subscripts ---"
 
-fish /ctx/script/dnf5.fish # System packages
-#fish /ctx/script/kernel.fish # Kernel modification
-fish /ctx/script/systemd.fish # System services
-#fish /ctx/script/flatpak.fish # Writes to /var/, so no
-#fish /ctx/script/fwupdmgr.fish # DBus issues, execute once deployed into user's PC
-#fish /ctx/script/ujust.fish # this is for user environment
+fish /ctx/script/dnf5.fish # Packages
+fish /ctx/script/systemd.fish # Services
 
 echo "✅ --- Run subscripts ---"
 

@@ -49,7 +49,7 @@ echo "⭕ --- Add system packages ---"
 sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
-        power-profiles-daemon tuned tuned-ppd \
+        tuned tuned-ppd \
         uutils-coreutils \
         obs-studio obs-studio-libs \
         git gh zed-nightly \

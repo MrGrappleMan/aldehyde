@@ -22,9 +22,9 @@ I package software that follows logical philosophies, modern standards, performa
 Flatpak is bad in terms of architecture due to lower efficiency, higher overhead with lower system integration. See https://youtu.be/f_Xa_JvpfK0 for a rough overview
 Close to worthiness like Electron. Tauri is like distrobox but x100 resource efficient. Snapd is even worse.
 
-## PPD/TuneD > TLP > ACF
+## TuneD > TLP > ACF
 
-PPD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability
+TuneD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability...and it literally has dynamic in its service's description
 TLP has extensive configurability, potential for better power management as per config but can be poor at handling some things like modern s2idle though configurable
 ACF is ok, but management is only specific to CPU, but TLP covers a lot more things better. Though auto turbo management in ACF, modern hardware already does that well.
 

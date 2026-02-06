@@ -111,7 +111,7 @@ sysdOn "boinc-client \
    systemd-timesyncd \
    gdm \
    podman podman.socket podman-auto-update.timer \
-   tuned tuned-ppd power-profiles-daemon \
+   tuned tuned-ppd \
    uupd.timer bootc-fetch-apply-updates.timer \
    fstrim.timer beesd@var-home \
    systemd-bsod \
@@ -120,6 +120,6 @@ sysdOn "boinc-client \
 
 # 🟥 Disable - Do not run at startup
 
-sysdOff "auto-cpufreq"
+sysdOff "uupd bootc-fetch-apply-updates fstrim hblock"
 
 echo "🏁 --- Run 'build.fish' ---"
