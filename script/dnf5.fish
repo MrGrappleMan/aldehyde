@@ -43,18 +43,17 @@ echo "⭕ --- Add packages ---"
 # Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
 # COSMIC - Modern DE, better performance and efficiency
 
-sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
+sysPkg+Trial "dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
-        cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon xdg-desktop-portal-cosmic greetd \
+        cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon \
         uutils-coreutils \
         obs-studio obs-studio-libs \
         git gh zed-nightly \
-        neohtop \
         ollama \
         brave-browser-nightly brave-keyring \
-        hblock mosh tor \
+        hblock tor \
         rustup cargo clippy \
-        podman podman-docker
+        podman podman-docker"
 
 #fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
 #flatpak-session-helper git kernel-modules-extra libei libportal openssh
@@ -89,5 +88,5 @@ sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
 
 # === Clean ===
 echo "⭕ --- Clean DNF5 ---"
-dnf5 autoremove -y
+#dnf5 autoremove -y # potentially removing essential components or conflicting with rpm-ostree's layering, leading to broken images
 dnf5 clean all -y
