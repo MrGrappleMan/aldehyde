@@ -23,19 +23,20 @@ alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable -
 alias sysPkgq "echo Temporarily disable package modification, just add a 'q'"
 
 # PKG DEL
-echo "⭕ --- Delete system packages ---"
+echo "⭕ --- Delete packages ---"
 
 sysPkg- docker docker-compose moby-engine \
         firefox \
         code \
-        @gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince" "google-gnu-free-*"
+
+#@gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince" "google-gnu-free-*"
 
 # PKG UPD
-echo "⭕ --- Update system packages ---"
-#dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
+echo "⭕ --- Update packages ---"
+dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
 
 # PKG ADD
-echo "⭕ --- Add system packages ---"
+echo "⭕ --- Add packages ---"
 
 ### Notes:
 # Always update system before installing packages.
@@ -89,4 +90,5 @@ sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
 
 # === Clean ===
 echo "⭕ --- Clean DNF5 ---"
+dnf5 autoremove -y
 dnf5 clean all -y
