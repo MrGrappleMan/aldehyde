@@ -2,6 +2,6 @@
 name=T Google Chrome
 baseurl=https://dl.google.com/linux/chrome/rpm/stable/$basearch
 skip_if_unavailable=True
-gpgcheck=1
+#gpgcheck=1#toBeReconsidered
 gpgkey=https://dl.google.com/linux/linux_signing_key.pub
 enabled=1

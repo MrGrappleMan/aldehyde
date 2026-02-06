@@ -3,7 +3,7 @@ name=T Fedora
 metalink=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearch
 repo_gpgcheck=0
 type=rpm
-gpgcheck=1
+#gpgcheck=1#toBeReconsidered
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
 enabled=1
 skip_if_unavailable=True
@@ -17,7 +17,7 @@ name=T Fedora Updates
 metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-frawhide&arch=$basearch
 repo_gpgcheck=0
 type=rpm
-gpgcheck=1
+#gpgcheck=1#toBeReconsidered
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
 enabled=0
 skip_if_unavailable=True
@@ -31,7 +31,7 @@ name=T Fedora Updates Testing
 metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-frawhide&arch=$basearch
 repo_gpgcheck=0
 type=rpm
-gpgcheck=1
+#gpgcheck=1#toBeReconsidered
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
 enabled=0
 skip_if_unavailable=True

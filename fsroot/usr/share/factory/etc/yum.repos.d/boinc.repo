@@ -1,7 +1,7 @@
 [boinc]
 name=T Science United
 baseurl=https://boinc.berkeley.edu/dl/linux/nightly/fc42
-gpgcheck=1
+#gpgcheck=1#toBeReconsidered
 gpgkey=https://boinc.berkeley.edu/dl/linux/nightly/fc42/boinc.gpg
 enabled=1
 skip_if_unavailable=True

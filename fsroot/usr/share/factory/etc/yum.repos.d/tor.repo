@@ -1,7 +1,7 @@
 [tor]
 name=T Tor
 baseurl=https://rpm.torproject.org/fedora/$releasever/$basearch
-gpgcheck=1
+#gpgcheck=1#toBeReconsidered
 gpgkey=https://rpm.torproject.org/fedora/public_gpg.key
 enabled=1
 skip_if_unavailable=True

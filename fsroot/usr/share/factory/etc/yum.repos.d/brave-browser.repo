@@ -1,6 +1,6 @@
 [brave-browser]
 name=T Brave Browser
 enabled=1
-gpgcheck=1
+#gpgcheck=1#toBeReconsidered
 gpgkey=https://brave-browser-rpm-nightly.s3.brave.com/brave-core-nightly.asc
 baseurl=https://brave-browser-rpm-nightly.s3.brave.com/$basearch

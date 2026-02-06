@@ -4,7 +4,7 @@ mirrorlist=https://repo.linrunner.de/fedora/tlp/mirrors/$releasever/$basearch/tl
 enabled=1
 metadata_expire=7d
 skip_if_unavailable=1
-gpgcheck=1
+#gpgcheck=1#toBeReconsidered
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-tlp-$releasever
 
 [tlp-updates]
@@ -13,5 +13,5 @@ mirrorlist=https://repo.linrunner.de/fedora/tlp/mirrors/$releasever/$basearch/tl
 enabled=0
 metadata_expire=1d
 skip_if_unavailable=1
-gpgcheck=1
+#gpgcheck=1#toBeReconsidered
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-tlp-$releasever
