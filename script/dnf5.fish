@@ -90,7 +90,7 @@ echo "✅ --- Add system packages ---"
 
 # === List ===
 echo "⭕ --- List DNF5 packages ---"
-dnf5 list --installed
+#dnf5 list --installed
 echo "✅ --- List DNF5 packages ---"
 
 # === Clean ===
