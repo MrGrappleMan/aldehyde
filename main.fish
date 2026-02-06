@@ -46,10 +46,14 @@ echo "✅ --- Run subscripts ---"
 # === === Cleanup === ===
 echo "⭕ --- Cleanup directories ---"
 
-# Only target specific directories
-rm -rf /var/cache/*
-rm -rf /var/log/*
+rm -rf /var/*
 rm -rf /tmp/*
+rm -rf /var/log/*
+rm -rf /var/cache/libdnf5/*
+rm -rf /var/lib/dnf5/history/*
+rm -rf /var/log/dnf5.log
+rm -rf /boot/*
+rm -rf /boot/.*
 
 #for item in (find /var -mindepth 1 -maxdepth 1)
 #    if test -d "$item"
