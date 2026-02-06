@@ -5,5 +5,4 @@
 # Needs to be ran as root
 
 cp -r /usr/share/factory/var/ /var/
-cp -r /usr/share/factory/opt/ /opt/
 cp -r /usr/share/factory/etc/ /etc/

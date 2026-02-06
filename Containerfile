@@ -19,7 +19,7 @@ FROM ghcr.io/ublue-os/bazzite-gnome:testing
 
 LABEL containers.bootc 1
 LABEL org.opencontainers.image.source="https://github.com/MrGrappleMan/aldehyde-lx"
-LABEL org.opencontainers.image.description="A "
+LABEL org.opencontainers.image.description="A workstation for performance"
 
 ### IMMUTABLE /opt
 # In other images, /opt is symlinked to /var/opt, to allow changes in it by the user
@@ -62,8 +62,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     fish /ctx/main.fish
-
-RUN ln -s sysroot/ostree /ostree
 
 ### LINTING
 ## Verify final image and contents

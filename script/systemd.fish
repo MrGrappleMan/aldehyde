@@ -122,5 +122,3 @@ sysdOn "boinc-client \
 # 🟥 Disable - Do not run at startup
 
 sysdOff "uupd bootc-fetch-apply-updates fstrim hblock"
-
-echo "🏁 --- Run 'build.fish' ---"

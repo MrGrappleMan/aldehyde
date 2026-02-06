@@ -28,14 +28,11 @@ echo "⭕ --- Delete system packages ---"
 sysPkg- docker docker-compose moby-engine \
         firefox \
         code \
-        @gnome-desktop gnome-software gnome-shell-extension-common 'gnome-terminal*' 'nautilus*' 'gedit*' 'yelp*' 'adwaita-icon-theme*' 'baobab' 'evince' 'google-gnu-free-*' dconf
-
-echo "✅ --- Delete system packages ---"
+        @gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince" "google-gnu-free-*"
 
 # PKG UPD
 echo "⭕ --- Update system packages ---"
-dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
-echo "✅ --- Update system packages ---"
+#dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
 
 # PKG ADD
 echo "⭕ --- Add system packages ---"
@@ -79,8 +76,6 @@ sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
 #aircrack-ng turbo-attack golang-github-redteampentesting-monsoon
 #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
 
-echo "✅ --- Add system packages ---"
-
 ## CONFLICTS ## ( Format: Chosen/BetterPackage | ConflictingPackage )
 # warp-terminal | warp-cli ( warp-terminal already includes warp-cli )
 # fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, spoofing it as one will cause conflicts )
@@ -89,13 +84,9 @@ echo "✅ --- Add system packages ---"
 # power-profiles-daemon tuned tuned-ppd | tlp tlp-pd tlp-rdw | auto-cpufreq ( PPD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability )
 
 # === List ===
-echo "⭕ --- List DNF5 packages ---"
+#echo "⭕ --- List DNF5 packages ---"
 #dnf5 list --installed
-echo "✅ --- List DNF5 packages ---"
 
 # === Clean ===
 echo "⭕ --- Clean DNF5 ---"
 dnf5 clean all -y
-echo "✅ --- Clean DNF5 ---"
-
-echo "🏁 --- Run 'dnf5.fish' ---"
