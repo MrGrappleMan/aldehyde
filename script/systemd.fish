@@ -88,6 +88,7 @@ timedatectl set-ntp true --no-ask-password
 # 🫥 Mask - never run
   systemctl mask \
    systemd-rfkill systemd-rfkill.socket tlp tlp-pd auto-cpufreq \
+   gdm \
    rpm-ostreed-automatic rpm-ostreed-automatic.timer rpm-ostree-countme rpm-ostree-countme.timer
 
 # 🙂 Unmask - allow to run
@@ -109,7 +110,7 @@ timedatectl set-ntp true --no-ask-password
 
 sysdOn "boinc-client \
    systemd-timesyncd \
-   gdm \
+   greetd \
    podman podman.socket podman-auto-update.timer \
    tuned tuned-ppd \
    uupd.timer bootc-fetch-apply-updates.timer \
