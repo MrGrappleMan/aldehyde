@@ -36,11 +36,11 @@ fish /ctx/script/systemd.fish # Services
 echo "⭕ --- Cleanup directories ---"
 
 #rm -rf /var/*
-#rm -rf /tmp/*
-#rm -rf /var/log/*
-#rm -rf /var/cache/libdnf5/*
-#rm -rf /var/lib/dnf5/history/*
-#rm -rf /var/log/dnf5.log
+rm -rf /tmp/*
+rm -rf /var/log/*
+rm -rf /var/cache/libdnf5/*
+rm -rf /var/lib/dnf5/history/*
+rm -rf /var/log/dnf5.log
 #rm -rf /boot/*
 #rm -rf /boot/.*
 

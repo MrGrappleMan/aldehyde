@@ -49,7 +49,6 @@ sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
         uutils-coreutils \
         obs-studio obs-studio-libs \
         git gh zed-nightly \
-        tuned \
         neohtop \
         ollama \
         brave-browser-nightly brave-keyring \

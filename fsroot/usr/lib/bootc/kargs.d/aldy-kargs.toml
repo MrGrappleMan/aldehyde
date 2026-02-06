@@ -1,5 +1,4 @@
 kargs = [
-  "splash",
   "quiet",
   "threadirqs",
   "sysrq_always_enabled=1",
