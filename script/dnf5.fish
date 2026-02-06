@@ -27,7 +27,7 @@ echo "⭕ --- Delete packages ---"
 
 sysPkg- docker docker-compose moby-engine \
         firefox \
-        code \
+        code
 
 #@gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince" "google-gnu-free-*"
 
