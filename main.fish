@@ -35,23 +35,23 @@ fish /ctx/script/systemd.fish # Services
 # === === Cleanup === ===
 echo "⭕ --- Cleanup directories ---"
 
-#rm -rf /var/*
+rm -rf /var/*
 rm -rf /tmp/*
 rm -rf /var/log/*
 rm -rf /var/cache/libdnf5/*
 rm -rf /var/lib/dnf5/history/*
 rm -rf /var/log/dnf5.log
-#rm -rf /boot/*
-#rm -rf /boot/.*
+rm -rf /boot/*
+rm -rf /boot/.*
 
-#for item in (find /var -mindepth 1 -maxdepth 1)
-#    if test -d "$item"
-#        find "$item" -mindepth 1 -delete 2>/dev/null
-#        rmdir "$item" 2>/dev/null
-#     else
-#        rm -f "$item" 2>/dev/null
-#    end
-#end
+for item in (find /var -mindepth 1 -maxdepth 1)
+    if test -d "$item"
+        find "$item" -mindepth 1 -delete 2>/dev/null
+        rmdir "$item" 2>/dev/null
+     else
+        rm -f "$item" 2>/dev/null
+    end
+end
 
 # === === Essential directories reconstruct === ===
 echo "⭕ --- Remake essential directories ---"
