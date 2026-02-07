@@ -10,7 +10,7 @@ function sysPkg+T -d "Install packages individually to prevent transaction poiso
 
     for pkg in $pkgs
         echo "🛠️ Install try: $pkg"
-        dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade $pkg
+        dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade --allowerasing $pkg
 
         if test $status -ne 0
             echo "⚠️ $pkg install failed!"
@@ -19,8 +19,8 @@ function sysPkg+T -d "Install packages individually to prevent transaction poiso
         end
     end
 end
-alias sysPkg+ "dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade" # Best overall, dnf batches operations and leads to faster image builds
-alias sysPkgq "echo Temporarily disable package modification, just add a 'q'"
+alias sysPkg+ "dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade --allowerasing" # Batches operations, faster builds
+alias sysPkgq "Ignored modifications:"
 
 # PKG DEL
 echo "⭕ --- Delete packages ---"
@@ -32,9 +32,7 @@ sysPkg- docker docker-compose moby-engine \
 
 # PKG UPD
 echo "⭕ --- Update packages ---"
-dnf5 update -y --skip-unavailable --allow-downgrade
-
-# --allowerasing
+dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
 
 # PKG ADD
 echo "⭕ --- Add packages ---"
@@ -44,7 +42,7 @@ echo "⭕ --- Add packages ---"
 # Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
 # COSMIC - Modern DE, better performance and efficiency
 
-sysPkg+T "dnf-plugins-core etckeeper-dnf dnf-repo \
+sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon \
         uutils-coreutils \
@@ -54,7 +52,7 @@ sysPkg+T "dnf-plugins-core etckeeper-dnf dnf-repo \
         brave-browser-nightly brave-keyring \
         hblock tor \
         rustup cargo clippy \
-        podman podman-docker"
+        podman podman-docker
 
 #fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
 #flatpak-session-helper git kernel-modules-extra libei libportal openssh
@@ -89,5 +87,5 @@ dnf5 list --installed
 
 # === Clean ===
 echo "⭕ --- Clean DNF5 ---"
-dnf5 autoremove -y # potentially removing essential components or conflicting with rpm-ostree's layering, leading to broken images, though less chance
+dnf5 autoremove -y
 dnf5 clean all -y
