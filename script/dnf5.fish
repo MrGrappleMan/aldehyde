@@ -5,7 +5,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 
 # 📛 Handling
 alias sysPkg- "dnf5 remove -y"
-function sysPkg+Trial -d "Install packages individually to prevent transaction poisoning, at the cost of reducing parallelism"
+function sysPkg+T -d "Install packages individually to prevent transaction poisoning, at the cost of reducing parallelism"
     set -l pkgs (string split -n " " -- (string join " " $argv))
 
     for pkg in $pkgs
@@ -43,7 +43,7 @@ echo "⭕ --- Add packages ---"
 # Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
 # COSMIC - Modern DE, better performance and efficiency
 
-sysPkg+Trial "dnf-plugins-core etckeeper-dnf dnf-repo \
+sysPkgq "dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon \
         uutils-coreutils \
@@ -84,9 +84,9 @@ sysPkg+Trial "dnf-plugins-core etckeeper-dnf dnf-repo \
 
 # === List ===
 #echo "⭕ --- List DNF5 packages ---"
-#dnf5 list --installed
+dnf5 list --installed
 
 # === Clean ===
 echo "⭕ --- Clean DNF5 ---"
-#dnf5 autoremove -y # potentially removing essential components or conflicting with rpm-ostree's layering, leading to broken images
+dnf5 autoremove -y # potentially removing essential components or conflicting with rpm-ostree's layering, leading to broken images
 dnf5 clean all -y
