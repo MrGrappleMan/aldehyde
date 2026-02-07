@@ -62,3 +62,8 @@ mkdir -p /var/tmp
 chmod 1777 /var/tmp
 mkdir -p /var/lib/systemd
 mkdir -p /var/log/journal
+
+if not test -L /ostree
+    echo "re-linking /ostree..."
+    ln -s sysroot/ostree /ostree
+end

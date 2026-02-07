@@ -42,8 +42,7 @@ echo "⭕ --- Add packages ---"
 # Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
 # COSMIC - Modern DE, better performance and efficiency
 
-sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
-        boinc-client boinc-client-static boinc-manager \
+sysPkg+ boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon \
         uutils-coreutils \
         obs-studio obs-studio-libs \
@@ -73,6 +72,7 @@ sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
 #steam steam-devices
 #aircrack-ng turbo-attack golang-github-redteampentesting-monsoon
 #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
+#dnf-plugins-core etckeeper-dnf dnf-repo
 
 ## CONFLICTS ## ( Format: Chosen/BetterPackage | ConflictingPackage )
 # warp-terminal | warp-cli ( warp-terminal already includes warp-cli )
@@ -89,10 +89,3 @@ dnf5 list --installed
 echo "⭕ --- Clean DNF5 ---"
 #dnf5 autoremove -y # Usually misinterprets what is "essential" for the OS
 dnf5 clean all -y
-
-# === Bootc Repair ===
-# Ensure the link required by bootc lint is still there
-if not test -L /ostree
-    echo "re-linking /ostree..."
-    ln -s sysroot/ostree /ostree
-end
