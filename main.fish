@@ -29,7 +29,7 @@ cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Include files in it only if /o
 # === === /ctx/script/ subscripts === ===
 echo "⭕ --- Run subscripts ---"
 
-#fish /ctx/script/dnf5.fish # Packages
+fish /ctx/script/dnf5.fish # Packages
 fish /ctx/script/systemd.fish # Services
 
 # === === Cleanup === ===

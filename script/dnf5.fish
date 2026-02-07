@@ -5,7 +5,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 
 # 📛 Handling
 alias sysPkg- "dnf5 remove -y"
-function sysPkg+T -d "Install packages individually to prevent transaction poisoning, but reducing parallelism"
+function sysPkg+T -d "Fallback method to just make things install, reducing parallelism, avoid it, trace the core issue"
     set -l pkgs (string split -n " " -- (string join " " $argv))
 
     for pkg in $pkgs
@@ -87,5 +87,12 @@ dnf5 list --installed
 
 # === Clean ===
 echo "⭕ --- Clean DNF5 ---"
-dnf5 autoremove -y
+#dnf5 autoremove -y # Usually misinterprets what is "essential" for the OS
 dnf5 clean all -y
+
+# === Bootc Repair ===
+# Ensure the link required by bootc lint is still there
+if not test -L /ostree
+    echo "re-linking /ostree..."
+    ln -s sysroot/ostree /ostree
+end
