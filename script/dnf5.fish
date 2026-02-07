@@ -10,7 +10,7 @@ function sysPkg+T -d "Install packages individually to prevent transaction poiso
 
     for pkg in $pkgs
         echo "🛠️ Install try: $pkg"
-        dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $pkg
+        dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade $pkg
 
         if test $status -ne 0
             echo "⚠️ $pkg install failed!"
@@ -34,7 +34,7 @@ sysPkg- docker docker-compose moby-engine \
 echo "⭕ --- Update packages ---"
 dnf5 update -y --skip-unavailable --allow-downgrade
 
-# "--allowerasing" is potentially dangerous
+# --allowerasing
 
 # PKG ADD
 echo "⭕ --- Add packages ---"
