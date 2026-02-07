@@ -5,21 +5,21 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 
 # 📛 Handling
 alias sysPkg- "dnf5 remove -y"
-function sysPkg+T -d "Install packages individually to prevent transaction poisoning, at the cost of reducing parallelism"
+function sysPkg+T -d "Install packages individually to prevent transaction poisoning, but reducing parallelism"
     set -l pkgs (string split -n " " -- (string join " " $argv))
 
     for pkg in $pkgs
-        echo "🛠️ Attempting to install: $pkg"
+        echo "🛠️ Install try: $pkg"
         dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade $pkg
 
         if test $status -ne 0
-            echo "⚠️  Failed to install $pkg, skipping to next..."
+            echo "⚠️ $pkg install failed!"
         else
-            echo "✅ Successfully installed $pkg"
+            echo "✅ $pkg installed"
         end
     end
 end
-alias sysPkg+ "dnf5 install -y --allowerasing --skip-broken --skip-unavailable --allow-downgrade" # Best overall, dnf batches operations and leads to faster image builds
+alias sysPkg+ "dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade" # Best overall, dnf batches operations and leads to faster image builds
 alias sysPkgq "echo Temporarily disable package modification, just add a 'q'"
 
 # PKG DEL
@@ -28,12 +28,13 @@ echo "⭕ --- Delete packages ---"
 sysPkg- docker docker-compose moby-engine \
         firefox \
         code
-
 #@gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince" "google-gnu-free-*"
 
 # PKG UPD
 echo "⭕ --- Update packages ---"
-dnf5 update -y --allowerasing --skip-unavailable --allow-downgrade
+dnf5 update -y --skip-unavailable --allow-downgrade
+
+# "--allowerasing" is potentially dangerous
 
 # PKG ADD
 echo "⭕ --- Add packages ---"
@@ -43,7 +44,7 @@ echo "⭕ --- Add packages ---"
 # Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
 # COSMIC - Modern DE, better performance and efficiency
 
-sysPkgq "dnf-plugins-core etckeeper-dnf dnf-repo \
+sysPkg+T "dnf-plugins-core etckeeper-dnf dnf-repo \
         boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon \
         uutils-coreutils \
@@ -88,5 +89,5 @@ dnf5 list --installed
 
 # === Clean ===
 echo "⭕ --- Clean DNF5 ---"
-dnf5 autoremove -y # potentially removing essential components or conflicting with rpm-ostree's layering, leading to broken images
+dnf5 autoremove -y # potentially removing essential components or conflicting with rpm-ostree's layering, leading to broken images, though less chance
 dnf5 clean all -y
