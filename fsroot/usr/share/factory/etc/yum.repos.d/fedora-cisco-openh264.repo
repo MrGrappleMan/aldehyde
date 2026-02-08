@@ -3,11 +3,5 @@ name=T Fedora OpenH264 (From Cisco)
 metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-cisco-openh264-rawhide&arch=$basearch
 type=rpm
 repo_gpgcheck=0
-#gpgcheck=1#toBeReconsidered
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
 enabled=1
-skip_if_unavailable=True
-fastestmirror=True
-max_parallel_downloads=20
-metadata_expire=8h
-countme=1

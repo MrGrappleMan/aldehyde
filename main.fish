@@ -39,6 +39,7 @@ rm -rf /var/*
 rm -rf /var/log/*
 rm -rf /var/log/dnf5.log
 rm -rf /var/cache/*
+rm -rf /var/cache/dnf/*
 rm -rf /var/cache/libdnf5/*
 rm -rf /var/lib/*
 rm -rf /var/lib/dnf5/history/*

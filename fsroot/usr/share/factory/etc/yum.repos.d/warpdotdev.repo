@@ -2,5 +2,4 @@
 name=Warp Terminal
 baseurl=https://releases.warp.dev/linux/rpm/stable
 enabled=1
-#gpgcheck=1#toBeReconsidered
 gpgkey=https://releases.warp.dev/linux/keys/warp.asc

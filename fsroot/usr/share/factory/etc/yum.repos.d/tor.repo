@@ -1,11 +1,5 @@
 [tor]
 name=T Tor
 baseurl=https://rpm.torproject.org/fedora/$releasever/$basearch
-#gpgcheck=1#toBeReconsidered
 gpgkey=https://rpm.torproject.org/fedora/public_gpg.key
 enabled=1
-skip_if_unavailable=True
-fastestmirror=True
-max_parallel_downloads=20
-metadata_expire=8h
-countme=1
