@@ -1,13 +1,12 @@
 [Unit]
-Description=hBlock /etc/hosts updation
+Description=hBlock - /etc/hosts based content blocker
 After=network-online.target
 Wants=network-online.target
 
 [Timer]
+OnCalendar=hourly
 Persistent=true
-OnCalendar=00,04,08,12,16,20:00:00 UTC
-AccuracySec=4h
-Unit=hblock.service
+AccuracySec=1h
 
 [Install]
 WantedBy=timers.target

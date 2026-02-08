@@ -33,7 +33,7 @@ sysPkg- docker docker-compose moby-engine \
         @gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince"
 
 # PKG UPD
-echo "⭕ --- Update packages ---"
+#echo "⭕ --- Update packages ---"
 #dnf5 update -y --skip-unavailable --allow-downgrade
 
 # PKG ADD
@@ -45,8 +45,7 @@ echo "⭕ --- Add packages ---"
 # COSMIC - Modern DE, better performance and efficiency
 
 sysPkg+ cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon \
-        
-sysPkgq boinc-client boinc-client-static boinc-manager \
+        boinc-client boinc-client-static boinc-manager \
         uutils-coreutils \
         obs-studio obs-studio-libs \
         git gh \

@@ -10,9 +10,9 @@ Wants=network-online.target
 # AccuracySec=4h - allows timers to be auto-rescheduled and coalesced within the NEXT 4 hours to prevent unnecessary CPU wake-ups and energy efficiency
 # Persistent=true - tries to run the target if the time to be ran is due
 # OnCalendar=00,04,08,12,16,20:00:00 UTC - attempt to run 6 times day, and this can be forced to follow a specific timezone, here UTC
+OnCalendar=hourly
 Persistent=true
-OnCalendar=00,04,08,12,16,20:00:00 UTC
-AccuracySec=4h
+AccuracySec=1h
 
 # Method B: - Monotomic, based on actual run time of the service
 # Ensures the system always has a 4-hour "breather" after the service actually finishes
