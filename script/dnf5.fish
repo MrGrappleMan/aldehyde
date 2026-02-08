@@ -10,7 +10,7 @@ function sysPkg+T -d "Fallback method to just make things install, reducing para
 
     for pkg in $pkgs
         echo "🛠️ Install try: $pkg"
-        dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade --allowerasing $pkg
+        dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade $pkg
 
         if test $status -ne 0
             echo "⚠️ $pkg install failed!"
@@ -19,20 +19,22 @@ function sysPkg+T -d "Fallback method to just make things install, reducing para
         end
     end
 end
-alias sysPkg+ "dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade --allowerasing" # Batches operations, faster builds
-alias sysPkgq "Ignored modifications:"
+alias sysPkg+ "dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade" # Batches operations, faster builds
+alias sysPkgq "Ignored modifications,"
+
+# --allowerasing
 
 # PKG DEL
 echo "⭕ --- Delete packages ---"
 
 sysPkg- docker docker-compose moby-engine \
         firefox \
-        code
-#@gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince" "google-gnu-free-*"
+        code \
+        @gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince"
 
 # PKG UPD
 echo "⭕ --- Update packages ---"
-dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
+dnf5 update -y --skip-unavailable --allow-downgrade
 
 # PKG ADD
 echo "⭕ --- Add packages ---"
