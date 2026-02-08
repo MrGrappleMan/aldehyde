@@ -29,8 +29,8 @@ echo "⭕ --- Delete packages ---"
 
 sysPkg- docker docker-compose moby-engine \
         firefox \
-        code \
-        @gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince"
+        code
+#@gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince"
 
 # PKG UPD
 #echo "⭕ --- Update packages ---"
