@@ -1,5 +1,5 @@
 [Unit]
-Description=An adaptive readahead daemon for loading frequently used parts of the filesystem into the RAM to increase performance
+Description=Preload frequently used data into RAM - largely obsolete, Linux does by default
 After=basic.target local-fs.target systemd-udev-settle.service
 Wants=systemd-udev-settle.service
 StartLimitBurst=5
