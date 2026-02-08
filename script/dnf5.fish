@@ -46,8 +46,7 @@ sysPkg+ boinc-client boinc-client-static boinc-manager \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon \
         uutils-coreutils \
         obs-studio obs-studio-libs \
-        git gh zed-nightly \
-        ollama \
+        git gh \
         brave-browser-nightly brave-keyring \
         hblock tor \
         rustup cargo clippy \
@@ -87,5 +86,5 @@ dnf5 list --installed
 
 # === Clean ===
 echo "⭕ --- Clean DNF5 ---"
-#dnf5 autoremove -y # Usually misinterprets what is "essential" for the OS
+#dnf5 autoremove -y # May misinterpret what is "essential" for the OS
 dnf5 clean all -y
