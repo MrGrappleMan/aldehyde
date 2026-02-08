@@ -1,7 +1,6 @@
 [tlp]
 name=T Total Power Management
 mirrorlist=https://repo.linrunner.de/fedora/tlp/mirrors/$releasever/$basearch/tlp.txt
-enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-tlp-$releasever
 
 [tlp-updates]

@@ -4,4 +4,3 @@ metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-cisco-openh264-r
 type=rpm
 repo_gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
-enabled=1

@@ -2,4 +2,3 @@
 name=T Google Chrome
 baseurl=https://dl.google.com/linux/chrome/rpm/stable/$basearch
 gpgkey=https://dl.google.com/linux/linux_signing_key.pub
-enabled=1

@@ -5,4 +5,3 @@ gpgkey=https://download.copr.fedorainfracloud.org/results/pgdev/ghostty/pubkey.g
 type=rpm-md
 repo_gpgcheck=0
 enabled_metadata=1
-enabled=1
