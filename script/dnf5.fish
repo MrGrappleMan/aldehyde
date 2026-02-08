@@ -34,7 +34,7 @@ sysPkg- docker docker-compose moby-engine \
 
 # PKG UPD
 echo "⭕ --- Update packages ---"
-dnf5 update -y --skip-unavailable --allow-downgrade
+#dnf5 update -y --skip-unavailable --allow-downgrade
 
 # PKG ADD
 echo "⭕ --- Add packages ---"
