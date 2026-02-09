@@ -49,9 +49,9 @@ sysPkg+ cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-
         uutils-coreutils \
         tuned tuned-ppd tuned-utils-systemtap \
         obs-studio obs-studio-libs \
-        krita krita-libs \
+        krita krita-libs inkscape \
         git gh zed-nightly \
-        peazip \
+        peazip mission-center \
         brave-browser-nightly brave-keyring \
         hblock tor mosh tailscale trayscale \
         rustup cargo clippy \
@@ -92,5 +92,5 @@ dnf5 list --installed
 
 # === Clean ===
 echo "⭕ --- Clean DNF5 ---"
-#dnf5 autoremove -y # May misinterpret what is "essential" for the OS
+dnf5 autoremove -y # May misinterpret what is "essential" for the OS, on average is fine
 dnf5 clean all -y

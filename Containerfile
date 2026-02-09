@@ -41,16 +41,16 @@ LABEL org.opencontainers.image.description="A workstation for performance"
 RUN rm -rf /opt && mkdir /opt
 
 ### INFO
-# To know of any errors that might occur
+# To know of any errors that might occur, uncomment them if you need to for reference
 
 # The below lists our that our repo to ctx copy was successful
 #RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 #    tree /ctx/
-RUN uname -a
+#RUN uname -a
 
 ### MODIFICATIONS
 # Make modifications to the image and install packages by modifying the build.fish script
-# the below RUN directive handles "build.fish" execution as recommended while initializing the rest of familiar UNIX file paths
+# the below RUN directive handles "main.fish" execution as recommended while initializing the rest of familiar UNIX file paths
 # avoid doing stuff from the Containerfile to avoid complexities, only minimal initialization
 
 RUN dnf5 install -y fish
