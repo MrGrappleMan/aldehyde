@@ -48,13 +48,15 @@ sysPkg+ cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-
         boinc-client boinc-client-static boinc-manager \
         uutils-coreutils \
         tuned tuned-ppd tuned-utils-systemtap \
-        ksmtuned \
         obs-studio obs-studio-libs \
+        krita krita-libs \
         git gh zed-nightly \
+        peazip \
         brave-browser-nightly brave-keyring \
         hblock tor mosh tailscale trayscale \
         rustup cargo clippy \
-        podman podman-docker
+        podman podman-docker \
+        rocm cuda
 
 #fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
 #flatpak-session-helper git kernel-modules-extra libei libportal openssh
