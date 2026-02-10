@@ -73,11 +73,11 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
 
 # ADD PKGS +
 
-  fpkPkg+Adv \
-      org.gnome.Platform org.gnome.Sdk \
-      org.freedesktop.Platform org.freedesktop.Sdk.Extension.rust-nightly org.freedesktop.Platform.ClInfo org.freedesktop.Platform.codecs-extra org.freedesktop.Platform.ffmpeg-full org.freedesktop.Platform.GL.default org.freedesktop.Platform.GL.mesa-git org.freedesktop.Platform.GL32.default org.freedesktop.Platform.GL32.mesa-git org.freedesktop.Platform.GlxInfo org.freedesktop.Platform.GStreamer.openmpt org.freedesktop.Platform.openh264 org.freedesktop.Platform.VAAPI.Intel org.freedesktop.Platform.VAAPI.nvidia org.freedesktop.Platform.VaInfo org.freedesktop.Platform.VdpauInfo org.freedesktop.Platform.VulkanInfo \
-      org.freedesktop.Platform.VulkanLayer.gamescope org.freedesktop.Platform.VulkanLayer.MangoHud org.freedesktop.Platform.VulkanLayer.OBSVkCapture org.freedesktop.Platform.VulkanLayer.vkBasalt \
-      org.kde.Platform org.kde.Sdk org.kde.PlatformTheme.QtSNI org.kde.PlatformTheme.QGnomePlatform
+  #fpkPkg+Adv \
+  #    org.gnome.Platform org.gnome.Sdk \
+  #    org.freedesktop.Platform org.freedesktop.Sdk.Extension.rust-nightly org.freedesktop.Platform.ClInfo org.freedesktop.Platform.codecs-extra org.freedesktop.Platform.ffmpeg-full org.freedesktop.Platform.GL.default org.freedesktop.Platform.GL.mesa-git org.freedesktop.Platform.GL32.default org.freedesktop.Platform.GL32.mesa-git org.freedesktop.Platform.GlxInfo org.freedesktop.Platform.GStreamer.openmpt org.freedesktop.Platform.openh264 org.freedesktop.Platform.VAAPI.Intel org.freedesktop.Platform.VAAPI.nvidia org.freedesktop.Platform.VaInfo org.freedesktop.Platform.VdpauInfo org.freedesktop.Platform.VulkanInfo \
+  #    org.freedesktop.Platform.VulkanLayer.gamescope org.freedesktop.Platform.VulkanLayer.MangoHud org.freedesktop.Platform.VulkanLayer.OBSVkCapture org.freedesktop.Platform.VulkanLayer.vkBasalt \
+  #    org.kde.Platform org.kde.Sdk org.kde.PlatformTheme.QtSNI org.kde.PlatformTheme.QGnomePlatform
 
   fpkPkg+Adv \
       org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08 org.freedesktop.Platform.VulkanLayer.lsfgvk//24.08
@@ -103,5 +103,4 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
 
     fpkPkg+Adv cosmic \
       io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager \
-      io.github.cosmic_utils.cosmic-ext-applet-external-monitor-brightness \
-      io.github.cosmic_utils.minimon-applet
+      io.github.cosmic_utils.cosmic-ext-applet-external-monitor-brightness

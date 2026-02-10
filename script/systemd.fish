@@ -87,8 +87,7 @@ timedatectl set-ntp true --no-ask-password
 
 # 🫥 Mask - never run
   systemctl mask \
-   systemd-rfkill systemd-rfkill.socket tlp tlp-pd auto-cpufreq \
-   gdm \
+   tlp tlp-pd auto-cpufreq \
    rpm-ostreed-automatic rpm-ostreed-automatic.timer rpm-ostree-countme rpm-ostree-countme.timer
 
 # 🙂 Unmask - allow to run
@@ -106,19 +105,19 @@ timedatectl set-ntp true --no-ask-password
 
 # The functions to opportunistically modify unit characteristics, if a unit fails to do so, its ignored - invalid units poison the rest of the targetted batch
 
-# 🟢 Enable (+Unmask) - Run at startup
+# 🟥 Disable - Do not run at startup
+sysdOff "uupd bootc-fetch-apply-updates fstrim hblock \
+         greetd"
 
+# 🟢 Enable (+Unmask) - Run at startup
 sysdOn "boinc-client \
    systemd-timesyncd \
-   greetd \
+   gdm \
    podman podman.socket podman-auto-update.timer \
-   tuned tuned-ppd \
+   tuned tuned-ppd systemd-rfkill systemd-rfkill.socket \
    uupd.timer bootc-fetch-apply-updates.timer \
    fstrim.timer beesd@var-home \
    systemd-bsod \
    sshd tailscaled tor hblock.timer \
    preload"
-
-# 🟥 Disable - Do not run at startup
-
-sysdOff "uupd bootc-fetch-apply-updates fstrim hblock"
+   
