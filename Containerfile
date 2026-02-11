@@ -17,6 +17,8 @@ COPY / /
 FROM ghcr.io/ublue-os/bazzite-gnome:testing
 # uBlue Image list: https://github.com/orgs/ublue-os/packages
 
+### LABELS
+
 LABEL containers.bootc 1
 LABEL org.opencontainers.image.source="https://github.com/MrGrappleMan/aldehyde-lx"
 LABEL org.opencontainers.image.description="A workstation for performance"

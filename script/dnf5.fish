@@ -32,7 +32,7 @@ sysPkg- docker docker-compose moby-engine \
 
 # PKG UPD
 echo "⭕ --- Update packages ---"
-dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
+#dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
 # Linter hadn't transitioned to bootc yet, still wants /ostree directory
 
 # PKG ADD

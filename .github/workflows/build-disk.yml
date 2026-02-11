@@ -35,7 +35,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build disk images
+    name: 🧑‍🏭 Build disk images
     runs-on: ${{ inputs.platform == 'amd64' && 'ubuntu-24.04' || 'ubuntu-24.04-arm' }}
     strategy:
       fail-fast: false
@@ -47,7 +47,7 @@ jobs:
       id-token: write
 
     steps:
-      - name: Prepare environment
+      - name: 🪅 Prepare environment
         run: |
           USER_UID=$(id -u)
           USER_GID=$(id -g)
@@ -68,13 +68,13 @@ jobs:
           sudo apt install -y \
             podman
 
-      - name: Maximize build space
+      - name: 🚮 Free up space
         if: inputs.platform != 'arm64'
         uses: ublue-os/remove-unwanted-software@v9
         with:
           remove-codeql: true
 
-      - name: Checkout
+      - name: ⎙ Checkout
         uses: actions/checkout@v6
 
       - name: Build disk images
