@@ -10,7 +10,7 @@ function sysPkg+T -d "Fallback method to just make things install, reducing para
 
     for pkg in $pkgs
         echo "🛠️ Install try: $pkg"
-        dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade $pkg
+        dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade --allowerasing $pkg
 
         if test $status -ne 0
             echo "⚠️ $pkg install failed!"
@@ -19,10 +19,8 @@ function sysPkg+T -d "Fallback method to just make things install, reducing para
         end
     end
 end
-alias sysPkg+ "dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade" # Batches operations, faster builds
-alias sysPkgq "Ignored modifications,"
-
-# --allowerasing
+alias sysPkg+ "dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade --allowerasing" # Batches operations, faster builds
+alias sysPkgq "echo Ignored modifications list,"
 
 # PKG DEL
 echo "⭕ --- Delete packages ---"
@@ -33,8 +31,9 @@ sysPkg- docker docker-compose moby-engine \
 #@gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince"
 
 # PKG UPD
-#echo "⭕ --- Update packages ---"
-#dnf5 update -y --skip-unavailable --allow-downgrade
+echo "⭕ --- Update packages ---"
+dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
+# Linter hadn't transitioned to bootc yet, still wants /ostree directory
 
 # PKG ADD
 echo "⭕ --- Add packages ---"
@@ -87,8 +86,8 @@ sysPkg+ cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-
 # power-profiles-daemon tuned tuned-ppd | tlp tlp-pd tlp-rdw | auto-cpufreq ( PPD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability )
 
 # === List ===
-#echo "⭕ --- List DNF5 packages ---"
-dnf5 list --installed
+echo "⭕ --- List DNF5 packages ---"
+#dnf5 list --installed
 
 # === Clean ===
 echo "⭕ --- Clean DNF5 ---"
