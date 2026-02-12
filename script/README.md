@@ -30,6 +30,24 @@ ACF is ok, but management is only specific to CPU, but TLP covers a lot more thi
 
 ## Pstate (Guided > Active) + schedutil is great
 
+[Gemini Chat](https://gemini.google.com/share/da75c4d35d82)
+
+Guided is more contextually aware than Active
+Guided has a bit more overhead but the advantages are far better
+The main reason for using Guided because schedutil is essentially what allows the CPU to indirectly understand
+the current workload happening in Linux by PELT.
+Else Guided without using schedutil is essentially somewhat pointless, and in that case you are better off just using Active.
+Unless there is a better governor than schedutil, this is always good.
+
+guided > active > passive
+guided - guided autonomous, greater context of what is happening, based on the current workload(best dictated by schedutil)
+active - autonomous, fine for hardware-based controlling, based on the energy performance preference
+passive - governor dictates the operating frequencies
+
+# AMD/Intel PState > ACPI CPUFreq
+
+Just modern
+
 ## S2idle/S0ix > hibernate > shutdown
 
 S2idle is built into modern CPUs for quick resume support, allows background activities to happen like updates, notifications with minimal energy drain
