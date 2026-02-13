@@ -17,7 +17,7 @@ kargs = [
   "nowatchdog",
   "clocksource=tsc",
   "pcie_aspm=on",
-  "amd_pstate=guided",
+  "amd_pstate=active",
   "amd_pstate.enable=1",
   "amd_pstate.shared_mem=1",
   "intel_pstate=active",

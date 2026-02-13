@@ -28,25 +28,40 @@ TuneD better integrated w/ modern standards, drivers, pstate support, less break
 TLP has extensive configurability, potential for better power management as per config but can be poor at handling some things like modern s2idle though configurable
 ACF is ok, but management is only specific to CPU, but TLP covers a lot more things better. Though auto turbo management in ACF, modern hardware already does that well.
 
-## Pstate (Guided > Active) + schedutil is great
-
+## Pstate + schedutil is great
+Though Active vs Guided is largely dependent
 [Gemini Chat](https://gemini.google.com/share/da75c4d35d82)
 
-Guided is more contextually aware than Active
-Guided has a bit more overhead but the advantages are far better
+Pros of Guided:
+Guided is more contextually aware than Active, better level of manipulation by governor
+Governor has better control over energy scaling
+
+Cons of Guided:
+Guided has more overhead
+Always has slower reaction time, well, unless the OS was built right into the ISA, the compositing logic or other things as instruction sets
+
 The main reason for using Guided because schedutil is essentially what allows the CPU to indirectly understand
 the current workload happening in Linux by PELT.
 Else Guided without using schedutil is essentially somewhat pointless, and in that case you are better off just using Active.
 Unless there is a better governor than schedutil, this is always good.
 
-guided > active > passive
-guided - guided autonomous, greater context of what is happening, based on the current workload(best dictated by schedutil)
-active - autonomous, fine for hardware-based controlling, based on the energy performance preference
+Pros of Active:
+Least overhead, all processing is done within the die w/o or rarely contacting the OS
+Most efficient and direct internal granularity
+Faster responses to energy changes and performance demands
+CPU adjusts itself w/o kernel dependance
+Better for race to idle philosophy
+
+Cons of Active:
+Can be less understanding to actual OS tasks
+
+active - autonomous, good for hardware-based controlling, based on the energy performance preference
+guided - guided autonomous, greater context of what is happening, based on the current workload (best w/ schedutil)
 passive - governor dictates the operating frequencies
 
 # AMD/Intel PState > ACPI CPUFreq
 
-Just modern
+Just modern, uses better CPU/hardware platform native drivers
 
 ## S2idle/S0ix > hibernate > shutdown
 
