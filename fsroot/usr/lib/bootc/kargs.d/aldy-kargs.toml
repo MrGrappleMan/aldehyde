@@ -2,7 +2,7 @@ kargs = [
   "quiet",
   "threadirqs",
   "sysrq_always_enabled=1",
-  "consoleblank=180",
+  "consoleblank=300",
   "bluetooth.disable_ertm=0",
   "loglevel=3",
   "preempt=full",
@@ -12,8 +12,8 @@ kargs = [
   "zswap.shrinker_enabled=Y",
   "zswap.zpool=zsmalloc",
   "zswap.compressor=lz4",
-  "zswap.max_pool_percent=100",
-  "zswap.accept_threshold_percent=100",
+  "zswap.max_pool_percent=55",
+  "zswap.accept_threshold_percent=90",
   "nowatchdog",
   "clocksource=tsc",
   "pcie_aspm=on",
@@ -24,7 +24,7 @@ kargs = [
   "intel_pstate=active",
   "intel_pstate.enable=1",
   "pci=realloc=on",
-  "rootflags=noatime,nodiratime,compress-force=zstd:1,discard=async,space_cache=v2,commit=120" # Better storage performance
+  "rootflags=noatime,nodiratime,compress-force=zstd:1,discard=async,space_cache=v2,commit=120"
 ]
 
 # Kernel Arguments
@@ -32,7 +32,7 @@ kargs = [
 # quiet                      # 🤫 Simpler, focused debugging on errors than general noisy stats
 # threadirqs                 # 🧵 Moves hardware interrupt handlers into threads, allowing the scheduler to prioritize tasks.
 # sysrq_always_enabled=1     # 🔑 Provides a low-level interface to rescue a frozen system (e.g., REISUB), regardless of UI state.
-# consoleblank=180           # 🖥️ Prevents TTY from display burn in and efficiency
+# consoleblank=300           # 🖥️ Prevents TTY from display burn in and efficiency
 # bluetooth.disable_ertm=0   # 📶 Enhanced Retransmission Mode for modern BT peripherals.
 # loglevel=3                 # 📉 Limits logging to 'Error' level; prevents the 'dmesg' buffer from being flooded by minor warnings.
 # preempt=full               # ⚡ Allows the kernel to be interrupted more aggressively; improves desktop and audio responsiveness.
@@ -57,7 +57,7 @@ kargs = [
 # (n) profile                # 🚫 Stops the kernel from collecting profiling data, saving CPU cycles.
 # intel_pstate=guided does not exist
 
-# ZSwap Compression Algorithms:
+# ZSwap/ZRAM Compression Algorithms:
 # 1. LZ4 - good speed, lower compression ratio
 # For consumer devices+gaming, avoids CPU overhead
 # Reduces intermediary hangups and internal lag spikes
