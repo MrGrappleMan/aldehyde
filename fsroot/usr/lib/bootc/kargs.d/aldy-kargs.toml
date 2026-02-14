@@ -11,7 +11,7 @@ kargs = [
   "zswap.enabled=1",
   "zswap.shrinker_enabled=Y",
   "zswap.zpool=zsmalloc",
-  "zswap.compressor=zstd",
+  "zswap.compressor=lz4",
   "zswap.max_pool_percent=100",
   "zswap.accept_threshold_percent=100",
   "nowatchdog",
@@ -20,16 +20,16 @@ kargs = [
   "amd_pstate=active",
   "amd_pstate.enable=1",
   "amd_pstate.shared_mem=1",
+  "amdgpu.sg_display=1",
   "intel_pstate=active",
   "intel_pstate.enable=1",
-  "amdgpu.sg_display=1",
   "pci=realloc=on",
   "rootflags=noatime,nodiratime,compress-force=zstd:1,discard=async,space_cache=v2,commit=120" # Better storage performance
 ]
 
 # Kernel Arguments
 
-# quiet                      # 🤫 Simpler, focused debugging on errors than general stats
+# quiet                      # 🤫 Simpler, focused debugging on errors than general noisy stats
 # threadirqs                 # 🧵 Moves hardware interrupt handlers into threads, allowing the scheduler to prioritize tasks.
 # sysrq_always_enabled=1     # 🔑 Provides a low-level interface to rescue a frozen system (e.g., REISUB), regardless of UI state.
 # consoleblank=180           # 🖥️ Prevents TTY from display burn in and efficiency
@@ -39,7 +39,7 @@ kargs = [
 # zswap.enabled=1            # 🗜️ Intercepts pages moving to swap and compresses them in RAM to reduce physical Disk I/O.
 # zswap.shrinker_enabled=Y   # ♻️ Automatically evicts the coldest compressed pages to disk when RAM is needed elsewhere.
 # zswap.zpool=zsmalloc       # 🏗️ Uses a highly efficient memory allocator that reduces fragmentation in compressed memory pools.
-# zswap.compressor=lz4       # 🚀 Prioritizes decompression speed over compression ratio; ideal for modern high-frequency CPUs.
+# zswap.compressor=lz4       # 🚀 Prioritizes speed over compression ratio; ideal for modern high-frequency CPUs.
 # nowatchdog                 # 🐕 Disables the 'hang' detector; frees up a hardware timer and prevents NMI-related latency spikes.
 # clocksource=tsc            # ⏱️ Forces the 'Time Stamp Counter'; the lowest latency method for the OS to track time on x86.
 # pcie_aspm=on               # 🍃 Enables Active State Power Management; allows PCIe links to enter low-power states when idle.
@@ -57,8 +57,11 @@ kargs = [
 # (n) profile                # 🚫 Stops the kernel from collecting profiling data, saving CPU cycles.
 # intel_pstate=guided does not exist
 
-# Zswap suitable compression algorithms:
-# zstd good enough speed but great for balanced usage and greater occupiable memory
-# lz4 overall lowest latency sacrificing compression ratio
-# lz4 > lzo in terms of efficiency and modernity
-# brotli is unsuitable for this, as memory content is dynamic.
+# ZSwap Compression Algorithms:
+# 1. LZ4 - good speed, lower compression ratio
+# For consumer devices+gaming, avoids CPU overhead
+# Reduces intermediary hangups and internal lag spikes
+# 2. ZSTD - okay speed, better compression ratio
+# For memory constrained systems
+# LZO is simply less efficient and old
+# Brotli is unsuitable for this, as memory content is dynamic.
