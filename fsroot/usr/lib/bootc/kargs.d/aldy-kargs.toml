@@ -1,4 +1,5 @@
 kargs = [
+  "splash",
   "quiet",
   "threadirqs",
   "sysrq_always_enabled=1",
@@ -7,6 +8,8 @@ kargs = [
   "loglevel=3",
   "preempt=full",
   "psi=1",
+  "transparent_hugepage=madvise",
+  "scsi_mod.use_blk_mq=1",
   "systemd.zram=0",
   "zswap.enabled=1",
   "zswap.shrinker_enabled=Y",
