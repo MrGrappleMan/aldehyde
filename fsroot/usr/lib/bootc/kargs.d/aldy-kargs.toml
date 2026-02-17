@@ -14,10 +14,9 @@ kargs = [
   "zswap.enabled=1",
   "zswap.shrinker_enabled=Y",
   "zswap.zpool=zsmalloc",
-  "zswap.compressor=lz4",
+  "zswap.compressor=zstd",
   "zswap.max_pool_percent=55",
   "zswap.accept_threshold_percent=90",
-  "nowatchdog",
   "clocksource=tsc",
   "pcie_aspm=on",
   "amd_pstate=active",
@@ -42,11 +41,10 @@ kargs = [
 # zswap.enabled=1            # 🗜️ Intercepts pages moving to swap and compresses them in RAM to reduce physical Disk I/O.
 # zswap.shrinker_enabled=Y   # ♻️ Automatically evicts the coldest compressed pages to disk when RAM is needed elsewhere.
 # zswap.zpool=zsmalloc       # 🏗️ Uses a highly efficient memory allocator that reduces fragmentation in compressed memory pools.
-# zswap.compressor=lz4       # 🚀 Prioritizes speed over compression ratio; ideal for modern high-frequency CPUs.
-# nowatchdog                 # 🐕 Disables the 'hang' detector; frees up a hardware timer and prevents NMI-related latency spikes.
-# clocksource=tsc            # ⏱️ Forces the 'Time Stamp Counter'; the lowest latency method for the OS to track time on x86.
+# zswap.compressor=zstd      # 🚀 Offers a great balance between speed and compression; ideal for modern high-frequency 
+# clocksource=tsc            # ⏱️ Forces the 'Time Stamp Counter'; the lowest latency method for the OS to track time on x86. HPET is a legacy method
 # pcie_aspm=on               # 🍃 Enables Active State Power Management; allows PCIe links to enter low-power states when idle.
-# amd_pstate=guided          # 💎 Requests the hardware to manage its own clock speeds based on workload, rather than OS-fixed steps.
+# amd_pstate=active          # 💎 Requests the hardware to manage its own clock speeds based on workload, rather than OS-fixed steps.
 # amd_pstate.enable=1        # ✅ Activates the modern AMD P-State driver for finer-grained power/performance control on Zen CPUs.
 # amd_pstate.shared_mem=1    # 🧠 Allows the CPU and OS to communicate via shared memory for faster frequency transitions.
 # intel_pstate=active        # 🏎️ Uses Intel's hardware-managed P-states (HWP) for superior efficiency compared to legacy ACPI.
@@ -61,10 +59,11 @@ kargs = [
 # intel_pstate=guided does not exist
 
 # ZSwap/ZRAM Compression Algorithms:
-# 1. LZ4 - good speed, lower compression ratio
-# For consumer devices+gaming, avoids CPU overhead
-# Reduces intermediary hangups and internal lag spikes
-# 2. ZSTD - okay speed, better compression ratio
+# 2. ZSTD - Best balance for all computing. okay speed, better compression ratio
+# For consumer devices+gaming
 # For memory constrained systems
-# LZO is simply less efficient and old
-# Brotli is unsuitable for this, as memory content is dynamic.
+# 1. LZ4 - good speed, bad compression ratio
+# avoids CPU usage on underpowered devices
+# Reduces intermediary hangups and internal lag spikes
+# 3. LZO is simply less efficient and old
+# 4. Brotli is unsuitable for this, as memory content is dynamic.

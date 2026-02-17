@@ -44,7 +44,7 @@ echo "             ▀                                                          
 echo "____________________________ < ~ Improvise, Perform, Inspire ~ > _________________________________";
 echo "";
 set_color normal
-echo "❇ Get ready to experience real productivity ❇";
-echo "Please be patient, your device will automatically reboot";
+echo "                         ❇ Get ready to experience real productivity ❇";
+echo "                    Please be patient, your device will automatically reboot";
 bootc switch ghcr.io/mrgrappleman/aldehyde-lx:latest --apply
 bootc upgrade --apply
