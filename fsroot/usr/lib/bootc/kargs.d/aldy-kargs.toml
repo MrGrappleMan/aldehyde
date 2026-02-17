@@ -15,11 +15,11 @@ kargs = [
   "zswap.shrinker_enabled=Y",
   "zswap.zpool=zsmalloc",
   "zswap.compressor=zstd",
-  "zswap.max_pool_percent=55",
+  "zswap.max_pool_percent=30",
   "zswap.accept_threshold_percent=90",
   "clocksource=tsc",
   "pcie_aspm=on",
-  "amd_pstate=active",
+  "amd_pstate=guided",
   "amd_pstate.enable=1",
   "amd_pstate.shared_mem=1",
   "amdgpu.sg_display=1",
@@ -32,37 +32,36 @@ kargs = [
 # Kernel Arguments
 
 # quiet                      # 🤫 Simpler, focused debugging on errors than general noisy stats
-# threadirqs                 # 🧵 Moves hardware interrupt handlers into threads, allowing the scheduler to prioritize tasks.
+# threadirqs                 # 🧵 Moves hardware interrupt handlers into threads, allowing the scheduler to granularly manage tasks.
 # sysrq_always_enabled=1     # 🔑 Provides a low-level interface to rescue a frozen system (e.g., REISUB), regardless of UI state.
 # consoleblank=300           # 🖥️ Prevents TTY from display burn in and efficiency
 # bluetooth.disable_ertm=0   # 📶 Enhanced Retransmission Mode for modern BT peripherals.
 # loglevel=3                 # 📉 Limits logging to 'Error' level; prevents the 'dmesg' buffer from being flooded by minor warnings.
-# preempt=full               # ⚡ Allows the kernel to be interrupted more aggressively; improves desktop and audio responsiveness.
+# preempt=full               # ⚡ Allows the kernel to be interrupted any time, better responsivenss and faster changing to workloads
 # zswap.enabled=1            # 🗜️ Intercepts pages moving to swap and compresses them in RAM to reduce physical Disk I/O.
 # zswap.shrinker_enabled=Y   # ♻️ Automatically evicts the coldest compressed pages to disk when RAM is needed elsewhere.
 # zswap.zpool=zsmalloc       # 🏗️ Uses a highly efficient memory allocator that reduces fragmentation in compressed memory pools.
 # zswap.compressor=zstd      # 🚀 Offers a great balance between speed and compression; ideal for modern high-frequency 
 # clocksource=tsc            # ⏱️ Forces the 'Time Stamp Counter'; the lowest latency method for the OS to track time on x86. HPET is a legacy method
 # pcie_aspm=on               # 🍃 Enables Active State Power Management; allows PCIe links to enter low-power states when idle.
-# amd_pstate=active          # 💎 Requests the hardware to manage its own clock speeds based on workload, rather than OS-fixed steps.
+# amd_pstate=guided          # 💎 Requests the hardware to manage its own clock speeds based on OS workload coordination.
 # amd_pstate.enable=1        # ✅ Activates the modern AMD P-State driver for finer-grained power/performance control on Zen CPUs.
 # amd_pstate.shared_mem=1    # 🧠 Allows the CPU and OS to communicate via shared memory for faster frequency transitions.
 # intel_pstate=active        # 🏎️ Uses Intel's hardware-managed P-states (HWP) for superior efficiency compared to legacy ACPI.
 # amdgpu.sg_display=1        # 📽️ Enables Scatter/Gather display; allows the GPU to use non-contiguous memory for frame buffers.
 # pci=realloc=on             # 🗺️ Allows the kernel to re-map PCI resources if the BIOS didn't allocate enough space (BAR).
 
-# Should be disabled:
-# rhgb                       # 🏙 Less boot overhead and less conflicts with drivers, at the cost of UX beauty
-# systemd.zram=0             # 🛑 Never use with zswap
-# (n) nomodeset              # 🚫 Allows the kernel to use high-performance GPU drivers (KMS) instead of slow VESA fallbacks.
-# (n) profile                # 🚫 Stops the kernel from collecting profiling data, saving CPU cycles.
-# intel_pstate=guided does not exist
+# Remove:
+# systemd.zram=1             # 🛑 Never use with zswap
+# nomodeset                  # 🚫 Allows the kernel to use high-performance GPU drivers (KMS) instead of slow VESA fallbacks.
+# profile                    # 🚫 Stops the kernel from collecting profiling data, saving CPU cycles.
+# intel_pstate=guided        # does not exist
 
 # ZSwap/ZRAM Compression Algorithms:
-# 2. ZSTD - Best balance for all computing. okay speed, better compression ratio
+# 1. ZSTD - Best balance for all computing. okay speed, better compression ratio
 # For consumer devices+gaming
 # For memory constrained systems
-# 1. LZ4 - good speed, bad compression ratio
+# 2. LZ4 - good speed, bad compression ratio
 # avoids CPU usage on underpowered devices
 # Reduces intermediary hangups and internal lag spikes
 # 3. LZO is simply less efficient and old
