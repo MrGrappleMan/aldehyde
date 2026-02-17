@@ -19,7 +19,7 @@ kargs = [
   "zswap.accept_threshold_percent=90",
   "clocksource=tsc",
   "pcie_aspm=on",
-  "amd_pstate=guided",
+  "amd_pstate=active",
   "amd_pstate.enable=1",
   "amd_pstate.shared_mem=1",
   "amdgpu.sg_display=1",
@@ -44,7 +44,7 @@ kargs = [
 # zswap.compressor=zstd      # 🚀 Offers a great balance between speed and compression; ideal for modern high-frequency 
 # clocksource=tsc            # ⏱️ Forces the 'Time Stamp Counter'; the lowest latency method for the OS to track time on x86. HPET is a legacy method
 # pcie_aspm=on               # 🍃 Enables Active State Power Management; allows PCIe links to enter low-power states when idle.
-# amd_pstate=guided          # 💎 Requests the hardware to manage its own clock speeds based on OS workload coordination.
+# amd_pstate=active          # 💎 Requests the hardware to manage its own clock speeds based on internal circuitry and stress.
 # amd_pstate.enable=1        # ✅ Activates the modern AMD P-State driver for finer-grained power/performance control on Zen CPUs.
 # amd_pstate.shared_mem=1    # 🧠 Allows the CPU and OS to communicate via shared memory for faster frequency transitions.
 # intel_pstate=active        # 🏎️ Uses Intel's hardware-managed P-states (HWP) for superior efficiency compared to legacy ACPI.
@@ -55,14 +55,13 @@ kargs = [
 # systemd.zram=1             # 🛑 Never use with zswap
 # nomodeset                  # 🚫 Allows the kernel to use high-performance GPU drivers (KMS) instead of slow VESA fallbacks.
 # profile                    # 🚫 Stops the kernel from collecting profiling data, saving CPU cycles.
-# intel_pstate=guided        # does not exist
 
 # ZSwap/ZRAM Compression Algorithms:
 # 1. ZSTD - Best balance for all computing. okay speed, better compression ratio
-# For consumer devices+gaming
-# For memory constrained systems
+# For modern consumer devices+gaming
+# Also for memory constrained systems
 # 2. LZ4 - good speed, bad compression ratio
-# avoids CPU usage on underpowered devices
+# Avoids CPU usage
 # Reduces intermediary hangups and internal lag spikes
 # 3. LZO is simply less efficient and old
 # 4. Brotli is unsuitable for this, as memory content is dynamic.

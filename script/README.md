@@ -51,6 +51,8 @@ Most efficient and direct internal granularity
 Faster responses to energy changes and performance demands
 CPU adjusts itself w/o kernel dependance
 Better for race to idle philosophy
+Allows granular picking of power requiremements, like schedutil with certain biases and power-dire situations
+In power dire situations, this is the best at handling the job
 
 Cons of Active:
 Can be less understanding to actual OS tasks
