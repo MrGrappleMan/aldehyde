@@ -7,7 +7,7 @@ Wants=network-online.target
 # The Fedora Project's own docs suggest updating "on an almost daily basis", and this uses experimental/prerelease versions of software
 
 # Method A: - Based on wall-clock
-# AccuracySec=4h - allows timers to be auto-rescheduled and coalesced within the NEXT 4 hours to prevent unnecessary CPU wake-ups and energy efficiency
+# AccuracySec=1h - allows timers to be auto-rescheduled and coalesced within the NEXT hour to prevent unnecessary CPU wake-ups and energy efficiency
 # Persistent=true - tries to run the target if the time to be ran is due
 # OnCalendar=00,04,08,12,16,20:00:00 UTC - attempt to run 6 times day, and this can be forced to follow a specific timezone, here UTC
 OnCalendar=hourly

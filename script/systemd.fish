@@ -107,12 +107,12 @@ timedatectl set-ntp true --no-ask-password
 
 # 🟥 Disable - Do not run at startup
 sysdOff "uupd bootc-fetch-apply-updates fstrim hblock \
-         greetd"
+         gdm"
 
 # 🟢 Enable (+Unmask) - Run at startup
 sysdOn "boinc-client \
    systemd-timesyncd \
-   gdm \
+   greetd \
    podman podman.socket podman-auto-update.timer \
    tuned tuned-ppd systemd-rfkill systemd-rfkill.socket \
    uupd.timer bootc-fetch-apply-updates.timer \
@@ -121,3 +121,4 @@ sysdOn "boinc-client \
    sshd tailscaled tor hblock.timer \
    preload"
    
+plymouth-set-default-theme -R aldy_bootui
