@@ -47,24 +47,26 @@ echo "⭕ --- (^) Update packages ---"
 # (+) PKG ADD
 echo "⭕ --- (+) Add packages ---"
 
-sysPkg+ cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd \
+sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
+        cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd \
         boinc-client boinc-client-static boinc-manager \
-        uutils-coreutils \
+        uutils-coreutils util-linux \
         tuned tuned-ppd tuned-utils-systemtap \
         obs-studio obs-studio-libs \
         krita krita-libs inkscape \
-        git gh zed-nightly \
-        peazip mission-center \
+        git gh zed-nightly fish \
+        peazip mission-center neohtop \
         brave-browser-nightly brave-keyring \
-        hblock tor mosh tailscale trayscale \
+        hblock tor mosh tailscale trayscale openssh \
         rustup cargo clippy \
         podman podman-docker \
-        rocm cuda
+        rocm cuda \
+        steam steam-devices
 
 #fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
-#flatpak-session-helper git kernel-modules-extra libei libportal openssh
-#openssh-server p7zip p7zip-plugins
-#tailscale util-linux xdg-desktop-portal
+#flatpak-session-helper kernel-modules-extra libei libportal
+#p7zip p7zip-plugins
+#util-linux xdg-desktop-portal
 #obs-studio-plugin-vaapi obs-studio-plugin-vkcapture obs-studio-plugin-droidcam
 #ghostty-nightly ghostty-nightly-fish-completion ghostty-nightly-shell-integration
 #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
@@ -77,17 +79,15 @@ sysPkg+ cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-
 #obs-studio-plugin-droidcam obs-studio-plugin-vaapi persepolis
 #pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm
 #uget warp-terminal
-#steam steam-devices
 #aircrack-ng turbo-attack golang-github-redteampentesting-monsoon
 #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
-#dnf-plugins-core etckeeper-dnf dnf-repo
 
 ## CONFLICTS ## ( Format: Chosen/BetterPackage | ConflictingPackage )
 # warp-terminal | warp-cli ( warp-terminal already includes warp-cli )
 # fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, spoofing it as one will cause conflicts )
 # fedora-repos-rawhide ( only use repos in fsroot/usr/share/factory/etc/yum.repos.d or pre-packaged ones )
 # cosmic-config-fedora ( We have our own config files )
-# power-profiles-daemon tuned tuned-ppd | tlp tlp-pd tlp-rdw | auto-cpufreq ( PPD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability )
+# tuned tuned-ppd | power-profiles-daemon | tlp tlp-pd tlp-rdw | auto-cpufreq ( PPD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability )
 
 # === List ===
 echo "⭕ --- (=) List DNF5 packages ---"
