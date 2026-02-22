@@ -1,6 +1,6 @@
 [fedora]
 name=T Fedora
-metalink=https://mirrors.fedoraproject.org/metalink?repo=$releasever&arch=$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
 repo_gpgcheck=0
 type=rpm
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
