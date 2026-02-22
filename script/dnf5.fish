@@ -32,9 +32,8 @@ echo "⭕ --- (-) Delete packages ---"
 
 sysPkg- docker docker-compose moby-engine \
         firefox \
-        code
-
-#gnome-shell gdm mutter gnome-session gnome-control-center gnome-initial-setup
+        code \
+        gnome-shell gdm mutter gnome-session gnome-control-center gnome-initial-setup
 
 # (~) PKG SWAP
 echo "⭕ --- (~) Swap packages ---"
