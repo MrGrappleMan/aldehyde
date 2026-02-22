@@ -1,5 +1,5 @@
 ---
-name: Build disk images
+name: 🖴 Build disk images
 
 on:
   workflow_dispatch:
