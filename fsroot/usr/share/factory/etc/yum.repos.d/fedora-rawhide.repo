@@ -13,12 +13,12 @@ type=rpm
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-45-$basearch
 enabled=0
 
-# WARNING: Never disable 'fedora' 'updates' 'updates-testing', even if using 'rawhide'
+# WARNING: Treat the enablement 'fedora' 'updates' 'updates-testing' | 'rawhide' as boolean
 # Despite flags like, --skip-broken --skip-unavailable --allow-downgrade --allowerasing
 # this measure is used to ensure packages are not parially progressive
 # in terms of the fedora versioning method, plus packages even of the rawhide type may conflict with each
 # other across different repos like Terra Rawhide VS Fedora Rawhide
 # desipte being an image that is highly supportive of experimental software
 # This is fedora anyways, with packages usually already ahead of other distributions
-# If using rawhide, enabling those along with rawhide allows rawhide to fallback to stable repos
-# in case anything fails to get satisified in rawhide
+# If using rawhide, enabling those along with rawhide may allow rawhide to fallback to stable repos
+# in case anything fails to get satisified in rawhide(need to verify)
