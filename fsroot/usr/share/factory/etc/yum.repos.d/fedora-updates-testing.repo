@@ -1,0 +1,14 @@
+[updates-testing]
+name=T Fedora Updates Testing
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
+repo_gpgcheck=0
+type=rpm
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+
+[updates-testing-debuginfo]
+name=T Fedora Updates Testing
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-source-f$releasever&arch=$basearch
+repo_gpgcheck=0
+type=rpm
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+enabled=0

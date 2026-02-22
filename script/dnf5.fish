@@ -32,8 +32,8 @@ echo "⭕ --- (-) Delete packages ---"
 
 sysPkg- docker docker-compose moby-engine \
         firefox \
-        code
-#@gnome-desktop "gnome-*" "dconf*" "gdm*" "nautilus*" "adwaita*" "evolution*" "totem*" "rhythmbox*" "brasero*" "gedit*" "yelp*" "baobab" "evince"
+        code \
+        gnome-shell gdm mutter gnome-session gnome-control-center gnome-initial-setup
 
 # (~) PKG SWAP
 echo "⭕ --- (~) Swap packages ---"
@@ -54,7 +54,7 @@ sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
         tuned tuned-ppd tuned-utils-systemtap \
         obs-studio obs-studio-libs \
         krita krita-libs inkscape \
-        git gh zed-nightly fish \
+        git gh zed-nightly zed-preview fish \
         peazip mission-center neohtop \
         brave-browser-nightly brave-keyring \
         hblock tor mosh tailscale trayscale openssh \
@@ -82,7 +82,7 @@ sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
 #aircrack-ng turbo-attack golang-github-redteampentesting-monsoon
 #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
 
-## CONFLICTS ## ( Format: Chosen/BetterPackage | ConflictingPackage )
+## CONFLICTS ## ( Format: ChosenPackages | ConflictingPackages )
 # warp-terminal | warp-cli ( warp-terminal already includes warp-cli )
 # fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, spoofing it as one will cause conflicts )
 # fedora-repos-rawhide ( only use repos in fsroot/usr/share/factory/etc/yum.repos.d or pre-packaged ones )
@@ -94,6 +94,6 @@ echo "⭕ --- (=) List DNF5 packages ---"
 #dnf5 list --installed
 
 # === Clean ===
-echo "⭕ --- Clean DNF5 ---"
+echo "⭕ --- (🧹) Clean DNF5 ---"
 dnf5 autoremove -y # May misinterpret what is "essential" for the OS, on average is fine
 dnf5 clean all -y

@@ -1,0 +1,24 @@
+[rawhide]
+name=T Fedora Rawhide
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
+repo_gpgcheck=0
+type=rpm
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-45-$basearch
+
+[rawhide-debuginfo]
+name=T Fedora Rawhide Debug
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
+repo_gpgcheck=0
+type=rpm
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-45-$basearch
+enabled=0
+
+# WARNING: Never disable 'fedora' 'updates' 'updates-testing', even if using 'rawhide'
+# Despite flags like, --skip-broken --skip-unavailable --allow-downgrade --allowerasing
+# this measure is used to ensure packages are not parially progressive
+# in terms of the fedora versioning method, plus packages even of the rawhide type may conflict with each
+# other across different repos like Terra Rawhide VS Fedora Rawhide
+# desipte being an image that is highly supportive of experimental software
+# This is fedora anyways, with packages usually already ahead of other distributions
+# If using rawhide, enabling those along with rawhide allows rawhide to fallback to stable repos
+# in case anything fails to get satisified in rawhide

@@ -1,24 +1,14 @@
 [fedora]
 name=T Fedora
-metalink=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=$releasever&arch=$basearch
 repo_gpgcheck=0
 type=rpm
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 
-[updates]
-name=T Fedora Updates
-metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-frawhide&arch=$basearch
+[fedora-debuginfo]
+name=T Fedora Debug
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-debug-$releasever&arch=$basearch
 repo_gpgcheck=0
 type=rpm
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 enabled=0
-
-[updates-testing]
-name=T Fedora Updates Testing
-metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-frawhide&arch=$basearch
-repo_gpgcheck=0
-type=rpm
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
-enabled=0
-
-# WARNING: 
