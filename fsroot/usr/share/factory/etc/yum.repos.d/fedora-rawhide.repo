@@ -1,14 +1,13 @@
 [rawhide]
 name=T Fedora Rawhide
-metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearch
 repo_gpgcheck=0
 type=rpm
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-45-$basearch
-enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
 
 [rawhide-debuginfo]
 name=T Fedora Rawhide Debug
-metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$releasever&arch=$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=rawhide-debug&arch=$basearch
 repo_gpgcheck=0
 type=rpm
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-45-$basearch
