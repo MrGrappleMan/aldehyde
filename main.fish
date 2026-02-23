@@ -31,6 +31,7 @@ echo "⭕ --- Run subscripts ---"
 
 fish /ctx/script/dnf5.fish # Packages
 fish /ctx/script/systemd.fish # Services
+#fish /ctx/script/podman.fish # Containers
 
 # === === Cleanup === ===
 echo "⭕ --- Cleanup directories ---"
@@ -64,7 +65,7 @@ chmod 1777 /var/tmp
 mkdir -p /var/lib/systemd
 mkdir -p /var/log/journal
 
-if not test -L /ostree
-    echo "re-linking /ostree..."
-    ln -s sysroot/ostree /ostree
-end
+#if not test -L /ostree
+#    echo "re-linking /ostree..."
+#    ln -s sysroot/ostree /ostree
+#end

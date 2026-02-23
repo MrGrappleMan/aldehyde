@@ -1,5 +1,15 @@
 [terra-extras]
 name=T Terra Extras
+metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-extras&arch=$basearch
+type=rpm
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever
+repo_gpgcheck=0
+enabled_metadata=1
+enabled=0
+
+[terra-extras-rawhide]
+name=T Terra Extras
 metalink=https://tetsudou.fyralabs.com/metalink?repo=terrarawhide-extras&arch=$basearch
 type=rpm
 gpgcheck=0
