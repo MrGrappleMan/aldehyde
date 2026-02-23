@@ -47,17 +47,18 @@ echo "⭕ --- (^) Update packages ---"
 # (+) PKG ADD
 echo "⭕ --- (+) Add packages ---"
 
-sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
+sysPkg+ \
+        dnf-plugins-core etckeeper-dnf dnf-repo \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd \
         boinc-client boinc-client-static boinc-manager \
         uutils-coreutils util-linux \
         tuned tuned-ppd tuned-utils-systemtap \
         obs-studio obs-studio-libs \
         krita krita-libs inkscape \
-        git gh zed-nightly zed-preview fish \
-        peazip mission-center neohtop \
+        git gh zed-preview fish \
+        peazip neohtop \
         brave-browser-nightly brave-keyring \
-        hblock tor mosh tailscale trayscale openssh \
+        hblock tor mosh tailscale trayscale openssh persepolis \
         rustup cargo clippy \
         podman podman-docker \
         rocm cuda \
@@ -73,11 +74,11 @@ sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
 #nvidia-gpu-firmware libva-nvidia-driver envytools nvidia-patch
 #distcc distcc-server
 #host-spawn
-#inkscape krita krita-libs libei-utils
+#krita-libs libei-utils
 #libvirt-daemon-kvm
 #nodejs obs-studio-plugin-browser
-#obs-studio-plugin-droidcam obs-studio-plugin-vaapi persepolis
-#pnpm preload qbittorrent qemu-kvm qemu-kvm-core rocm
+#obs-studio-plugin-droidcam obs-studio-plugin-vaapi
+#pnpm preload qbittorrent qemu-kvm qemu-kvm-core
 #uget warp-terminal
 #aircrack-ng turbo-attack golang-github-redteampentesting-monsoon
 #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
@@ -87,7 +88,7 @@ sysPkg+ dnf-plugins-core etckeeper-dnf dnf-repo \
 # fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, spoofing it as one will cause conflicts )
 # fedora-repos-rawhide ( only use repos in fsroot/usr/share/factory/etc/yum.repos.d or pre-packaged ones )
 # cosmic-config-fedora ( We have our own config files )
-# tuned tuned-ppd | power-profiles-daemon | tlp tlp-pd tlp-rdw | auto-cpufreq ( PPD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability )
+# tuned tuned-ppd | power-profiles-daemon | tlp tlp-pd tlp-rdw | auto-cpufreq ( TuneD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability )
 
 # === List ===
 echo "⭕ --- (=) List DNF5 packages ---"
