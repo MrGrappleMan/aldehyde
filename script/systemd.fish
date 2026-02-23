@@ -121,4 +121,4 @@ sysdOn "boinc-client \
    sshd tailscaled tor hblock.timer \
    preload"
    
-plymouth-set-default-theme -R aldy_bootui
+plymouth-set-default-theme aldy_bootui
