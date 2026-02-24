@@ -28,7 +28,7 @@ UseEndAnimation=false
 SuppressMessages=true
 ProgressBarShowPercentComplete=true
 UseProgressBar=true
-_Title=Installing Updates...
+_Title=Upgrading...
 _SubTitle=Do not turn off your computer
 
 [system-upgrade]

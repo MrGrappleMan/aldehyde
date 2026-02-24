@@ -19,7 +19,7 @@ kargs = [
   "zswap.shrinker_enabled=Y",
   "zswap.zpool=zsmalloc",
   "zswap.compressor=zstd",
-  "zswap.max_pool_percent=95",
+  "zswap.max_pool_percent=30",
   "zswap.accept_threshold_percent=90",
   "zswap.same_filled_pages_enabled=1",
   "zswap.non_same_filled_pages_enabled=1",
@@ -38,7 +38,9 @@ kargs = [
   "rootflags=noatime,nodiratime,compress-force=zstd:1,discard=async,space_cache=v2,commit=120"
 ]
 
-# Kernel Arguments
+# --------------------------------------------------------------------------------
+# Argument descriptions:
+# --------------------------------------------------------------------------------
 
 # quiet                      # 🤫 Simpler, focused debugging on errors than general noisy stats
 # threadirqs                 # 🧵 Moves hardware interrupt handlers into threads, allowing the scheduler to granularly manage tasks.
@@ -65,12 +67,67 @@ kargs = [
 # nomodeset                  # 🚫 Allows the kernel to use high-performance GPU drivers (KMS) instead of slow VESA fallbacks.
 # profile                    # 🚫 Stops the kernel from collecting profiling data, saving CPU cycles.
 
-# ZSwap/ZRAM Compression Algorithms:
-# 1. ZSTD - Best balance for all computing. okay speed, better compression ratio
+# --------------------------------------------------------------------------------
+# Explanations:
+# --------------------------------------------------------------------------------
+
+# Kernel preemption:____________________________________________________________________
+# For customizeability from the user end, PREEMPT_DYNAMIC is needed to be added as an argument during kernel compilation
+# However that name is very misleading IMO, PREEMPT_DYNAMIC is simply a "wrapper" or boot-time switch that lets you choose between existing models
+# So, PREEMPT_CUSTOM would be more suitable
+
+# PREEMPT_LAZY is a new experimental implementation which is intended
+# to be the new default for all general systems, as it does preemption more intelligently
+# as compared to voluntary. Preempts immediately for RT tasks, delays for normal tasks
+
+# zRAM/ZSwap:
+
+# https://linuxblog.io/zswap-better-than-zram/
+# https://www.youtube.com/watch?v=RGVt16xiERc&t=394 # Reference at the timestamp within the link
+
+# zswap ( Best )
+# Reduced drive wear compared to traditional swap
+# Prevents OOMs as compared to zram, when you hit max compressible limit
+# zswap handles memory more intelligently than zram
+# dynamic smart cache for a disk-based swap device, nuanced decisions about memory management
+# Disk swap is slower, but its advantages outweight this w/ zswap
+# More efficient - handles incompressible data as required
+# Lower CPU overhead - more responsive
+# Needs a swap partition/file. A dedicated partition is more direct, reduces sector access overhead, effect is negigible on NVMes
+# Recommended: All large storage devices attached to your PC should have 4GB or larger swap device
+
+# Never use ZSWAP with ZRAM - it adds unnecessary, uncoordinated overhead between the two
+# Keep an on-disk swap partition. I dont care about the priority of it but it needs to be there
+# Prevents RAM starvation. This fallback efficiently keeps your unsaved work safe from potential crashes
+# It doesnt save unsaved work, just prevents system OOMs(though the system doesnt panic here) that may lead to loss of work
+# Likewise, enable Memory Extension on supported phones, prefer the largest or automatic sizing
+
+# zram ( Avoid )
+# Theoretically lowest latency
+# Adds CPU strain, high temps even at idle especially if a memory hogging browser is running in the background
+# Blind compression of data - the process becomes less efficient and consumes a significant number of CPU cycles
+# as the compression algorithm attempts to find non-existent patterns
+# Usually only better for systems with low memory
+# Needs a good enough CPU for handling its strain fast
+# No hassle of manually making swap devices - systemds zram generator does it all deriving it from the configuration
+
+# You should really avoid increasing zswap.max_pool_percent above 50 or even 40, the safe 'enough' limit is 65(like for Redis)
+# Like if you are gaming, and the game finds that it can fit a lot of contents(well, progressively as it sees 
+# memory getting 'freed' up) into RAM and heavily preload stuff, that
+# is an issue where the CPU keeps compressing and decompressing(when accessing the compressed contents) contents more than processing the actual game
+# higher heat produced, thermal throttling and thus slowdowns
+# At this point, getting the data from your disk is genuinely more efficient to process in this case.
+# the latency of decompressing a massive, complex page from a large Zswap pool can actually be higher than just fetching it from the NVMe.
+# More RAM, but at what cost? You need to find a balance(30 is good for most PCs), else this(a large value will be much more worse the zRAM.
+# Swap will be slower but be more efficient to process in this context
+
+# 1. ZSTD - Best balance for all computing, speed and compression ratio
 # For modern consumer devices+gaming
-# Also for memory constrained systems
+# Fits memory constrained systems as well
 # 2. LZ4 - good speed, bad compression ratio
-# Avoids CPU usage
+# Avoids CPU usage, but zRAM benefits are reduced
 # Reduces intermediary hangups and internal lag spikes
 # 3. LZO is simply less efficient and old
-# 4. Brotli is unsuitable for this, as memory content is dynamic.
+# 4. Brotli is unsuitable for this, as memory content is dynamic
+
+
