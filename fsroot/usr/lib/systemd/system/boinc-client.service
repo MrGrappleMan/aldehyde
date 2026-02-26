@@ -1,8 +1,8 @@
 [Unit]
-Description=⚛️ Science United / BOINC - help scientific research projects by giving them idle computing power
+Description=⚛️ BOINC - help (scientific) projects by giving them idle computing power
 Documentation=https://scienceunited.org/ man:boinc(1) https://boinc.berkeley.edu/
-Wants=podman.service vboxdrv.service network-online.target
-After=podman.service vboxdrv.service network-online.target time-sync.target
+Wants=podman.service podman.socket vboxdrv.service network-online.target
+After=podman.service podman.socket vboxdrv.service network-online.target time-sync.target
 StartLimitBurst=5
 StartLimitIntervalSec=300
 
@@ -43,7 +43,8 @@ IOSchedulingPriority=7
 CPUSchedulingPolicy=idle
 Nice=19
 CPUWeight=1
-OOMScoreAdjust=1000
+IOWeight=1
+OOMScoreAdjust=700
 
 ## RESTART ##
 Restart=on-failure

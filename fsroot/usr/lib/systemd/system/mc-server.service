@@ -1,6 +1,7 @@
 [Unit]
-Description=Minecraft server starter
-
+Description=Minecraft server
+Wants=network-online.target
+After=network-online.target
 # You can also try exploring Server software that suits
 # your needs rather than using the official server
 
