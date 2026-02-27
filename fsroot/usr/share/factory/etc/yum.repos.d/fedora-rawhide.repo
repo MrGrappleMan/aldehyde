@@ -4,6 +4,7 @@ metalink=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearch
 repo_gpgcheck=0
 type=rpm
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-rawhide-$basearch
+enabled=0
 
 [rawhide-debuginfo]
 name=T Fedora Rawhide Debug

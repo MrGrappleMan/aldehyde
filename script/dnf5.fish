@@ -49,15 +49,16 @@ echo "⭕ --- (+) Add packages ---"
 
 sysPkg+ \
         dnf-plugins-core etckeeper-dnf dnf-repo \
-        cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd \
+        cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle \
+        cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd \
         boinc-client boinc-client-static boinc-manager \
         uutils-coreutils util-linux \
         tuned tuned-ppd tuned-utils-systemtap \
         obs-studio obs-studio-libs \
         krita krita-libs inkscape \
-        git gh zed-preview fish \
+        git gh zed fish \
         peazip neohtop \
-        brave-browser-nightly brave-keyring \
+        brave-browser brave-keyring \
         hblock tor mosh tailscale trayscale openssh persepolis \
         rustup cargo clippy \
         podman podman-docker \

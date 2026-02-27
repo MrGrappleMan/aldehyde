@@ -4,7 +4,6 @@ metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-testing-f$relea
 repo_gpgcheck=0
 type=rpm
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
-enabled=0
 
 [updates-testing-debuginfo]
 name=T Fedora Updates Testing Debug
