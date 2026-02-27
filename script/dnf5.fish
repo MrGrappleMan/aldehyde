@@ -41,8 +41,9 @@ dnf swap -y --allowerasing @gnome-desktop @cosmic-desktop
 
 # (^) PKG UPD
 echo "⭕ --- (^) Update packages ---"
-#dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
+dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
 # Linter hadn't transitioned to bootc yet, still wants /ostree directory
+# Try this time, maybe non rawhide version is still compatible
 
 # (+) PKG ADD
 echo "⭕ --- (+) Add packages ---"

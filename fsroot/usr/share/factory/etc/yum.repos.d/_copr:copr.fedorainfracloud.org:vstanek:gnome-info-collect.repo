@@ -1,7 +1,0 @@
-[copr:copr.fedorainfracloud.org:vstanek:gnome-info-collect]
-name=C vstanek gnome-info-collect
-baseurl=https://download.copr.fedorainfracloud.org/results/vstanek/gnome-info-collect/fedora-$releasever-$basearch/
-gpgkey=https://download.copr.fedorainfracloud.org/results/vstanek/gnome-info-collect/pubkey.gpg
-type=rpm-md
-repo_gpgcheck=0
-enabled_metadata=1

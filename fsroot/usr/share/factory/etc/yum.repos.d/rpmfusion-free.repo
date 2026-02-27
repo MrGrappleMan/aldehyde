@@ -5,7 +5,6 @@ enabled_metadata=1
 type=rpm-md
 gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
-enabled=0
 
 [rpmfusion-free-rawhide]
 name=RPM Fusion Free Rawhide
@@ -14,4 +13,4 @@ enabled_metadata=1
 type=rpm-md
 gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-latest file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-rawhide file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
-
+enabled=0
