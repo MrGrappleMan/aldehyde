@@ -33,15 +33,20 @@ echo "⭕ --- (-) Delete packages ---"
 sysPkg- docker docker-compose moby-engine \
         firefox \
         code \
-        gnome-shell gdm mutter gnome-session gnome-control-center gnome-initial-setup
+        gnome-shell gdm mutter gnome-session gnome-control-center gnome-initial-setup nautilus
 
-# (~) PKG SWAP
-echo "⭕ --- (~) Swap packages ---"
-dnf swap -y --allowerasing @gnome-desktop @cosmic-desktop
+# (@) PKG Distro derived versioning
+# VS updating, this ensures that the system is in a reliable state matching the exact versions of
+# packages meant for that version of the distro, abiding more by single source of truth.
+# While updating, some thing might progress, but others might break, you want a system that works correctly
+# and not just packages with a higher version number that may not properly coordinate with each other.
+# This also ensures as a way that things are re-initializated before updating, if you want to.
+echo "⭕ --- (@) Sync packages ---"
+dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
 
 # (^) PKG UPD
-echo "⭕ --- (^) Update packages ---"
-dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
+#echo "⭕ --- (^) Update packages ---"
+#dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
 # Linter hadn't transitioned to bootc yet, still wants /ostree directory
 # Try this time, maybe non rawhide version is still compatible
 
@@ -49,9 +54,12 @@ dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
 echo "⭕ --- (+) Add packages ---"
 
 sysPkg+ \
-        dnf-plugins-core etckeeper-dnf dnf-repo \
+        fedora-gpg-keys \
+        dnf-plugins-core etckeeper-dnf dnf-repo
+
+sysPkg+ \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle \
-        cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd \
+        cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-edit cosmic-icon-theme cosmic-launcher \
         boinc-client boinc-client-static boinc-manager \
         uutils-coreutils util-linux \
         tuned tuned-ppd tuned-utils-systemtap \
@@ -59,7 +67,7 @@ sysPkg+ \
         krita krita-libs inkscape \
         git gh zed fish \
         peazip neohtop \
-        brave-browser-beta brave-keyring \
+        brave-browser brave-keyring \
         hblock tor mosh tailscale trayscale openssh persepolis \
         rustup cargo clippy \
         podman podman-docker \
@@ -75,8 +83,7 @@ sysPkg+ \
 #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
 #nvidia-gpu-firmware libva-nvidia-driver envytools nvidia-patch
 #distcc distcc-server
-#host-spawn
-#krita-libs libei-utils
+#host-spawn libei-utils
 #libvirt-daemon-kvm
 #nodejs obs-studio-plugin-browser
 #obs-studio-plugin-droidcam obs-studio-plugin-vaapi
@@ -93,10 +100,10 @@ sysPkg+ \
 # tuned tuned-ppd | power-profiles-daemon | tlp tlp-pd tlp-rdw | auto-cpufreq ( TuneD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability )
 
 # === List ===
-echo "⭕ --- (=) List DNF5 packages ---"
+#echo "⭕ --- (=) List DNF5 packages ---"
 #dnf5 list --installed
 
 # === Clean ===
 echo "⭕ --- (🧹) Clean DNF5 ---"
-dnf5 autoremove -y # May misinterpret what is "essential" for the OS, on average is fine
+dnf5 autoremove -y # May misinterpret what is "essential" for the OS, usually safe
 dnf5 clean all -y
