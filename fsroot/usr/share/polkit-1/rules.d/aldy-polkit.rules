@@ -6,5 +6,5 @@ polkit.addRule(function(action, subject) {
 });
 
 /*
-   Disable shutdown in favour of only being able to suspend by s2idle or reboot
+   Disable shutdown in favour of only being able to suspend or reboot
 */

@@ -7,10 +7,8 @@ baseurl=https://brave-browser-rpm-nightly.s3.brave.com/$basearch
 name=T Brave Browser Beta
 gpgkey=https://brave-browser-rpm-nightly.s3.brave.com/brave-core-beta.asc
 baseurl=https://brave-browser-rpm-nightly.s3.brave.com/$basearch
-enabled=0
 
 [brave-browser-nightly]
 name=T Brave Browser Nightly
 gpgkey=https://brave-browser-rpm-nightly.s3.brave.com/brave-core-nightly.asc
 baseurl=https://brave-browser-rpm-nightly.s3.brave.com/$basearch
-enabled=0

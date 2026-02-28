@@ -59,7 +59,7 @@ sysPkg+ \
         krita krita-libs inkscape \
         git gh zed fish \
         peazip neohtop \
-        brave-browser brave-keyring \
+        brave-browser-beta brave-keyring \
         hblock tor mosh tailscale trayscale openssh persepolis \
         rustup cargo clippy \
         podman podman-docker \
