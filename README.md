@@ -1,7 +1,7 @@
 # <div align="center"> 🚀 Aldehyde - The Ultimate Workstation </div>
 
 <div align="center">
-  <img src="/media/logo.png" alt="Project logo" width="500" />
+  <img src="media/logo.png" alt="Project logo" width="500" />
   <p><em> Speed  |  Efficiency  |  Work </em></p>
   <p><em> Get things done, now on (a)steroids </em></p>
 </div>
@@ -25,11 +25,19 @@ An experience that cuts out the overhead to aim for a real world experience with
 
 ## ✨ Extraoridnaries
 
-- **COSMIC Desktop** 🌌 --- Pre-tweaked for productivity. Custom keyboard shortcuts for quick switching, window management, and task automation. Comes with a curated set of stunning 4K backgrounds with abstract designs, nature scenes and astronomical moments to inspire you --- whenever you need
-- **Auto CPUFreq** ⚡ --- Intelligent CPU frequency scaling for balancing performance and battery life. Automatically adjusts based on workload – perfect for laptops or desktops.
-- **Kernel Arguments** 🛠️ --- Extensively optimized for performance dynamics with efficiency in mind, utilizing modern provisions at their current maximum potential
-- **Sensible Configurations** 🧠 --- Modified for a logical system modus operandi, quitting QoS for good when it is not needed, parallelize tasks and not intentionally suffocate one for the benefit for the other. Prioritize, not block.
-- **No nonsense** --- Abandons legacy technologies like Xorg and GNOME in favour of the better
+- **COSMIC Desktop** 🌌 --- Pre-tweaked for productivity. Custom keyboard shortcuts for quick switching, window management, and task automation.
+Comes with a curated set of stunning 4K backgrounds with abstract designs, nature scenes and astronomical moments to inspire you --- whenever you need
+
+- **Custom TuneD profiles** ⚡ --- Intelligent CPU frequency scaling for balancing performance and battery life.
+Automatically adjusts based on workload – perfect for laptops or desktops.
+
+- **Kernel Args + SysCtl** 🛠️ --- Extensively optimized for performance dynamics with efficiency in mind,
+utilizing modern provisions at their current safe maximum potential
+
+- **Sensible Configurations** 🧠 --- Modified for a logical system modus operandi, quitting QoS for good when it is not needed,
+parallelize tasks and not intentionally suffocate one for the benefit for the other. Prioritize, not block.
+
+- **No nonsense** --- Abandons legacy technologies, ensures a clean system that respects your preferences and privacy
 
 ## Install
 
@@ -38,3 +46,8 @@ Simply run this script on any atomic Fedora based image, preferrably Bazzite GNO
 ```
 curl "https://raw.githubusercontent.com/MrGrappleMan/aldehyde-lx/refs/heads/main/user-switch.bash" | pkexec bash
 ```
+
+If you want to test this out or are intending to debug this image, please use a virtual machine, do not test it on a production device
+This is from experience, this image may break anytime as it is prone to breakage nor maintained very formally but safeguards are ensured
+
+
