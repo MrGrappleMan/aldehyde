@@ -1,4 +1,4 @@
-[code]
+[vscode]
 name=Visual Studio Code
 baseurl=https://packages.microsoft.com/yumrepos/vscode
 type=rpm-md
