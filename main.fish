@@ -22,9 +22,9 @@ echo "to look for messages provided by Aldehyde scripts"
 echo "⭕ --- Copy over filesystem components ---"
 
 cp -r /ctx/fsroot/usr/* /usr/ # Mutable during build, immutable on user end
-cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # script/postinstall.fish will handle that on user end as well
 cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Include files in it only if /opt/ immutable directory else it will all be wiped out, see Containerfile for better explanation
-#cp -r /ctx/fsroot/usr/share/factory/var/* /var/ # Buid time only
+cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # Affects build time only. script/postinstall.fish will handle that on user end as well
+#cp -r /ctx/fsroot/usr/share/factory/var/* /var/ # Affects build time only
 
 # === === /ctx/script/ subscripts === ===
 echo "⭕ --- Run subscripts ---"

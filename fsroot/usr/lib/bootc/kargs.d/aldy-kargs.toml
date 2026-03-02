@@ -1,12 +1,11 @@
 kargs = [
   "quiet",
   "threadirqs",
-  "slab_nomerge",
   "sysrq_always_enabled=1",
   "bluetooth.disable_ertm=0",
   "loglevel=3",
   "page_alloc.shuffle=1",
-  "preempt=full",
+  "preempt=lazy",
   "psi=1",
   "transparent_hugepage=madvise",
   "transparent_hugepage_shmem=advise",
@@ -52,7 +51,7 @@ kargs = [
 # zswap.enabled=1            # 🗜️ Intercepts pages moving to swap and compresses them in RAM to reduce physical Disk I/O.
 # zswap.shrinker_enabled=Y   # ♻️ Automatically evicts the coldest compressed pages to disk when RAM is needed elsewhere.
 # zswap.zpool=zsmalloc       # 🏗️ Uses a highly efficient memory allocator that reduces fragmentation in compressed memory pools.
-# zswap.compressor=zstd      # 🚀 Offers a great balance between speed and compression; ideal for modern high-frequency 
+# zswap.compressor=zstd      # 🚀 Offers a great balance between speed and compression; ideal for modern high-frequency
 # clocksource=tsc            # ⏱️ Forces the 'Time Stamp Counter'; the lowest latency method for the OS to track time on x86. HPET is a legacy method
 # pcie_aspm=on               # 🍃 Enables Active State Power Management; allows PCIe links to enter low-power states when idle.
 # amd_pstate=active          # 💎 Requests the hardware to manage its own clock speeds based on internal circuitry and stress.
@@ -112,7 +111,7 @@ kargs = [
 # No hassle of manually making swap devices - systemds zram generator does it all deriving it from the configuration
 
 # You should really avoid increasing zswap.max_pool_percent above 50 or even 40, the safe 'enough' limit is 65(like for Redis)
-# Like if you are gaming, and the game finds that it can fit a lot of contents(well, progressively as it sees 
+# Like if you are gaming, and the game finds that it can fit a lot of contents(well, progressively as it sees
 # memory getting 'freed' up) into RAM and heavily preload stuff, that
 # is an issue where the CPU keeps compressing and decompressing(when accessing the compressed contents) contents more than processing the actual game
 # higher heat produced, thermal throttling and thus slowdowns
@@ -129,5 +128,3 @@ kargs = [
 # Reduces intermediary hangups and internal lag spikes
 # 3. LZO is simply less efficient and old
 # 4. Brotli is unsuitable for this, as memory content is dynamic
-
-
