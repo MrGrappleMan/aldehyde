@@ -1,7 +1,7 @@
-[boinc]
+[boinc-stable]
 name=T BOINC - Science United
-baseurl=https://boinc.berkeley.edu/dl/linux/nightly/fc42
-gpgkey=https://boinc.berkeley.edu/dl/linux/nightly/fc42/boinc.gpg
+baseurl=https://boinc.berkeley.edu/dl/linux/stable/fc42
+gpgkey=https://boinc.berkeley.edu/dl/linux/stable/fc42/boinc.gpg
 enabled=0
 
 [boinc-alpha]

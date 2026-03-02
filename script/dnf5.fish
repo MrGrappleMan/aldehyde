@@ -36,11 +36,12 @@ sysPkg- docker docker-compose moby-engine \
         gnome-shell gdm mutter gnome-session gnome-control-center gnome-initial-setup nautilus
 
 # (@) PKG Distro derived versioning
-# VS updating, this ensures that the system is in a reliable state matching the exact versions of
+# in comparision to updating, this ensures that the system is in a reliable state matching the exact versions of
 # packages meant for that version of the distro, abiding more by single source of truth.
 # While updating, some thing might progress, but others might break, you want a system that works correctly
 # and not just packages with a higher version number that may not properly coordinate with each other.
 # This also ensures as a way that things are re-initializated before updating, if you want to.
+# Works best with non rawhide versions of the distro.
 echo "⭕ --- (@) Sync packages ---"
 dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
 
@@ -65,8 +66,9 @@ sysPkg+ \
         tuned tuned-ppd tuned-utils-systemtap \
         obs-studio obs-studio-libs \
         krita krita-libs inkscape \
-        git gh zed fish \
-        peazip neohtop \
+        git gh zed PackageKit-command-not-found gemini-cli ollama fish \
+        peazip zstd \
+        neohtop \
         brave-browser brave-keyring \
         hblock tor mosh tailscale trayscale openssh persepolis \
         rustup cargo clippy \
@@ -88,7 +90,7 @@ sysPkg+ \
 #nodejs obs-studio-plugin-browser
 #obs-studio-plugin-droidcam obs-studio-plugin-vaapi
 #pnpm preload qbittorrent qemu-kvm qemu-kvm-core
-#uget warp-terminal
+#uget
 #aircrack-ng turbo-attack golang-github-redteampentesting-monsoon
 #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
 
