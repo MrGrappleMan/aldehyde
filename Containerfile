@@ -65,7 +65,7 @@ RUN rm -rf /opt && mkdir /opt
 # Never make $home as /tmp, lots of problems will happen
 
 ## INSTALL FISH
-RUN dnf5 install -y --skip-broken --allowerasing fish
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade fish
 
 ## RUN MAIN.FISH
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
@@ -77,63 +77,46 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 ## DNF5
 RUN echo "🚩 --- DNF5 Operations ---"
 
-### (-) REMOVE
-RUN echo "⭕ --- (-) Delete packages ---"
-RUN dnf5 remove -y docker docker-compose moby-engine \
-    firefox \
-    code \
-    gnome-shell gdm mutter gnome-session gnome-control-center gnome-initial-setup nautilus
-
-### (@) SYNC, distro derived versioning of packages
-#-in comparision to updating, this ensures that the system is in a reliable state matching the exact versions of
-#-packages meant for that version of the distro, abiding more by single source of truth.
-#-While updating, some thing might progress, but others might break, you want a system that works correctly
-#-and not just packages with a higher version number that may not properly coordinate with each other.
-#-This also ensures as a way that things are re-initializated before updating, if you want to.
-#-Works best with non rawhide versions of the distro.
-RUN echo "⭕ --- (@) Sync packages ---"
-RUN dnf5 -y distro-sync --skip-broken --allowerasing
-
 ### (+) INSTALL
 RUN echo "⭕ --- (+) Add packages ---"
 
 #### DNF related contents
-RUN dnf5 install -y --skip-broken --allowerasing fedora-gpg-keys \
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade fedora-gpg-keys \
     dnf-plugins-core etckeeper-dnf dnf-repo
 #### Desktop Environment
-RUN dnf5 install -y --skip-broken --allowerasing cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle \
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle \
     cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-edit cosmic-icon-theme cosmic-launcher
 #### BOINC
-RUN dnf5 install -y --skip-broken --allowerasing boinc-client boinc-client-static boinc-manager
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade boinc-client boinc-client-static boinc-manager
 #### Utilities
-RUN dnf5 install -y --skip-broken --allowerasing uutils-coreutils util-linux PackageKit-command-not-found
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade uutils-coreutils util-linux PackageKit-command-not-found
 #### Development
-RUN dnf5 install -y --skip-broken --allowerasing git gh \
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade git gh \
     rustup cargo clippy \
     zed
 #### Power Management
-RUN dnf5 install -y --skip-broken --allowerasing tuned tuned-ppd tuned-utils-systemtap
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade tuned tuned-ppd tuned-utils-systemtap
 #### Multimedia
-RUN dnf5 install -y --skip-broken --allowerasing obs-studio obs-studio-libs \
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade obs-studio obs-studio-libs \
     krita krita-libs \
     inkscape
 #### Artificial Intelligence
-RUN dnf5 install -y --skip-broken --allowerasing gemini-cli ollama
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade gemini-cli ollama
 #### Compression
-RUN dnf5 install -y --skip-broken --allowerasing zstd
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade zstd
 #### Generic userland stuff
-RUN dnf5 install -y --skip-broken --allowerasing neohtop \
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade neohtop \
     peazip \
     brave-browser brave-keyring \
     steam steam-devices
 #### Networking
-RUN dnf5 install -y --skip-broken --allowerasing hblock \
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade hblock \
     tor \
     tailscale trayscale \
     mosh openssh \
     persepolis
 #### High Performance Computing
-RUN dnf5 install -y --skip-broken --allowerasing podman podman-docker \
+RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade podman podman-docker \
     rocm cuda
 
 # LINTING
