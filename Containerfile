@@ -54,10 +54,11 @@ RUN rm -rf /opt && mkdir /opt
 #RUN uname -a
 
 # MODIFICATIONS TO IMAGE
-# Make modifications to the image and install packages by modifying the build.fish script
+#-Make modifications to the image and install packages by modifying the build.fish script
 # the below RUN directive handles "main.fish" execution as recommended while initializing the rest of familiar UNIX file paths
 # avoid doing stuff from the Containerfile to avoid complexities, only minimal initialization
 # https://stackoverflow.com/questions/39223249/multiple-run-vs-single-chained-run-in-dockerfile-which-is-better
+# The parameters below doesn't seem to correlate with what actually occurs
 # However, multiple RUNs are preferred sometimes as they help with layer caching and build reproducibility
 # and more layers = more flexibility for future modifications + better resumeability support on unstable connections
 # At the cost of a larger image size, but it is worth it for the benefits
@@ -73,51 +74,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     fish /ctx/main.fish
-
-## DNF5
-RUN echo "🚩 --- DNF5 Operations ---"
-
-### (+) INSTALL
-RUN echo "⭕ --- (+) Add packages ---"
-
-#### DNF related contents
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade fedora-gpg-keys \
-    dnf-plugins-core etckeeper-dnf dnf-repo
-#### Desktop Environment
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle \
-    cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-edit cosmic-icon-theme cosmic-launcher
-#### BOINC
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade boinc-client boinc-client-static boinc-manager
-#### Utilities
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade uutils-coreutils util-linux PackageKit-command-not-found
-#### Development
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade git gh \
-    rustup cargo clippy \
-    zed
-#### Power Management
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade tuned tuned-ppd tuned-utils-systemtap
-#### Multimedia
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade obs-studio obs-studio-libs \
-    krita krita-libs \
-    inkscape
-#### Artificial Intelligence
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade gemini-cli ollama
-#### Compression
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade zstd
-#### Generic userland stuff
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade neohtop \
-    peazip \
-    brave-browser brave-keyring \
-    steam steam-devices
-#### Networking
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade hblock \
-    tor \
-    tailscale trayscale \
-    mosh openssh \
-    persepolis
-#### High Performance Computing
-RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade podman podman-docker \
-    rocm cuda
 
 # LINTING
 #-Verify final image and contents
