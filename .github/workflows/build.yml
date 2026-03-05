@@ -170,8 +170,7 @@ jobs:
 
       - name: ⤜ Push To GHCR
         uses: redhat-actions/push-to-registry@v2
-        if: false
-        #if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         id: push
         env:
           REGISTRY_USER: ${{ github.actor }}
@@ -185,7 +184,8 @@ jobs:
 
 # Done by gemini btw.
       - name: ⤜ Push To GHCR (Optimized with zstd:chunked)
-        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        if: false
+        #if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         run: |
           IMAGE_FULL="${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}"
 
