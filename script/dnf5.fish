@@ -9,12 +9,13 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 # COSMIC - Modern DE, better performance and efficiency
 
 # 📛 Handling
+alias sysPkg- "dnf5 remove -y"
 function sysPkg+T -d "Fallback method to just make things install, reducing parallelism, avoid it, trace the core issue"
     set -l pkgs (string split -n " " -- (string join " " $argv))
 
     for pkg in $pkgs
         echo "🛠️ Install try: $pkg"
-        dnf5 install -y --skip-broken --allowerasing $pkg
+        dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade --allowerasing $pkg
 
         if test $status -ne 0
             echo "⚠️ $pkg install failed!"
@@ -23,31 +24,60 @@ function sysPkg+T -d "Fallback method to just make things install, reducing para
         end
     end
 end
-alias sysPkg+ "dnf5 install -y --skip-broken --allowerasing" # Batches operations, faster builds
+alias sysPkg+ "dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade --allowerasing" # Batches operations, faster builds
 alias sysPkgq "echo Ignored modifications list,"
 
-### (-) REMOVE
-RUN echo "⭕ --- (-) Delete packages ---"
-RUN dnf5 remove -y docker docker-compose moby-engine \
-    firefox \
-    code \
-    gnome-shell gdm mutter gnome-session gnome-control-center gnome-initial-setup nautilus
+# (-) PKG DEL
+echo "⭕ --- (-) Delete packages ---"
 
-### (@) SYNC, distro derived versioning of packages
-#-in comparision to updating, this ensures that the system is in a reliable state matching the exact versions of
-#-packages meant for that version of the distro, abiding more by single source of truth.
-#-While updating, some thing might progress, but others might break, you want a system that works correctly
-#-and not just packages with a higher version number that may not properly coordinate with each other.
-#-This also ensures as a way that things are re-initializated before updating, if you want to.
-#-Works best with non rawhide versions of the distro.
-RUN echo "⭕ --- (@) Sync packages ---"
-RUN dnf5 -y distro-sync --skip-broken --allowerasing --skip-unavailable
+sysPkg- docker docker-compose moby-engine \
+        firefox \
+        code \
+        gnome-shell gdm mutter gnome-session gnome-control-center gnome-initial-setup nautilus 
+
+# (@) PKG Distro derived versioning
+# in comparision to updating, this ensures that the system is in a reliable state matching the exact versions of
+# packages meant for that version of the distro, abiding more by single source of truth.
+# While updating, some thing might progress, but others might break, you want a system that works correctly
+# and not just packages with a higher version number that may not properly coordinate with each other.
+# This also ensures as a way that things are re-initializated before updating, if you want to.
+# Works best with non rawhide versions of the distro.
+echo "⭕ --- (@) Sync packages ---"
+dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
 
 # (^) PKG UPD
+# This method is not practical for the philosophy of an atomic distro, distro-sync works better for the use case
 #echo "⭕ --- (^) Update packages ---"
-#dnf5 update -y --allowerasing
-# Linter hadn't transitioned to bootc yet, still wants /ostree directory
-# Distro syncing is better
+#dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
+
+# (+) PKG ADD
+echo "⭕ --- (+) Add packages ---"
+
+sysPkg+ \
+        fedora-gpg-keys \
+        dnf-plugins-core etckeeper-dnf dnf-repo
+
+sysPkg+ \
+        cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-edit cosmic-icon-theme cosmic-launcher \
+        \
+        boinc-client boinc-client-static boinc-manager \
+        \
+        uutils-coreutils util-linux PackageKit-command-not-found fish \
+        \
+        tuned tuned-ppd tuned-utils-systemtap \
+        \
+        obs-studio obs-studio-libs \
+        krita krita-libs \
+        inkscape \
+        git gh zed \
+        peazip zstd \
+        neohtop \
+        brave-browser brave-keyring \
+        hblock tor mosh tailscale trayscale openssh persepolis \
+        rustup cargo clippy \
+        podman podman-docker \
+        rocm cuda \
+        steam steam-devices
 
 #fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
 #flatpak-session-helper kernel-modules-extra libei libportal
@@ -79,6 +109,6 @@ RUN dnf5 -y distro-sync --skip-broken --allowerasing --skip-unavailable
 #dnf5 list --installed
 
 # === Clean ===
-echo "⭕ --- (0) Clean DNF5 ---"
+echo "⭕ --- (🧹) Clean DNF5 ---"
 dnf5 autoremove -y # May misinterpret what is "essential" for the OS, usually safe
 dnf5 clean all -y
