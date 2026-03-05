@@ -69,12 +69,13 @@ sysPkg+ \
         obs-studio obs-studio-libs \
         krita krita-libs \
         inkscape \
-        git gh zed \
+        \
+        rustup cargo clippy git gh zed \
         peazip zstd \
         neohtop \
         brave-browser brave-keyring \
         hblock tor mosh tailscale trayscale openssh persepolis \
-        rustup cargo clippy \
+        \
         podman podman-docker \
         rocm cuda \
         steam steam-devices
