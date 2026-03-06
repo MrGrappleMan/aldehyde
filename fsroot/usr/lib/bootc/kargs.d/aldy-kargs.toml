@@ -83,6 +83,12 @@ kargs = [
 
 # zRAM/ZSwap:
 
+# Use swap files over swap partitions for better flexibility and storage savings
+# Historically it was said that swap files are slower than swap partitions, but this is no longer true,
+# as modern systems have faster storage and swap files can be placed on any block device.
+# systemd-swap has a feature called SwapFC that dynamically scales the swap size based on available memory
+# but this tool was abandoned altogether due to instability
+
 # https://linuxblog.io/zswap-better-than-zram/
 # https://www.youtube.com/watch?v=RGVt16xiERc&t=394 # Reference at the timestamp within the link
 
@@ -119,14 +125,14 @@ kargs = [
 # higher heat produced, thermal throttling and thus slowdowns
 # At this point, getting the data from your disk is genuinely more efficient to process in this case.
 # the latency of decompressing a massive, complex page from a large Zswap pool can actually be higher than just fetching it from the NVMe.
-# More RAM, but at what cost? You need to find a balance(30 is good for most PCs), else this(a large value will be much more worse the zRAM.
+# More theoretical RAM, but at what cost? You need to find a balance(30 is good for most PCs), else this(a large value will be much more worse the zRAM.
 # Swap will be slower but be more efficient to process in this context
 
 # 1. ZSTD - Best balance for all computing, speed and compression ratio
 # For modern consumer devices+gaming
 # Fits memory constrained systems as well
 # 2. LZ4 - good speed, bad compression ratio
-# Avoids CPU usage, but zRAM benefits are reduced
+# Avoids CPU usage, but zRAM level benefits in zswap are reduced
 # Reduces intermediary hangups and internal lag spikes
 # 3. LZO is simply less efficient and old
 # 4. Brotli is unsuitable for this, as memory content is dynamic

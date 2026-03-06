@@ -98,9 +98,5 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
     com.github.wwmm.easyeffects com.spotify.Client
 
 # "com.rtosta.zapzap" More features but electron based  < "io.github.tobagin.karere" Uses GTK4 and is lightweight + native integration
-# "dev.vencord.Vesktop" More features but electron based < "org.equicord.equibop" Uses GTK4 and is lightweight
+# "dev.vencord.Vesktop" More features but electron based < "org.equicord.equibop" Yet somehow lightweight
 # No VSCode, Zed is inbuilt
-
-    fpkPkg+Adv cosmic \
-      io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager \
-      io.github.cosmic_utils.cosmic-ext-applet-external-monitor-brightness

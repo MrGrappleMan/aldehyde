@@ -1,0 +1,7 @@
+[copr:copr.fedorainfracloud.org:ligenix:cosmic-ext]
+name=C ligenix cosmic-ext
+baseurl=https://download.copr.fedorainfracloud.org/results/ligenix/cosmic-ext/fedora-$releasever-$basearch/
+gpgkey=https://download.copr.fedorainfracloud.org/results/ligenix/cosmic-ext/pubkey.gpg
+type=rpm-md
+repo_gpgcheck=0
+enabled_metadata=1

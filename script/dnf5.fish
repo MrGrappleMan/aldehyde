@@ -59,23 +59,15 @@ sysPkg+ \
 
 sysPkg+ \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-edit cosmic-icon-theme cosmic-launcher \
-        \
-        boinc-client boinc-client-static boinc-manager \
-        \
-        uutils-coreutils util-linux PackageKit-command-not-found fish \
-        \
+        cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks \
+        boinc-client boinc-client-static \
+        uutils-coreutils util-linux thefuck fish \
         tuned tuned-ppd tuned-utils-systemtap \
-        \
         obs-studio obs-studio-libs \
-        krita krita-libs \
-        inkscape \
-        \
         rustup cargo clippy git gh zed \
         peazip zstd \
-        neohtop \
         brave-browser brave-keyring \
-        hblock tor mosh tailscale trayscale openssh persepolis \
-        \
+        hblock tor mosh tailscale openssh persepolis \
         podman podman-docker \
         rocm cuda \
         steam steam-devices
