@@ -33,7 +33,7 @@ echo "⭕ --- (-) Delete packages ---"
 sysPkg- docker docker-compose moby-engine \
         firefox \
         code \
-        gnome-shell gdm mutter gnome-session gnome-control-center gnome-initial-setup nautilus 
+        @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal
 
 # (@) PKG Distro derived versioning
 # in comparision to updating, this ensures that the system is in a reliable state matching the exact versions of
@@ -61,11 +61,11 @@ sysPkg+ \
         cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-edit cosmic-icon-theme cosmic-launcher \
         cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks \
         boinc-client boinc-client-static \
-        uutils-coreutils util-linux thefuck fish \
+        uutils-coreutils util-linux fish \
         tuned tuned-ppd tuned-utils-systemtap \
-        obs-studio obs-studio-libs \
+        obs-studio obs-studio-libs obs-studio-plugin-browser \
         rustup cargo clippy git gh zed \
-        peazip zstd \
+        peazip zstd neohtop \
         brave-browser brave-keyring \
         hblock tor mosh tailscale openssh persepolis \
         podman podman-docker \
@@ -74,8 +74,7 @@ sysPkg+ \
 
 #fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
 #flatpak-session-helper kernel-modules-extra libei libportal
-#p7zip p7zip-plugins
-#util-linux xdg-desktop-portal
+#xdg-desktop-portal
 #obs-studio-plugin-vaapi obs-studio-plugin-vkcapture obs-studio-plugin-droidcam
 #ghostty-nightly ghostty-nightly-fish-completion ghostty-nightly-shell-integration
 #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
@@ -83,7 +82,7 @@ sysPkg+ \
 #distcc distcc-server
 #host-spawn libei-utils
 #libvirt-daemon-kvm
-#nodejs obs-studio-plugin-browser
+#nodejs
 #obs-studio-plugin-droidcam obs-studio-plugin-vaapi
 #pnpm preload qbittorrent qemu-kvm qemu-kvm-core
 #uget

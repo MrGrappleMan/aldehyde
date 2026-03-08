@@ -19,7 +19,7 @@ kargs = [
   "zswap.shrinker_enabled=Y",
   "zswap.zpool=zsmalloc",
   "zswap.compressor=zstd",
-  "zswap.max_pool_percent=30",
+  "zswap.max_pool_percent=20",
   "zswap.accept_threshold_percent=90",
   "zswap.same_filled_pages_enabled=1",
   "zswap.non_same_filled_pages_enabled=1",
@@ -83,14 +83,15 @@ kargs = [
 
 # zRAM/ZSwap:
 
+# https://unix.stackexchange.com/questions/707108/is-increasing-the-max-pool-percent-parameter-for-zswap-a-smart-idea-to-combine-c?newreg=d31bfe61f00b40d3b3877eea9c5d4bef
+# https://linuxblog.io/zswap-better-than-zram/
+# https://www.youtube.com/watch?v=RGVt16xiERc&t=394 # At timestamp
+
 # Use swap files over swap partitions for better flexibility and storage savings
 # Historically it was said that swap files are slower than swap partitions, but this is no longer true,
 # as modern systems have faster storage and swap files can be placed on any block device.
 # systemd-swap has a feature called SwapFC that dynamically scales the swap size based on available memory
 # but this tool was abandoned altogether due to instability
-
-# https://linuxblog.io/zswap-better-than-zram/
-# https://www.youtube.com/watch?v=RGVt16xiERc&t=394 # Reference at the timestamp within the link
 
 # zswap ( Best )
 # Reduced drive wear compared to traditional swap
@@ -118,12 +119,12 @@ kargs = [
 # Needs a good enough CPU for handling its strain fast
 # No hassle of manually making swap devices - systemds zram generator does it all deriving it from the configuration
 
-# You should really avoid increasing zswap.max_pool_percent above 50 or even 40, the safe 'enough' limit is 65(like for Redis)
+# Avoid increasing zswap.max_pool_percent above 50
 # Like if you are gaming, and the game finds that it can fit a lot of contents(well, progressively as it sees
 # memory getting 'freed' up) into RAM and heavily preload stuff, that
 # is an issue where the CPU keeps compressing and decompressing(when accessing the compressed contents) contents more than processing the actual game
 # higher heat produced, thermal throttling and thus slowdowns
-# At this point, getting the data from your disk is genuinely more efficient to process in this case.
+# At this point, getting the data from your disk is genuinely more worth it to process in this case.
 # the latency of decompressing a massive, complex page from a large Zswap pool can actually be higher than just fetching it from the NVMe.
 # More theoretical RAM, but at what cost? You need to find a balance(30 is good for most PCs), else this(a large value will be much more worse the zRAM.
 # Swap will be slower but be more efficient to process in this context
