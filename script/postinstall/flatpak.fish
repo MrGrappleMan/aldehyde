@@ -81,7 +81,7 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
 
   fpkPkg+Adv \
       org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08 org.freedesktop.Platform.VulkanLayer.lsfgvk//24.08
-
+      
 # Use "app.zen_browser.zen" over "org.mozilla.firefox" - Polished experience
 # Use "com.google.ChromeDev" over "com.google.Chrome" - Faster updates
 
@@ -100,3 +100,9 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
 # "com.rtosta.zapzap" More features but electron based  < "io.github.tobagin.karere" Uses GTK4 and is lightweight + native integration
 # "dev.vencord.Vesktop" More features but electron based < "org.equicord.equibop" Yet somehow lightweight
 # No VSCode, Zed is inbuilt
+
+#export appid=rocks.shy.VacuumTube
+#mkdir -p ~/.config/lsfg-vk
+#flatpak override --user --filesystem=/home/$USER/.config/lsfg-vk:rw $appid
+#flatpak override --user --filesystem=/home/$USER/local/share/Steam/steamapps/common:ro $appid
+#flatpak override --user --env=LSFGVK_CONFIG=/home/$USER/.config/lsfg-vk/conf.toml $appid
