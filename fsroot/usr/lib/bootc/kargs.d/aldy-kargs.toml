@@ -18,7 +18,7 @@ kargs = [
   "zswap.exclusive_loads=Y",
   "zswap.shrinker_enabled=Y",
   "zswap.zpool=zsmalloc",
-  "zswap.compressor=zstd",
+  "zswap.compressor=lz4",
   "zswap.max_pool_percent=50",
   "zswap.accept_threshold_percent=90",
   "zswap.same_filled_pages_enabled=1",
@@ -95,11 +95,12 @@ kargs = [
 # Even though you can use a traditional swap partition with ZRAM, zswap provides a more intelligent cache
 # Handles incompressible data as required, prevents thrashing
 # Cons VS ZRAM:
-# Needs a non-volatile swap device.
+# Needs a real swap device.
 
 # Never use ZSWAP with ZRAM - they dont coordinate and add overhead
-# One power user used bth in conjuction where the physical swap device(with zswap enabled)
+# One power user used both(zram was prioritized) in conjuction where the physical swap device(with zswap enabled, secondary)
 # was used as the backing store for zram, providing a hybrid swap/cache solution
+# But still, zswap's compressed pool is enough and you add zram on top of that, causing pointless compression
 
 # An on-disk swap partition prevents RAM starvation and prevents system OOMs(though the system doesnt panic here)
 # Enable Memory Extension on supported phones, prefer the largest or automatic sizing
@@ -123,12 +124,15 @@ kargs = [
 # Here our intention is for Zswap to act like a slightly more intelligent ZRAM. CPU overhead between processing compressing
 # and accessing data is much less than with disk swapping. A disk's main intention is for storage, not for swapping.
 # Swap is a fallback, and as said earlier, a fallback is to be treated like a fallback, to be avoided but kept around.
+# 50% zswap memory pool is a good balance between true memory usage and a memory lockup
+# where the CPU processes the data instead of the actual applications you are running.
 
-# 1. ZSTD - Best balance for all computing, speed and compression ratio
-# For modern consumer devices+gaming
-# Fits memory constrained systems as well
-# 2. LZ4 - good speed, bad compression ratio
-# Avoids CPU usage, but zRAM level benefits in zswap are reduced
+# 1. LZ4 - good speed, okay compression ratio
+# Avoids CPU usage, better for systems with weak CPUs
+# Better for desktops and gaming, Interactive tasks.
 # Reduces intermediary hangups and internal lag spikes
-# 3. LZO is simply less efficient and old
+# 2. ZSTD - okay speed, great compression ratio
+# Takes up a lot of CPU resources, good for servers
+# Provides good compression ratio and speed
+# 3. LZO is less efficient and old
 # 4. Brotli is unsuitable for this, as memory content is dynamic

@@ -1,5 +1,5 @@
 [Unit]
-Description=Create swap on /dev/zram0
+Description=Create zram device
 Documentation=man:zram-generator(8) man:zram-generator.conf(5)
 After=dev-zram0.device
 DefaultDependencies=false
