@@ -21,7 +21,7 @@ ujust configure-grub 1 # Hide GRUB if not dual booting
 ujust enable-automount-all # Automount
 
 # Cross platform
-ujust setup-virtualization
+#ujust setup-virtualization
 ujust setup-waydroid
 
 # Backend/Services

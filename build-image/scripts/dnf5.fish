@@ -69,7 +69,7 @@ sysPkg+ \
         obs-studio obs-studio-libs obs-studio-plugin-browser obs-studio-plugin-vaapi obs-studio-plugin-droidcam \
         rustup cargo clippy git gh zed \
         peazip zstd neohtop \
-        hblock tor mosh tailscale openssh persepolis \
+        hblock tor mosh tailscale openssh persepolis rsync rclone rclone-browser \
         podman podman-docker \
         rocm cuda \
         steam steam-devices
