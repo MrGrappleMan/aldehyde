@@ -13,11 +13,11 @@ ujust toggle-global-fsr4 enable
 ujust toggle-global-fsr4-rdna3 enable
 
 # Visual Tweaks
-ujust toggle-password-feedback on # sudo-rs has been doing it, AI can detect key press sounds accurately though
+ujust toggle-password-feedback off # Security is security
 
 # Boot process
 ujust setup-luks-tpm-unlock
-ujust configure-grub 2 # Hide GRUB
+ujust configure-grub 1 # Hide GRUB if not dual booting
 ujust enable-automount-all # Automount
 
 # Cross platform
@@ -28,7 +28,7 @@ ujust setup-waydroid
 ujust setup-sunshine enable
 ujust toggle-ssh enable
 
-# User end applications
-ujust get-media-app "YouTube" # Dedicated and optimized for YouTube with a cleaner interface.
+# Applications
+ujust get-media-app "YouTube" # Cobalt UI, AD Block, De Arrow, etc.
 ujust get-media-app "Spotify"
 ujust get-media-app "YouTube Music"

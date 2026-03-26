@@ -58,10 +58,10 @@ sysPkg+ \
         dnf-plugins-core etckeeper-dnf dnf-repo
 
 sysPkg+ \
-        xdg-desktop-portal-cosmic cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-notifications cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-icon-theme cosmic-launcher \
+        xdg-desktop-portal-cosmic cutecosmic-qt6 cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-notifications cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-icon-theme cosmic-launcher \
         cosmic-reader cosmic-edit cosmic-player cosmic-files \
         cosmic-ext-applet-places-menu cosmic-ext-applet-sysinfo cosmic-ext-applet-ollama cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness \
-        cosmic-ext-disks cosmic-ext-examine cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks  cosmic-ext-camera \
+        cosmic-ext-disks cosmic-ext-examine cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks cosmic-ext-camera \
         xdg-desktop-portal flatpak flatseal flatpak-libs flatpak-selinux flatpak-session-helper libportal \
         boinc-client boinc-client-static \
         uutils-coreutils util-linux kernel-modules-extra fish \
@@ -85,7 +85,7 @@ sysPkg+ \
 #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
 
 ## CONFLICTS ## ( Format: ChosenPackages | ConflictingPackages )
-# fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, spoofing it as one will cause conflicts )
+# fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, recognizing it as one will cause conflicts )
 # fedora-repos-rawhide ( only use repos in fsroot/usr/share/factory/etc/yum.repos.d or pre-packaged ones )
 # cosmic-config-fedora ( We have our own config files )
 # tuned tuned-ppd | power-profiles-daemon | tlp tlp-pd tlp-rdw | auto-cpufreq ( TuneD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability )

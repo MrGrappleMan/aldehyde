@@ -88,9 +88,9 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
   fpkPkg+Adv flathub \
     com.rafaelmardojai.Blanket \
     io.github.flattool.Warehouse org.gnome.Boxes rs.ruffle.Ruffle \
-    rocks.shy.VacuumTube com.spotify.Client org.js.nuclear.Nuclear com.warlordsoftwares.youtube-downloader-4ktube io.github.ecotubehq.player \
+    rocks.shy.VacuumTube org.js.nuclear.Nuclear com.warlordsoftwares.youtube-downloader-4ktube io.github.ecotubehq.player \
     io.github.brunofin.Cohesion org.onlyoffice.desktopeditors \
-    com.termius.Termius org.localsend.localsend_app \
+    com.termius.Termius org.localsend.localsend_app io.ente.auth \
     io.frama.tractor.carburetor org.torproject.torbrowser-launcher com.brave.Browser \
     io.github.qwersyk.Newelle \
     org.kde.krita org.upscayl.Upscayl \
