@@ -87,13 +87,14 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
 
   fpkPkg+Adv flathub \
     com.rafaelmardojai.Blanket \
-    io.github.flattool.Warehouse \
+    io.github.flattool.Warehouse org.gnome.Boxes rs.ruffle.Ruffle \
     rocks.shy.VacuumTube com.spotify.Client org.js.nuclear.Nuclear com.warlordsoftwares.youtube-downloader-4ktube io.github.ecotubehq.player \
-    org.gnome.Boxes rs.ruffle.Ruffle \
     io.github.brunofin.Cohesion org.onlyoffice.desktopeditors \
-    io.frama.tractor.carburetor com.termius.Termius \
-    io.github.qwersyk.Newelle org.upscayl.Upscayl \
-    org.telegram.desktop io.github.tobagin.karere org.equicord.equibop \
+    com.termius.Termius org.localsend.localsend_app \
+    io.frama.tractor.carburetor org.torproject.torbrowser-launcher com.brave.Browser \
+    io.github.qwersyk.Newelle \
+    org.kde.krita org.upscayl.Upscayl \
+    org.telegram.desktop io.github.tobagin.karere org.equicord.equibop org.gnome.Fractal \
     com.github.wwmm.easyeffects com.spotify.Client
 
 # "com.rtosta.zapzap" More features but electron based  < "io.github.tobagin.karere" Uses GTK4 and is lightweight + native integration
