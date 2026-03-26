@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "**/README.md"
+    paths:
+      - "build-image/**" # Auto build image only when changes are made to this relevant path
   pull_request:
     branches:
       - main
@@ -15,11 +15,11 @@ on:
 
 env:
   IMAGE_DESC: "A workstation that focuses on modernity and performance"
-  IMAGE_KEYWORDS: "bootc,ublue,universal-blue"
+  IMAGE_KEYWORDS: "bootc,ublue,universal-blue,aldehyde,aldehyde-lx,bazzite"
   IMAGE_LOGO_URL: "https://avatars.githubusercontent.com/u/120078124?s=200&v=4" # Put your own image here, or try https://artifacthub.io/
-  IMAGE_NAME: "${{ github.event.repository.name }}" # do not edit, output image name, 'github.event.repository.name' derives it from repo name
-  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}" # do not edit, image registry, 'github.repository_owner' indicates that your username is the image registry
-  DEFAULT_TAG: "latest" # safest, what bootc assumes by default as its tag when switching base image
+  IMAGE_NAME: "${{ github.event.repository.name }}" # Do not edit, image name = repo name
+  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}" # Do not edit, github username = image registry name
+  DEFAULT_TAG: "latest" # BootC assumes this as default tag when switching base image
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.brand_name}}-${{ inputs.stream_name }}

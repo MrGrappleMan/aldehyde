@@ -51,21 +51,21 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
 # ADD REPOS +
   fpkRep+ flathub https://flathub.org/repo/flathub.flatpakrepo
   fpkRep+ flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-  ###fpkRep+ eos-sdk https://ostree.endlessm.com/ostree/eos-sdk
-  fpkRep+ igalia https://software.igalia.com/flatpak-refs/igalia.flatpakrepo
-  fpkRep+ dragon-nightly https://cdn.kde.org/flatpak/dragon-nightly/dragon-nightly.flatpakrepo
-  ###fpkRep+ eos-apps https://ostree.endlessm.com/ostree/eos-apps
-  fpkRep+ webkit https://software.igalia.com/flatpak-refs/webkit-sdk.flatpakrepo
-  fpkRep+ gnome-nightly https://nightly.gnome.org/gnome-nightly.flatpakrepo
-  fpkRep+ webkit-sdk https://software.igalia.com/flatpak-refs/webkit-sdk.flatpakrepo
-  fpkRep+ fedora oci+https://registry.fedoraproject.org
-  fpkRep+ fedora-testing oci+https://registry.fedoraproject.org/#testing
-  ###fpkRep+ rhel https://flatpaks.redhat.io/rhel.flatpakrepo
-  fpkRep+ eclipse-nightly https://download.eclipse.org/linuxtools/flatpak-I-builds/eclipse.flatpakrepo
-  fpkRep+ elementaryos https://flatpak.elementary.io/repo.flatpakrepo
-  fpkRep+ pureos https://store.puri.sm/repo/stable/pureos.flatpakrepo
-  fpkRep+ kde-runtime-nightly https://cdn.kde.org/flatpak/kde-runtime-nightly/kde-runtime-nightly.flatpakrepo
-  fpkRep+ cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
+  #fpkRep+ eos-sdk https://ostree.endlessm.com/ostree/eos-sdk
+  #fpkRep+ igalia https://software.igalia.com/flatpak-refs/igalia.flatpakrepo
+  #fpkRep+ dragon-nightly https://cdn.kde.org/flatpak/dragon-nightly/dragon-nightly.flatpakrepo
+  #fpkRep+ eos-apps https://ostree.endlessm.com/ostree/eos-apps
+  #fpkRep+ webkit https://software.igalia.com/flatpak-refs/webkit-sdk.flatpakrepo
+  #fpkRep+ gnome-nightly https://nightly.gnome.org/gnome-nightly.flatpakrepo
+  #fpkRep+ webkit-sdk https://software.igalia.com/flatpak-refs/webkit-sdk.flatpakrepo
+  #fpkRep+ fedora oci+https://registry.fedoraproject.org
+  #fpkRep+ fedora-testing oci+https://registry.fedoraproject.org/#testing
+  #fpkRep+ rhel https://flatpaks.redhat.io/rhel.flatpakrepo
+  #fpkRep+ eclipse-nightly https://download.eclipse.org/linuxtools/flatpak-I-builds/eclipse.flatpakrepo
+  #fpkRep+ elementaryos https://flatpak.elementary.io/repo.flatpakrepo
+  #fpkRep+ pureos https://store.puri.sm/repo/stable/pureos.flatpakrepo
+  #fpkRep+ kde-runtime-nightly https://cdn.kde.org/flatpak/kde-runtime-nightly/kde-runtime-nightly.flatpakrepo
+  #fpkRep+ cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
 
 # DEL PKGS -
    flatpak uninstall -u --all -y --noninteractive --force-remove # Remove all user Flatpaks
@@ -81,18 +81,17 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
 
   fpkPkg+Adv \
       org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08 org.freedesktop.Platform.VulkanLayer.lsfgvk//24.08
-      
+
 # Use "app.zen_browser.zen" over "org.mozilla.firefox" - Polished experience
 # Use "com.google.ChromeDev" over "com.google.Chrome" - Faster updates
 
   fpkPkg+Adv flathub \
     com.rafaelmardojai.Blanket \
-    io.github.flattool.Warehouse com.github.tchx84.Flatseal \
-    org.vinegarhq.Sober io.mrarm.mcpelauncher app.twintaillauncher.ttl com.heroicgameslauncher.hgl \
+    io.github.flattool.Warehouse \
     rocks.shy.VacuumTube com.spotify.Client org.js.nuclear.Nuclear com.warlordsoftwares.youtube-downloader-4ktube io.github.ecotubehq.player \
-    com.ranfdev.DistroShelf org.gnome.Boxes rs.ruffle.Ruffle \
+    org.gnome.Boxes rs.ruffle.Ruffle \
     io.github.brunofin.Cohesion org.onlyoffice.desktopeditors \
-    io.frama.tractor.carburetor com.termius.Termius dev.deedles.Trayscale \
+    io.frama.tractor.carburetor com.termius.Termius \
     io.github.qwersyk.Newelle org.upscayl.Upscayl \
     org.telegram.desktop io.github.tobagin.karere org.equicord.equibop \
     com.github.wwmm.easyeffects com.spotify.Client

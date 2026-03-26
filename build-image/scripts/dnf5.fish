@@ -58,12 +58,15 @@ sysPkg+ \
         dnf-plugins-core etckeeper-dnf dnf-repo
 
 sysPkg+ \
-        cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-edit cosmic-icon-theme cosmic-launcher \
-        cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks \
+        xdg-desktop-portal-cosmic cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-notifications cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-icon-theme cosmic-launcher \
+        cosmic-reader cosmic-edit cosmic-player cosmic-files \
+        cosmic-ext-applet-places-menu cosmic-ext-applet-sysinfo cosmic-ext-applet-ollama cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness \
+        cosmic-ext-disks cosmic-ext-examine cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks  cosmic-ext-camera \
+        xdg-desktop-portal flatpak flatseal flatpak-libs flatpak-selinux flatpak-session-helper libportal \
         boinc-client boinc-client-static \
-        uutils-coreutils util-linux fish \
+        uutils-coreutils util-linux kernel-modules-extra fish \
         tuned tuned-ppd tuned-utils-systemtap \
-        obs-studio obs-studio-libs obs-studio-plugin-browser \
+        obs-studio obs-studio-libs obs-studio-plugin-browser obs-studio-plugin-vaapi obs-studio-plugin-vkcapture obs-studio-plugin-droidcam \
         rustup cargo clippy git gh zed \
         peazip zstd neohtop \
         hblock tor mosh tailscale openssh persepolis \
@@ -71,25 +74,17 @@ sysPkg+ \
         rocm cuda \
         steam steam-devices
 
-#fedora-gpg-keys fedora-repos flatpak-libs flatpak-selinux
-#flatpak-session-helper kernel-modules-extra libei libportal
-#xdg-desktop-portal
-#obs-studio-plugin-vaapi obs-studio-plugin-vkcapture obs-studio-plugin-droidcam
-#ghostty-nightly ghostty-nightly-fish-completion ghostty-nightly-shell-integration
+#fedora-gpg-keys
 #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
 #nvidia-gpu-firmware libva-nvidia-driver envytools nvidia-patch
 #distcc distcc-server
-#host-spawn libei-utils
-#libvirt-daemon-kvm
-#nodejs
-#obs-studio-plugin-droidcam obs-studio-plugin-vaapi
-#pnpm preload qbittorrent qemu-kvm qemu-kvm-core
-#uget
+#host-spawn libei libei-utils
+#pnpm preload
+#qemu-kvm qemu-kvm-core libvirt-daemon-kvm
 #aircrack-ng turbo-attack golang-github-redteampentesting-monsoon
 #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
 
 ## CONFLICTS ## ( Format: ChosenPackages | ConflictingPackages )
-# warp-terminal | warp-cli ( warp-terminal already includes warp-cli )
 # fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, spoofing it as one will cause conflicts )
 # fedora-repos-rawhide ( only use repos in fsroot/usr/share/factory/etc/yum.repos.d or pre-packaged ones )
 # cosmic-config-fedora ( We have our own config files )
