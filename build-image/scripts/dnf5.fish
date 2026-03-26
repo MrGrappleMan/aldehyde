@@ -66,7 +66,7 @@ sysPkg+ \
         boinc-client boinc-client-static \
         uutils-coreutils util-linux kernel-modules-extra fish \
         tuned tuned-ppd tuned-utils-systemtap \
-        obs-studio obs-studio-libs obs-studio-plugin-browser obs-studio-plugin-vaapi obs-studio-plugin-vkcapture obs-studio-plugin-droidcam \
+        obs-studio obs-studio-libs obs-studio-plugin-browser obs-studio-plugin-vaapi obs-studio-plugin-droidcam \
         rustup cargo clippy git gh zed \
         peazip zstd neohtop \
         hblock tor mosh tailscale openssh persepolis \
