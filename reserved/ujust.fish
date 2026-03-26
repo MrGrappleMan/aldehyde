@@ -1,7 +1,5 @@
 #!/usr/bin/env fish
 
-# Gets executed once by root, then the user, as seeen in documentation. Some require non root user.
-
 # Decky
 ujust setup-decky install
 ujust setup-decky prerelease
@@ -15,7 +13,7 @@ ujust toggle-global-fsr4 enable
 ujust toggle-global-fsr4-rdna3 enable
 
 # Visual Tweaks
-ujust toggle-password-feedback on # Worth it, I know the password recognition by keyboard sounds and keypresses method, but is worth the feedback it provides
+ujust toggle-password-feedback on # sudo-rs has been doing it, AI can detect key press sounds accurately though
 
 # Boot process
 ujust setup-luks-tpm-unlock

@@ -41,7 +41,7 @@ sysPkg- docker docker-compose moby-engine \
 # While updating, some thing might progress, but others might break, you want a system that works correctly
 # and not just packages with a higher version number that may not properly coordinate with each other.
 # This also ensures as a way that things are re-initializated before updating, if you want to.
-# Works best with non rawhide versions of the distro.
+# Works best with non rawhide versions of the distro. This is better for bootc, in general
 echo "⭕ --- (@) Sync packages ---"
 dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
 
@@ -66,7 +66,6 @@ sysPkg+ \
         obs-studio obs-studio-libs obs-studio-plugin-browser \
         rustup cargo clippy git gh zed \
         peazip zstd neohtop \
-        brave-browser brave-keyring \
         hblock tor mosh tailscale openssh persepolis \
         podman podman-docker \
         rocm cuda \

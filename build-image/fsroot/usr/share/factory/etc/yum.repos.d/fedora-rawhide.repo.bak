@@ -22,4 +22,4 @@ enabled=0
 # This is fedora anyways, with packages usually already ahead of other distributions
 # If using rawhide, enabling those along with rawhide may allow rawhide to fallback to stable repos
 # in case anything fails to get satisified in rawhide(need to verify)
-# Disable repo files with .bak
+# Disable repo files by appending .bak at the end

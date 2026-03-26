@@ -2,24 +2,26 @@
 
 # Docker is not used because Podman has built in provisions that work better from the ground up,
 # it is resource efficient, integrated into systemd, daemonless, rootless and less prone to breakages
-# I have not used any docker removal steps as it is meant to be used in my bootc image where
-# docker is not present at all, only the podman-docker package for compatibility
-# Podman is built in a way that utilities like watchtower are not needed
+# Only podman-docker package is present for compatibility
+# Podman is built such that that utilities like watchtower are not needed
 
-# Units podman.service, podman.socket podman-auto-update.timer should be enabled
+# Units podman.service podman.socket podman-auto-update.timer should be enabled
 
 # ===================
 # Pull images 
 # ===================
 echo "📦 Pulling latest images..."
-podman pull docker.io/honeygain/honeygain \
+podman pull docker.io/thetorproject/snowflake-proxy:nightly \
+            \
+            docker.io/honeygain/honeygain \
             docker.io/iproyal/pawns-cli:latest \
             docker.io/earnfm/earnfm-client:latest \
             docker.io/packetstream/psclient:latest \
-            \
-            docker.io/thetorproject/snowflake-proxy:nightly
+          
 
-# PW - Password, TK - Token/Authentication key phrase
+# Parameters
+## PW - Password
+## TK - Token/Authentication key phrase
 set -gx EMAIL "you@example.com" # Assumes the same email is used for all idle income sources
 set -gx HNY_PASS "pass"
 set -gx PWN_PASS "pass"
@@ -65,6 +67,6 @@ podman run -d --restart always --label "io.containers.autoupdate=image" \
   --name snowflake-proxy docker.io/thetorproject/snowflake-proxy:nightly \
   -ephemeral-ports-range "30000:60000" -allow-non-tls-relay -allow-proxying-to-private-addresses -summary-interval 1h -metrics --net host
 
-# Remove all containers/pods, not images - Emergency step
-#podman rm -af
-#podman pod rm -af
+# Emergency step
+#podman rm -af # Remove all containers
+#podman pod rm -af # Remove alll pods

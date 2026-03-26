@@ -14,3 +14,7 @@ name=T Brave Browser Nightly
 gpgkey=https://brave-browser-rpm-nightly.s3.brave.com/brave-core-nightly.asc
 baseurl=https://brave-browser-rpm-nightly.s3.brave.com/$basearch
 enabled=0
+
+# NOTE: The intention here is to keep a fallback browser on your system
+# Not as Edge, but in case your Flatpak installed browser fails
+# or permissions and D-Bus get messed up, you have a way to search online

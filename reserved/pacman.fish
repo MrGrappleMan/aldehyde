@@ -1,9 +1,4 @@
-
-### Assume repos installed yet at this phase, a base config with just the AUR will be used, else pacman errors for the missing mirrorlists and keys ###
-
-# pacman commonflags list: --noconfirm --needed
-
-## Adding repo keys
+# Cleanup
 sudo rm -rf /var/lib/pacman/db.lck /etc/pacman.d/gnupg /var/lib/pacman/sync/* ~/pacman-git
 sudo pacman -Syyuu --noconfirm
 sudo pacman -Scc --noconfirm

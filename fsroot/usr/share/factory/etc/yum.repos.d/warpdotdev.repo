@@ -1,4 +1,0 @@
-[warpdotdev]
-name=Warp Terminal
-baseurl=https://releases.warp.dev/linux/rpm/stable
-gpgkey=https://releases.warp.dev/linux/keys/warp.asc

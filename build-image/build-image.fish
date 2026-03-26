@@ -21,17 +21,16 @@ echo "to look for messages provided by Aldehyde scripts"
 # === === /ctx/fsroot/ filesystem, using factory === ===
 echo "⭕ --- Copy over filesystem components ---"
 
-cp -r /ctx/fsroot/usr/* /usr/ # Mutable during build, immutable on user end
-cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Include files in it only if /opt/ immutable directory else it will all be wiped out, see Containerfile for better explanation
-cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # Affects build time only. script/postinstall.fish will handle that on user end as well
+cp -r /ctx/fsroot/usr/* /usr/ # Files to be built into the image
+cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Only if we are installing 3rd party programs manually
+cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # Affects build time only
 #cp -r /ctx/fsroot/usr/share/factory/var/* /var/ # Affects build time only
 
 # === === /ctx/script/ subscripts === ===
 echo "⭕ --- Run subscripts ---"
 
-fish /ctx/script/dnf5.fish # Packages
-fish /ctx/script/systemd.fish # Services
-#fish /ctx/script/podman.fish # Containers
+fish /ctx/scripts/dnf5.fish # Packages
+fish /ctx/scripts/systemd.fish # Services
 
 # === === Cleanup === ===
 echo "⭕ --- Cleanup directories ---"

@@ -1,15 +1,3 @@
-
-# Build-time scripts
-
-Make changes to the image during the building process. They are listed in their
-order of execution, first from the top.
-
-| Script name | Purpose |
-| --- | --- |
-| dnf5.fish | Installs packages to the immutable layer with DNF5 |
-| systemd.fish | Systemd related unit modifications |
-| podman.fish | Containerization pre initialize |
-
 ## Technical aspects and decisions
 
 Explaining the reasons why a specific technical decision was taken
@@ -69,6 +57,22 @@ philosophies, modern standards, performance, stability and efficiency
 requirements into the image as much as they can for best integration without
 excessive bloating.
 
+### AerynOS was interesting, didn't meet requirements
+
+This was a cool experiment, an OS made from scratch, a specialized
+package manager, live updates. All a modern power user can ask for!
+Deltaic updates, unlike BootC, where some layers are just too big.
+Moss was lightning fast at installation of packages. This abandoned
+legacy packaging altogether, compared to Fedora BootC images that
+still rely on DNF5, not meant for that purpose, but it just works.
+However, the main requirements were atomicity, immutability, rollbacks
+and orchestration and single source of truth. The freedom of using moss
+gave me the illusion this was better, due to everything being available as a
+native packages. But this also meant the user can also accidentally remove core
+packages, resulting in failures. Distrobox exists, homebrew, VMs. They still
+dont catch the vibe of it. BootC should have the ability to perform delta
+updates at a granular level, all I can ask for and parallel layer downloads.
+
 ### Issues regarding Flatpak
 
 Flatpak is bad in terms of architecture due to lower efficiency, storage/RAM
@@ -86,7 +90,7 @@ Snap is even worse.
 
 TuneD better integrated w/ modern standards, drivers, pstate support, less
 breakage points by low configurability, it works dynamically as per workload
-PPD is like TuneD but highly restrictive to only a few power profiles
+PPD is like TuneD but highly restrictive to just 3 power profiles
 TLP has extensive configurability, potential for better power management as per
 config but can be poor at handling some things like modern s2idle though configurable
 ACF is ok, but management is only specific to CPU, but TLP covers a lot more
