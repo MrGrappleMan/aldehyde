@@ -117,7 +117,7 @@ sysdOn "boinc-client \
         tuned tuned-ppd systemd-rfkill systemd-rfkill.socket \
         uupd uupd.timer bootc-fetch-apply-updates bootc-fetch-apply-updates.timer \
         fstrim fstrim.timer beesd@var-home \
-        systemd-bsod \
+        systemd-bsod scx_loader \
         sshd tailscaled tor hblock hblock.timer \
         preload"
 
