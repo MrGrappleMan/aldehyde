@@ -60,15 +60,15 @@ sysPkg+ \
 sysPkg+ \
         xdg-desktop-portal-cosmic cutecosmic-qt6 cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-notifications cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-icon-theme cosmic-launcher \
         cosmic-reader cosmic-edit cosmic-player cosmic-files \
-        cosmic-ext-applet-places-menu cosmic-ext-applet-sysinfo cosmic-ext-applet-ollama cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness \
-        cosmic-ext-disks cosmic-ext-examine cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks cosmic-ext-camera \
+        cosmic-ext-applet-places-menu cosmic-ext-applet-sysinfo cosmic-ext-applet-ollama cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness cosmic-ext-applet-logomenu \
+        cosmic-ext-disks cosmic-ext-examine cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks cosmic-ext-camera cosmic-ext-calculator cosmic-ext-xcalendar \
         xdg-desktop-portal flatpak flatseal flatpak-libs flatpak-selinux flatpak-session-helper libportal \
         boinc-client boinc-client-static \
         uutils-coreutils util-linux kernel-modules-extra fish \
         tuned tuned-ppd tuned-utils-systemtap \
         obs-studio obs-studio-libs obs-studio-plugin-browser obs-studio-plugin-vaapi obs-studio-plugin-droidcam \
         rustup cargo clippy git gh zed \
-        peazip zstd neohtop \
+        peazip zstd mission-center \
         hblock tor mosh tailscale openssh persepolis rsync rclone rclone-browser \
         podman podman-docker \
         rocm cuda \
@@ -77,11 +77,9 @@ sysPkg+ \
 #fedora-gpg-keys
 #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
 #nvidia-gpu-firmware libva-nvidia-driver envytools nvidia-patch
-#distcc distcc-server
 #host-spawn libei libei-utils
 #pnpm preload
 #qemu-kvm qemu-kvm-core libvirt-daemon-kvm
-#aircrack-ng turbo-attack golang-github-redteampentesting-monsoon
 #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
 
 ## CONFLICTS ## ( Format: ChosenPackages | ConflictingPackages )
@@ -96,5 +94,5 @@ sysPkg+ \
 
 # === Clean ===
 echo "⭕ --- (🧹) Clean DNF5 ---"
-dnf5 autoremove -y # May misinterpret what is "essential" for the OS, usually safe
-dnf5 clean all -y
+dnf5 autoremove -y # Clean non essential packages
+dnf5 clean all -y # Clean all cached data
