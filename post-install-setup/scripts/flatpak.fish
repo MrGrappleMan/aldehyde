@@ -2,6 +2,7 @@
 
 # Notes:
 # Actively avoid electron-based applications to ensure efficient resource utilization - use native counterparts
+# 
 
 # 📛 Alias
 alias fpk "flatpak --system" # Main alias
@@ -65,7 +66,7 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
   #fpkRep+ elementaryos https://flatpak.elementary.io/repo.flatpakrepo
   #fpkRep+ pureos https://store.puri.sm/repo/stable/pureos.flatpakrepo
   #fpkRep+ kde-runtime-nightly https://cdn.kde.org/flatpak/kde-runtime-nightly/kde-runtime-nightly.flatpakrepo
-  #fpkRep+ cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
+  fpkRep+ cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
 
 # DEL PKGS -
    flatpak uninstall -u --all -y --noninteractive --force-remove # Remove all user Flatpaks
@@ -83,12 +84,11 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
       org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08 org.freedesktop.Platform.VulkanLayer.lsfgvk//24.08
 
 # Use "app.zen_browser.zen" over "org.mozilla.firefox" - Polished experience
-# Use "com.google.ChromeDev" over "com.google.Chrome" - Faster updates
 
   fpkPkg+Adv flathub \
     com.rafaelmardojai.Blanket \
     io.github.flattool.Warehouse org.gnome.Boxes rs.ruffle.Ruffle \
-    rocks.shy.VacuumTube org.js.nuclear.Nuclear com.warlordsoftwares.youtube-downloader-4ktube io.github.ecotubehq.player \
+    rocks.shy.VacuumTube com.nuclearplayer.Nuclear com.warlordsoftwares.youtube-downloader-4ktube io.github.ecotubehq.player \
     io.github.brunofin.Cohesion org.onlyoffice.desktopeditors \
     com.termius.Termius org.localsend.localsend_app io.ente.auth \
     io.frama.tractor.carburetor org.torproject.torbrowser-launcher com.brave.Browser \
@@ -98,7 +98,7 @@ alias fpkPkg- "flatpak --system uninstall -y --noninteractive" # Package remove
     com.github.wwmm.easyeffects com.spotify.Client
 
 # "com.rtosta.zapzap" More features but electron based  < "io.github.tobagin.karere" Uses GTK4 and is lightweight + native integration
-# "dev.vencord.Vesktop" More features but electron based < "org.equicord.equibop" Yet somehow lightweight
+# "dev.vencord.Vesktop" < "org.equicord.equibop" Lightweight, even vs Vesktop
 # No VSCode, Zed is inbuilt
 
 #export appid=rocks.shy.VacuumTube
