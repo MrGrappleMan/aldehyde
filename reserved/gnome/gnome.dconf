@@ -8,7 +8,6 @@ clock-show-date=true
 font-hinting='full'
 font-antialiasing='grayscale'
 font-rendering='automatic'
-color-scheme='prefer-dark'
 locate-pointer=false
 show-battery-percentage=true
 
@@ -37,7 +36,7 @@ max-accuracy-level='exact'
 enabled=true
 
 [org/gnome/login-screen]
-allowed-failures=20
+allowed-failures=6
 fallback-logo=''
 logo=''
 
@@ -61,9 +60,6 @@ maximum-age=360
 [org/gnome/desktop/background]
 picture-opacity=0
 
-[org/gnome/desktop/lockdown]
-disable-lock-screen=false
-
 [org/gnome/online-accounts]
 whitelisted-providers=['all']
 
@@ -81,8 +77,8 @@ initial-sleep=1
 throttle=5
 
 [org/gnome/settings-daemon/plugins/power]
-sleep-inactive-battery-type='hibernate'
-sleep-inactive-ac-type='nothing'
+sleep-inactive-battery-type='suspend'
+sleep-inactive-ac-type='suspend'
 power-saver-profile-on-low-battery=true
 idle-dim=true
 

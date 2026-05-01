@@ -8,23 +8,26 @@ function diskfree
 end
 
 ## User Instructions
-echo "🚩 --- Run 'main.fish' ---"
+echo "🚩 --- Run 'build-image.fish' ---"
 
-echo "Quick reminder!"
 echo "Search for these characters,"
-echo "'⭕' --- New section begun"
-echo "'🚩' --- New script begun"
-echo "to look for messages provided by Aldehyde scripts"
+echo "'⭕' --- Section start"
+echo "'✅' --- Section end"
+echo "'🚩' --- Script start"
+echo "'🏁' --- Script end"
+echo "Denoted by the build scripts"
 
 ## Image modification
 
 # === === /ctx/fsroot/ filesystem, using factory === ===
-echo "⭕ --- Copy over filesystem components ---"
+echo "⭕ --- Copy over files to image ---"
 
 cp -r /ctx/fsroot/usr/* /usr/ # Files to be built into the image
 cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Only if we are installing 3rd party programs manually
 cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # Affects build time only
 #cp -r /ctx/fsroot/usr/share/factory/var/* /var/ # Affects build time only
+
+echo "✅ --- Copy over files to image ---"
 
 # === === /ctx/script/ subscripts === ===
 echo "⭕ --- Run subscripts ---"
@@ -32,6 +35,7 @@ echo "⭕ --- Run subscripts ---"
 fish /ctx/scripts/dnf5.fish # Packages
 fish /ctx/scripts/systemd.fish # Services
 
+echo "✅ --- Run subscripts ---"
 # === === Cleanup === ===
 echo "⭕ --- Cleanup directories ---"
 
@@ -46,6 +50,7 @@ rm -rf /var/lib/dnf5/history/*
 rm -rf /tmp/*
 rm -rf /boot/*
 rm -rf /boot/.*
+rm -rf /usr/etc
 
 for item in (find /var -mindepth 1 -maxdepth 1)
     if test -d "$item"
@@ -55,6 +60,8 @@ for item in (find /var -mindepth 1 -maxdepth 1)
         rm -f "$item" 2>/dev/null
     end
 end
+
+echo "✅ --- Cleanup directories ---"
 
 # === === Essential directories reconstruct === ===
 echo "⭕ --- Remake essential directories ---"
@@ -68,3 +75,7 @@ mkdir -p /var/log/journal
 #    echo "re-linking /ostree..."
 #    ln -s sysroot/ostree /ostree
 #end
+
+echo "✅ --- Remake essential directories ---"
+
+echo "🏁 --- Run 'build-image.fish' ---"

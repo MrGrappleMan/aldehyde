@@ -16,7 +16,7 @@ COPY /build-image/ /
 # GET BASE IMAGE
 ## This is the image you want to begin modifying
 ## Base Image - We use Bazzite GNOME's Testing branch, check the currently used one on your device with 'sudo bootc status'
-## We did not use Bazzite GNOME DX because the pre-included tools are redundant and bloated we do not want to waste resources removing them.
+## Bazzite DX not used as it contains bloat we do not need, and it updates late vs the main Bazzite GNOME branch
 ## uBlue Image list: https://github.com/orgs/ublue-os/packages
 FROM ghcr.io/ublue-os/bazzite-gnome:testing
 
@@ -48,16 +48,16 @@ RUN rm -rf /opt && mkdir /opt
 #RUN uname -a
 
 # MODIFICATIONS TO IMAGE
-## Make modifications to the image and install packages by modifying the build.fish script
-## the below RUN directive handles "main.fish" execution as recommended while initializing the rest of familiar UNIX file paths
+## You can modify the image by modifying the build-image.fish script and its subscripts
+## The RUN directive below handles "main.fish" execution as recommended and maps the usual UNIX file paths
 ## avoid doing stuff from the Containerfile to avoid complexities, only minimal initialization
 ## https://stackoverflow.com/questions/39223249/multiple-run-vs-single-chained-run-in-dockerfile-which-is-better
 ## The parameters below doesn't seem to correlate with what actually occurs
 ## However, multiple RUNs are preferred sometimes as they help with layer caching and build reproducibility
 ## and more layers = more flexibility for future modifications + better resumeability support on unstable connections
 ## At the cost of a larger image size, but it is worth it for the benefits
-## We explicitly call fish so correct interpreter is run, despite correct shebang
-## Never make $home as /tmp, lots of problems will happen
+## Despite correct shebang, forcefully call fish
+## Never make $home as /tmp, it is not the correct way to do it
 
 ## INSTALL FISH
 RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade fish
@@ -71,12 +71,12 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 
 # LINTING
 ## Verify final image and contents
-## You will be warned though if some /var/ contents are not empty
+## You will be warned if some locations are not empty
 RUN bootc container lint --no-truncate
 
 # LABELS
-## Your image has been successfulyy built!
-## Now we just append some tags here that can be derived by artifacthub
+## Image has been built at this point
+## The labels below are used by artifacthub
 LABEL containers.bootc 1
 LABEL org.opencontainers.image.source="https://github.com/MrGrappleMan/aldehyde-lx"
 LABEL org.opencontainers.image.description="A workstation for performance"
