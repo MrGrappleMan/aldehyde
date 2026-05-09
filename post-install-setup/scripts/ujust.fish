@@ -13,7 +13,7 @@ ujust toggle-global-fsr4 enable
 ujust toggle-global-fsr4-rdna3 enable
 
 # Visual Tweaks
-ujust toggle-password-feedback off # Security is security
+ujust toggle-password-feedback off # Prevent password prediction
 
 # Boot process
 ujust setup-luks-tpm-unlock

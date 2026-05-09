@@ -23,11 +23,9 @@ fi
 # ⛑️ No rpm-ostree redundancies
 echo "Cancel rpm-ostree operations"
 rpm-ostree cancel
-echo "";
 
 echo "Reset state via rpm-ostree"
 rpm-ostree reset -l -o -i
-echo "";
 
 echo "Unpin any pinned images"
 ostree admin pin -u 0
@@ -40,11 +38,10 @@ ostree admin pin -u 6
 ostree admin pin -u 7
 ostree admin pin -u 8
 ostree admin pin -u 9
-echo "";
 
 # 🎛️ Switch image
-echo "System will auto reboot when switch or update is done";
+echo "System will auto reboot if switch or update is done";
 bootc switch ghcr.io/mrgrappleman/aldehyde-lx:latest --apply
 bootc upgrade --apply
 
-exit
+echo "If you can see this message, latest image is already running"
