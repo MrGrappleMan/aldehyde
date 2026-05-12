@@ -50,10 +50,10 @@ respects your preferences and privacy
 
 ## Install
 
-Simply run this script on any atomic Fedora based image, preferrably Bazzite GNOME
+Simply run this script on any bootc image OS, preferrably Bazzite GNOME
 
 ```bash
-curl "https://raw.githubusercontent.com/MrGrappleMan/aldehyde-lx/refs/heads/main/user-switch.bash" | pkexec bash
+curl -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache" -H "Expires: 0" -sSL https://raw.githubusercontent.com/MrGrappleMan/aldehyde-lx/refs/heads/main/start.bash | pkexec bash
 ```
 
 If you want to test this out or are intending to debug this image, please use a

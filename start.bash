@@ -15,8 +15,8 @@ if [[ $EUID -ne 0 ]]; then
     echo "Please insert the proper password for your user to proceed"
     echo ""
     sleep 6
-    # Re-executing via pkexec
-    curl -s "https://raw.githubusercontent.com/MrGrappleMan/aldehyde-lx/refs/heads/main/start.bash" | pkexec bash
+    # Re-execute
+    curl -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache" -H "Expires: 0" -sSL https://raw.githubusercontent.com/MrGrappleMan/aldehyde-lx/refs/heads/main/start.bash | pkexec bash
     exit $?
 fi
 
@@ -44,4 +44,4 @@ echo "System will auto reboot if switch or update is done";
 bootc switch ghcr.io/mrgrappleman/aldehyde-lx:latest --apply
 bootc upgrade --apply
 
-echo "If you can see this message, latest image is already running"
+echo "If you can see this message, latest image is probably already running"
