@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 echo "🚩 --- Run 'systemd.fish' ---"
 
-# ⚜️ System-D: The core of Linux for its functioning and handling essential system functions, beside being just an init system
+# ⚜️ SystemD: Handles essential system functions, services and protocols
 
 ## Functions
 
@@ -89,8 +89,7 @@ timedatectl set-ntp true --no-ask-password
 systemctl mask \
   power-profiles-daemon \
   tlp tlp-pd \
-  auto-cpufreq \
-  rpm-ostreed-automatic rpm-ostreed-automatic.timer rpm-ostree-countme rpm-ostree-countme.timer
+  auto-cpufreq
 
 # 🙂 Unmask - allow to run
   systemctl unmask \
@@ -105,20 +104,18 @@ systemctl mask \
 
 # The functions to opportunistically modify unit characteristics, if a unit fails to do so, its ignored and reported
 
-# 🟥 Disable - Do not run at startup
+# 🟥 No run at startup
 sysdOff "gdm"
 
-# 🟢 Enable (+Unmask) - Run at startup
-sysdOn "boinc-client \
-        systemd-timesyncd \
+# 🟢 Run at startup + Unmask
+sysdOn "systemd-timesyncd \
         greetd \
-        podman podman.socket podman-auto-update podman-auto-update.timer \
+        podman podman.socket podman-auto-update.timer \
         libvirtd libvirtd.socket \
-        tuned tuned-ppd systemd-rfkill systemd-rfkill.socket \
-        uupd uupd.timer bootc-fetch-apply-updates bootc-fetch-apply-updates.timer \
-        fstrim fstrim.timer beesd@var-home \
+        tuned tuned-ppd systemd-rfkill systemd-rfkill.socket iwd \
+        uupd.timer bootc-fetch-apply-updates.timer \
+        fstrim.timer beesd@var-home \
         systemd-bsod scx_loader \
-        sshd tailscaled tor hblock hblock.timer \
-        preload"
+        sshd tailscaled tor hblock.timer"
 
 plymouth-set-default-theme bgrt
