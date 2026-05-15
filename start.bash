@@ -44,4 +44,4 @@ echo "System will auto reboot if switch or update is done";
 bootc switch ghcr.io/mrgrappleman/aldehyde-lx:latest --apply
 bootc upgrade --apply
 
-echo "If you can see this message, latest image is probably already running"
+echo "If you can see this message, latest image for this repo is probably already running"

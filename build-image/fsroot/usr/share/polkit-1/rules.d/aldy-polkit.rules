@@ -1,10 +1,12 @@
+
+/*
+   Only sleep/hibernate or reboot, modern philosophy, but doesn't work out well for buggy devices with abnormal s2idle support
+*/
+/*
 polkit.addRule(function(action, subject) {
     if (action.id == "org.freedesktop.login1.power-off" ||
         action.id == "org.freedesktop.login1.power-off-multiple-sessions") {
         return polkit.Result.NO;
     }
 });
-
-/*
-   Disable shutdown in favour of only being able to suspend or reboot
 */

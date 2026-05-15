@@ -18,13 +18,12 @@ kargs = [
   "zswap.exclusive_loads=Y",
   "zswap.shrinker_enabled=Y",
   "zswap.zpool=zsmalloc",
-  "zswap.compressor=lz4",
+  "zswap.compressor=zstd",
   "zswap.max_pool_percent=50",
   "zswap.accept_threshold_percent=90",
   "zswap.same_filled_pages_enabled=1",
   "zswap.non_same_filled_pages_enabled=1",
   "clocksource=tsc",
-  "mem_sleep_default=s2idle",
   "pcie_aspm=on",
   "amd_pstate=active",
   "amd_pstate.enable=1",
@@ -38,6 +37,8 @@ kargs = [
   "mitigations=auto",
   "rootflags=noatime,nodiratime,compress-force=zstd:1,discard=async,space_cache=v2,commit=60"
 ]
+
+# "mem_sleep_default=s2idle",
 
 # --------------------------------------------------------------------------------
 # Argument descriptions:
@@ -91,7 +92,7 @@ kargs = [
 # VS old Swap:
 # Reduced drive wear, allow fast access from RAM cache
 # VS ZRAM:
-# Prevents OOMs by fallback to disk, even though you can use a traditional swap partition with ZRAM
+# Prevents OOMs by fallback to disk, coordinates better than just plain swap as falback for zram
 # Even though you can use a traditional swap partition with ZRAM, zswap provides a more intelligent cache
 # Handles incompressible data as required, prevents thrashing
 # Cons VS ZRAM:
@@ -100,15 +101,13 @@ kargs = [
 # Never use ZSWAP with ZRAM - they dont coordinate and add overhead
 # One power user used both(zram was prioritized) in conjuction where the physical swap device(with zswap enabled, secondary)
 # was used as the backing store for zram, providing a hybrid swap/cache solution
-# But still, zswap's compressed pool is enough and you add zram on top of that, causing pointless compression
+# Yet, zswap's compressed pool is enough and you add zram on top of that, causing pointless compression conflicts
 
-# An on-disk swap partition prevents RAM starvation and prevents system OOMs(though the system doesnt panic here)
-# Enable Memory Extension on supported phones, prefer the largest or automatic sizing
-# Always have it present
+# Always keep an on-disk swap partition to prevent RAM starvation and OOM killers(though the system doesnt panic here)
+# Enable Swap equivalents on phones, use the largest or automatic size for it.
 
 # zram ( Avoid )
 # VS ZSwap:
-# Technically lower latency
 # Doesn't need a non-volatile swap device to work
 # Cons VS ZRAM:
 # CPU overhead compression algorithm trying find non-existent patterns
@@ -120,19 +119,18 @@ kargs = [
 # but this tool was abandoned altogether due to instability, unfortunately.
 
 # Keeping contents in RAM or the zswap cache that is in the RAM is always better than relying on the disk.
-# Disk swapping is always slower and more inefficient in the long terms. IO activity is higher and latency is worse.
+# Disk swapping is always slower and inefficient. IO activity is higher and latency is worse.
 # Here our intention is for Zswap to act like a slightly more intelligent ZRAM. CPU overhead between processing compressing
 # and accessing data is much less than with disk swapping. A disk's main intention is for storage, not for swapping.
-# Swap is a fallback, and as said earlier, a fallback is to be treated like a fallback, to be avoided but kept around.
-# 50% zswap memory pool is a good balance between true memory usage and a memory lockup
-# where the CPU processes the data instead of the actual applications you are running.
+# Swap is a fallback that is to be avoided but kept around.
+# 50% zswap memory pool is a good balance between true memory usage and compressed data.
+# A lockup is a case where the CPU processes the data instead of the actual applications you are running.
 
-# 1. LZ4 - good speed, okay compression ratio
-# Avoids CPU usage, better for systems with weak CPUs
-# Better for desktops and gaming, Interactive tasks.
+# 1. ZSTD - good speed, great compression ratio
+# May take up CPU resources sometimes
+# Efficient in the long term, allows most contents to stay in RAM, access immediate to uncompressed part when needed.
+# Great for database software as well
+# 2. LZ4 - good speed, okay compression ratio
+# Suitable for weak CPUs
 # Reduces intermediary hangups and internal lag spikes
-# 2. ZSTD - okay speed, great compression ratio
-# Takes up a lot of CPU resources, good for servers
-# Provides good compression ratio and speed
-# 3. LZO is less efficient and old
-# 4. Brotli is unsuitable for this, as memory content is dynamic
+# 3. LZO or LZO-LRE is less efficient and old
