@@ -2,7 +2,7 @@
 
 # Notes:
 # Actively avoid electron-based applications to ensure efficient resource utilization - use native counterparts
-# 
+#
 
 # 📛 Alias
 alias fpk "flatpak --system" # Main alias
@@ -31,8 +31,10 @@ alias fpkp0 "flatpak --system uninstall -y --noninteractive" # Package remove
   #fpkr1 elementaryos https://flatpak.elementary.io/repo.flatpakrepo
   #fpkr1 pureos https://store.puri.sm/repo/stable/pureos.flatpakrepo
 
-# Remove all user Flatpaks, system wide installs standardize location, save storage, keep user data seperate
+# Remove all user flatpak pkgs and repos, system wide installs standardize location, save storage, keep user data seperate
    flatpak uninstall -u --all -y --noninteractive --force-remove
+   flatpak remote-delete -u flathub
+   flatpak remote-delete -u flathub-beta
 
 # ADD PKGS +
 # You dont need the SDKs, install them for development else save space
@@ -40,7 +42,7 @@ alias fpkp0 "flatpak --system uninstall -y --noninteractive" # Package remove
 
   fpkp1 \
       org.gnome.Platform org.freedesktop.Platform org.kde.Platform \
-      
+
 
   fpkp1 \
       org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08 org.freedesktop.Platform.VulkanLayer.lsfgvk//24.08 \
@@ -48,7 +50,7 @@ alias fpkp0 "flatpak --system uninstall -y --noninteractive" # Package remove
 
 # "app.zen_browser.zen" > "org.mozilla.firefox" - Polished, user friendly
 # "io.github.tobagin.karere" Uses GTK4 and is lightweight + native integration > "com.rtosta.zapzap" Electron based
-# "org.equicord.equibop" More performant, despite electron based > "dev.vencord.Vesktop" 
+# "org.equicord.equibop" More performant, despite electron based > "dev.vencord.Vesktop"
 
   fpkp1 \
     com.rafaelmardojai.Blanket \
