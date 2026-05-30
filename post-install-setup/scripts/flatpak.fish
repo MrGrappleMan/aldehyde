@@ -46,20 +46,20 @@ alias fpkp0 "flatpak --system uninstall -y --noninteractive" # Package remove
       org.freedesktop.Platform.VulkanLayer.gamescope org.freedesktop.Platform.VulkanLayer.MangoHud org.freedesktop.Platform.VulkanLayer.OBSVkCapture org.freedesktop.Platform.VulkanLayer.vkBasalt
 
 # "app.zen_browser.zen" > "org.mozilla.firefox" - Polished, user friendly
-# "io.github.tobagin.karere" lightweight + native integration > "com.rtosta.zapzap" Electron based
+# "io.github.tobagin.karere" lightweight + native integration > "com.rtosta.zapzap" heavy
 # "org.equicord.equibop" More performant > "dev.vencord.Vesktop"
 
-  fpkp1 \
+  fpkp1 flathub \
     com.rafaelmardojai.Blanket \
     io.github.flattool.Warehouse com.github.tchx84.Flatseal \
     org.gnome.Boxes com.ranfdev.DistroShelf \
     com.nuclearplayer.Nuclear com.spotify.Client com.warlordsoftwares.youtube-downloader-4ktube io.github.ecotubehq.player \
     org.onlyoffice.desktopeditors \
     io.ente.auth \
-    io.frama.tractor.carburetor io.github.nozwock.Packet com.brave.Browser \
+    io.frama.tractor.carburetor io.github.nozwock.Packet org.localsend.localsend_app com.brave.Browser \
     io.github.qwersyk.Newelle \
     org.kde.krita org.upscayl.Upscayl \
-    org.telegram.desktop io.github.tobagin.karere org.equicord.equibop org.gnome.Fractal
+    org.telegram.desktop io.github.tobagin.karere org.equicord.equibop org.gnome.Fractal rocks.shy.VacuumTube
 
 # Other groups:
 # Dev: dev.zed.Zed-Preview io.github.pol_rivero.github-desktop-plus

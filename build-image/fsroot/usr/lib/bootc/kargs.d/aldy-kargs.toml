@@ -1,5 +1,5 @@
 kargs = [
-  "splash",
+  "plymouth.enabled=0",
   "quiet",
   "threadirqs",
   "sysrq_always_enabled=1",
@@ -129,7 +129,7 @@ kargs = [
 # 1. ZSTD - good speed, great compression ratio
 # May take up CPU resources sometimes
 # Efficient in the long term, allows most contents to stay in RAM, access immediate to uncompressed part when needed.
-# Great for database software as well
+# Great for database softwares as well
 # 2. LZ4 - good speed, okay compression ratio
 # Suitable for weak CPUs
 # Reduces intermediary hangups and internal lag spikes

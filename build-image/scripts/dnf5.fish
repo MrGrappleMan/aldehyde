@@ -1,14 +1,14 @@
 #!/usr/bin/env fish
 echo "🚩 --- Run 'dnf5.fish' ---"
 
-# DNF5: Install pkgs to the immutable base, mostly essentials
+# DNF5: Install only essential pkgs to the immutable base
 
 ### Notes:
 # Always update system before installing packages.
 # Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
 # COSMIC - Modern DE, better performance and efficiency
 # 
-# ROCm and CUDA can work completely from distrobox
+# ROCm and CUDA work in distrobox
 # Install your dev files to home folder, distrobox or flatpak. They will probably work in any case. Just set it up with care as it is not a traditional system.
 
 # 📛 Handling
@@ -40,7 +40,7 @@ echo " --- (-) Delete packages ---"
 
 # (@) PKG Distro derived versioning
 # Distro-sync - Packages versions are set to the version meant for that version of the distro
-# abiding more by SSoT.
+# for coordinated versioning.
 # 
 # Updating - Packages are bindly updated, but some may break compatibility
 # with each other and not coordinate
@@ -65,18 +65,18 @@ sysPkg+ \
         fedora-gpg-keys \
         dnf-plugins-core etckeeper-dnf dnf-repo
 sysPkg+ \
-        xdg-desktop-portal-cosmic cutecosmic-qt6 cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-notifications cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon greetd greetd-selinux cosmic-icon-theme cosmic-launcher \
+        xdg-desktop-portal-cosmic cutecosmic-qt6 cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-notifications cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon cosmic-icon-theme cosmic-launcher \
         cosmic-reader cosmic-edit cosmic-player cosmic-files \
         cosmic-ext-applet-ollama cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness \
         cosmic-ext-disks cosmic-ext-examine cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks cosmic-ext-camera cosmic-ext-calculator cosmic-ext-xcalendar \
+        greetd greetd-selinux \
         xdg-desktop-portal flatpak flatseal flatpak-libs flatpak-selinux flatpak-session-helper libportal \
         uutils-coreutils util-linux kernel-modules-extra \
-        fish zsh bash \
+        fish zsh \
         tuned tuned-ppd tuned-utils-systemtap \
         zstd mission-center \
         hblock tor mosh tailscale openssh rsync rclone \
-        podman podman-docker \
-        steam steam-devices
+        podman podman-docker
 
 # Install your dev apps by flatpak or to distrobox,
 #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils

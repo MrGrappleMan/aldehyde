@@ -19,13 +19,13 @@ echo "Denoted by the build scripts"
 
 ## Image modification
 
-# === === /ctx/fsroot/ filesystem, using factory === ===
+# === === /ctx/fsroot/ filesystem contents === ===
 echo "⭕ --- Copy over files to image ---"
 
 cp -r /ctx/fsroot/usr/* /usr/ # Files to be built into the image
-cp -r /ctx/fsroot/usr/share/factory/opt/* /opt/ # Only if we are installing 3rd party programs manually
-cp -r /ctx/fsroot/usr/share/factory/etc/* /etc/ # Affects build time only
-#cp -r /ctx/fsroot/usr/share/factory/var/* /var/ # Affects build time only
+cp -r /ctx/fsroot/etc/* /etc/ # Affects build time only
+#cp -r /ctx/fsroot/var/* /var/ # Affects build time only
+#cp -r /ctx/fsroot/opt/* /opt/ # To insert 3rd party programs into image manually, dnf5 preferred
 
 echo "✅ --- Copy over files to image ---"
 

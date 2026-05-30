@@ -1,16 +1,14 @@
 # Containerfile
-## Are you a beginner and want to know how the creation of a bootc image actually works?
-## Check out the comments below and correlate them with the repo's file structure
 
 # LINK ESSENTIAL FILES
 ## 'ctx' means context
 ## The FROM action here explicitly appends the 'ctx' name to the target=/ctx folder, is where that directory name actually comes from.
-## A new path made in root of the image being created, NOT the buildah image runner instance
+## This path only exists for usage during build time, as a "portal" for your file into the image
 FROM scratch AS ctx
 
-## The COPY action "symlinks" the build-image folder from the repo to the /ctx/ path in the image.
+## The COPY action copies the contents of the 'build-image' folder in the repo to the /ctx/ path in the image for build time
 ## Whenever you want reference anything from /ctx/ from the Containerfile with RUN, always include '--mount=type=bind,from=ctx,source=/,target=/ctx'
-## Why not just link the repo root? The approach is cleaner, feels less bloated.
+## Why not just link the repo root? This approach is cleaner.
 COPY /build-image/ /
 
 # GET BASE IMAGE
@@ -79,4 +77,4 @@ RUN bootc container lint --no-truncate
 ## The labels below are used by artifacthub
 LABEL containers.bootc 1
 LABEL org.opencontainers.image.source="https://github.com/MrGrappleMan/aldehyde-lx"
-LABEL org.opencontainers.image.description="A workstation for performance"
+LABEL org.opencontainers.image.description="Workstation image for performance, efficiency and productivity"
