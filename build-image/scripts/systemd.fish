@@ -1,8 +1,6 @@
 #!/usr/bin/env fish
 echo "🚩 --- Run 'systemd.fish' ---"
 
-# ⚜️ SystemD: Handles essential system functions, services and protocols
-
 ## Functions
 
 function sysdOn

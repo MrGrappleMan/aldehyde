@@ -1,1 +1,8 @@
-None
+Some(([
+    "com.system76.CosmicPanelAppButton",
+    "dev.heppen.ollama",
+    "com.system76.CosmicAppletWorkspaces",
+], [
+    "dev.dominiccgeh.CosmicAppletEmojiSelector",
+    "io.github.cosmic_utils.cosmic-ext-applet-clipboard-manager",
+]))
