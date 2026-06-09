@@ -1,7 +1,7 @@
 # <div align="center"> 🚀 Aldehyde - The Ultimate Workstation </div>
 
 <div align="center">
-  <img src="media/logo.png" alt="Project logo" width="500" />
+  <img src="repo-res/media/logo.png" alt="Aldehyde Logo" width="500" />
   <p><em> Speed  |  Efficiency  |  Work </em></p>
   <p><em> Get things done, now on (a)steroids </em></p>
 </div>
@@ -19,23 +19,17 @@
 
 ## 📖 Overview
 
-This Linux experience combines an efficent desktop with tweaks, essential tools,
-and automation for a practical user enviroment.
-Whether you are being productive, browsing, gaming, or managing servers, it will
-not fail on your demands and will work with you.
-An experience that cuts out the overhead to aim for a real world experience with
+An efficent desktop with tweaks and essential tools, for power users.
+It cuts out the overhead to aim for a real world experience with
 tools you would actually need.
 
 ## ✨ Extraoridnaries
 
 - **COSMIC Desktop** 🌌 --- Pre-tweaked for productivity. Custom keyboard
 shortcuts for quick switching, window management, and task automation.
-Comes with a curated set of stunning 4K backgrounds with abstract designs,
-nature scenes and astronomical moments to inspire you --- whenever you need
 
-- **Custom TuneD profiles** ⚡ --- Intelligent CPU frequency scaling for balancing
-performance and battery life. Automatically adjusts based on workload – perfect
-for laptops or desktops.
+- **Custom TuneD profiles** ⚡ --- Prefers system efficiency by default
+Adjusts based on workload
 
 - **Kernel Args + SysCtl** 🛠️ --- Extensively optimized for performance
 dynamics with efficiency in mind, utilizing modern provisions at their
@@ -45,12 +39,13 @@ current safe maximum potential
 operandi, quitting QoS for good when it is not needed, parallelize tasks and not
 intentionally suffocate one for the benefit for the other. Prioritize, not block.
 
-- **No nonsense** --- Abandons legacy technologies, ensures a clean system that
-respects your preferences and privacy
+- **No nonsense** --- Straightforward, avoids compatibility overhead
 
 ## Install
 
-Simply run this script on any bootc image OS, preferrably Bazzite GNOME
+Run this script on a fresh install of Bazzite GNOME, else there may be issues like
+missing authenication keys, GIO errors. The image is based on it.
+
 
 ```bash
 curl -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache" -H "Expires: 0" -sSL https://raw.githubusercontent.com/MrGrappleMan/aldehyde-lx/refs/heads/main/start.bash | pkexec bash

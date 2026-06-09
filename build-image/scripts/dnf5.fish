@@ -69,14 +69,19 @@ sysPkg+ \
         cosmic-reader cosmic-edit cosmic-player cosmic-files \
         cosmic-ext-applet-ollama cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness \
         cosmic-ext-disks cosmic-ext-examine cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks cosmic-ext-camera cosmic-ext-calculator cosmic-ext-xcalendar \
+        \
         greetd greetd-selinux \
+        \
         xdg-desktop-portal flatpak flatseal flatpak-libs flatpak-selinux flatpak-session-helper libportal \
-        uutils-coreutils util-linux kernel-modules-extra \
+        uutils-coreutils util-linux \
         fish zsh \
         tuned tuned-ppd tuned-utils-systemtap \
         zstd mission-center \
         hblock tor mosh tailscale openssh rsync rclone \
         podman podman-docker
+        \
+        kmod-ryzen-smu kernel-modules-extra \
+        
 
 # Install your dev apps by flatpak or to distrobox,
 #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
