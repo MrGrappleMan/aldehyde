@@ -44,7 +44,7 @@ jobs:
 
       # These stage versions are pinned by https://github.com/renovatebot/renovate
       - name: ⎙ Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # Use if you see that your builds are way too big for runners/build time, it debloats stuff
       - name: 🚮 Debloat image
