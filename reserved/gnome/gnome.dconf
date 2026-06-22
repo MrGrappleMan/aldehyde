@@ -11,6 +11,7 @@ font-rendering='automatic'
 locate-pointer=false
 show-battery-percentage=true
 
+# Pure cursor
 [org/gnome/desktop/peripherals/mouse]
 accel-profile='flat'
 speed=1.0
