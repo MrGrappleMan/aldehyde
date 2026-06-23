@@ -51,6 +51,7 @@ rm -rf /tmp/*
 rm -rf /boot/*
 rm -rf /boot/.*
 rm -rf /usr/etc
+rm -rf /run/
 
 for item in (find /var -mindepth 1 -maxdepth 1)
     if test -d "$item"
