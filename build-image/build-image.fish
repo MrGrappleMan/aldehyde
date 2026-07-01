@@ -36,7 +36,7 @@ fish /ctx/scripts/dnf5.fish # Packages
 fish /ctx/scripts/systemd.fish # Services
 
 echo "✅ --- Run subscripts ---"
-# === === Cleanup === ===
+# === === Satisfy linter === ===
 echo "⭕ --- Cleanup directories ---"
 
 # rm -rf (Top-Down): If rm hits a directory that is locked, in use, or lacks write permissions, 
@@ -46,31 +46,33 @@ echo "⭕ --- Cleanup directories ---"
 # If a parent directory is locked or in use, find has already successfully purged all of its children before it even attempts
 # (and potentially fails) to delete that parent.
 
-find -depth -delete -mindepth 1 /var/cache/*
-find -depth -delete -mindepth 1 /var/tmp/*
-find -depth -delete -mindepth 1 /var/log/*
+# nonempty-run-tmp
+find -depth -delete -mindepth 1 /run/*
 find -depth -delete -mindepth 1 /tmp/*
 
-for item in (find /var -mindepth 1 -maxdepth 1)
-    if test -d "$item"
-        find "$item" -mindepth 1 -delete 2>/dev/null
-        rmdir "$item" 2>/dev/null
-     else
-        rm -f "$item" 2>/dev/null
-    end
-end
+# nonempty-boot
+find -depth -delete -mindepth 1 /boot/*
+
+# var-log
+find -depth -delete -mindepth 1 /var/log/*
+
+# var-cache
+find -depth -delete -mindepth 1 /var/cache/*
+find -depth -delete -mindepth 1 /var/tmp/*
+
+# etc-usretc
+rm -rf /usr/etc/
 
 echo "✅ --- Cleanup directories ---"
 
-# === === Essential directories reconstruct === ===
 echo "⭕ --- Remake essential directories ---"
 
 # --- 1. Fix the missing sysroot symlink ---
-RUN ln -s sysroot/ostree /ostree
+ln -s sysroot/ostree /ostree
 
 # --- 2. Fix the missing composefs configuration layout ---
-RUN mkdir -p /usr/lib/ostree \
-    && echo -e "[sysroot]\ncomposefs=yes" > /usr/lib/ostree/prepare-root.conf
+mkdir -p /usr/lib/ostree
+echo -e "[sysroot]\ncomposefs=yes" > /usr/lib/ostree/prepare-root.conf
 
 echo "✅ --- Remake essential directories ---"
 
