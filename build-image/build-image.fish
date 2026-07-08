@@ -67,12 +67,13 @@ echo "✅ --- Cleanup directories ---"
 
 echo "⭕ --- Remake essential directories ---"
 
-# --- 1. Fix the missing sysroot symlink ---
-ln -s sysroot/ostree /ostree
+# Ensure the strict bootc ostree symlink exists
+RUN ln -sr /sysroot/ostree /ostree
 
-# --- 2. Fix the missing composefs configuration layout ---
-mkdir -p /usr/lib/ostree
-echo -e "[sysroot]\ncomposefs=yes" > /usr/lib/ostree/prepare-root.conf
+# Optional: Fix the composefs lint warning by enabling it in ostree
+RUN mkdir -p /etc/ostree && \
+    echo -e "[composefs]\nenabled=yes" >> /etc/ostree/prepare-root.conf
+
 
 echo "✅ --- Remake essential directories ---"
 
