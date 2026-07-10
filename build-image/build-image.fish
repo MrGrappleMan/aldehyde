@@ -45,20 +45,22 @@ echo "⭕ --- Cleanup directories ---"
 # find -depth -delete (Bottom-Up): By processing leaf nodes first, find ensures that every individual file is evaluated independently.
 # If a parent directory is locked or in use, find has already successfully purged all of its children before it even attempts
 # (and potentially fails) to delete that parent.
+# -mindepth 1: Ensures that the deletion starts from the immediate children of the specified directory, not the directory itself.
+# -type f: Ensures that only regular files are deleted, not directories or symlinks.
 
 # nonempty-run-tmp
-find -depth -delete -mindepth 1 /run/*
-find -depth -delete -mindepth 1 /tmp/*
+find -depth -delete -mindepth 1 -type f /run/
+find -depth -delete -mindepth 1 -type f /tmp/
 
 # nonempty-boot
-find -depth -delete -mindepth 1 /boot/*
+find -depth -delete -mindepth 1 -type f /boot/
 
 # var-log
-find -depth -delete -mindepth 1 /var/log/*
+find -depth -delete -mindepth 1 -type f /var/log/
 
 # var-cache
-find -depth -delete -mindepth 1 /var/cache/*
-find -depth -delete -mindepth 1 /var/tmp/*
+find -depth -delete -mindepth 1 -type f /var/cache/
+find -depth -delete -mindepth 1 -type f /var/tmp/
 
 # etc-usretc
 rm -rf /usr/etc/
@@ -67,12 +69,18 @@ echo "✅ --- Cleanup directories ---"
 
 echo "⭕ --- Remake essential directories ---"
 
+<<<<<<< Updated upstream
 # Ensure the strict bootc ostree symlink exists
 RUN ln -sr /sysroot/ostree /ostree
 
 # Optional: Fix the composefs lint warning by enabling it in ostree
 RUN mkdir -p /etc/ostree && \
     echo -e "[composefs]\nenabled=yes" >> /etc/ostree/prepare-root.conf
+=======
+# --- 1. Fix the missing sysroot symlink ---
+rm -f /ostree
+ln -s sysroot/ostree /ostree
+>>>>>>> Stashed changes
 
 
 echo "✅ --- Remake essential directories ---"
