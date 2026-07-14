@@ -69,20 +69,6 @@ echo "✅ --- Cleanup directories ---"
 
 echo "⭕ --- Remake essential directories ---"
 
-<<<<<<< Updated upstream
-# Ensure the strict bootc ostree symlink exists
-RUN ln -sr /sysroot/ostree /ostree
-
-# Optional: Fix the composefs lint warning by enabling it in ostree
-RUN mkdir -p /etc/ostree && \
-    echo -e "[composefs]\nenabled=yes" >> /etc/ostree/prepare-root.conf
-=======
-# --- 1. Fix the missing sysroot symlink ---
-rm -f /ostree
-ln -s sysroot/ostree /ostree
->>>>>>> Stashed changes
-
-
 echo "✅ --- Remake essential directories ---"
 
 echo "🏁 --- Run 'build-image.fish' ---"
