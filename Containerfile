@@ -11,12 +11,12 @@ COPY /build-image/ /
  # Whenever you want reference anything from /ctx/ from the Containerfile with RUN, always include '--mount=type=bind,from=ctx,source=/,target=/ctx'
  # Why not just link the repo root? This approach is cleaner.
 
-FROM quay.io/fedora/fedora-bootc
- # GET BASE IMAGE
- # This is the image you want to begin modifying
- # Base Image - We use Bazzite GNOME's Testing branch, check the currently used one on your device with 'sudo bootc status'
- # We do not use other images as they contain bloat we do not need
- # uBlue Image list: https://github.com/orgs/ublue-os/packages
+FROM ghcr.io/ublue-os/bazzite-gnome:testing
+#GET BASE IMAGE
+# This is the image you want to begin modifying
+# Base Image - We use Bazzite GNOME's Testing branch, check the currently used one on your device with 'sudo bootc status'
+# Bazzite DX not used as it contains bloat we do not need, and it updates late vs the main Bazzite GNOME branch
+# uBlue Image list: https://github.com/orgs/ublue-os/packages
 
 RUN rm -rf /opt && mkdir /opt
  # IMMUTABLE /opt

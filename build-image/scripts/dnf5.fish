@@ -34,7 +34,8 @@ echo "⭕ --- (-) Delete packages ---"
 sysPkg- docker docker-compose moby-engine \
         firefox \
         code \
-        @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal
+        @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal \
+        rpm-ostree
 echo " --- (-) Delete packages ---"
 
 # (@) PKG Distro derived versioning
@@ -79,7 +80,7 @@ sysPkg+ \
         hblock tor mosh tailscale openssh rsync rclone \
         podman podman-docker
         \
-        kmod-ryzen-smu kernel-modules-extra \
+        kmod-ryzen-smu kernel-modules-extra
         
 
 # Install your dev apps by flatpak or to distrobox,
