@@ -5,7 +5,6 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 
 ### Notes:
 # Always update system before installing packages.
-# Brave - Efficient, aligned w/ community more than most browsers, practical QoL features, Tor support
 # COSMIC - Modern DE, better performance and efficiency
 # 
 # ROCm and CUDA work in distrobox
@@ -50,7 +49,7 @@ echo " --- (-) Delete packages ---"
 # Distro-sync also fixes conflicts and missing dependencies
 # May behave abnormally on rawhide versions. This is better for the bootc philosophy, overall.
 echo "⭕ --- (@) Sync packages ---"
-dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
+#dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
 echo " --- (@) Sync packages ---"
 
 # (^) PKG UPD
