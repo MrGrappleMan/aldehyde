@@ -16,7 +16,7 @@ if [[ $EUID -ne 0 ]]; then
     echo ""
     sleep 6
     # Re-execute
-    curl -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache" -H "Expires: 0" -sSL https://raw.githubusercontent.com/MrGrappleMan/aldehyde-lx/refs/heads/main/start.bash | pkexec bash
+    curl -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache" -H "Expires: 0" -sSL https://raw.githubusercontent.com/MrGrappleMan/aldehyde/refs/heads/main/start.bash | pkexec bash
     exit $?
 fi
 
@@ -41,7 +41,7 @@ ostree admin pin -u 9
 
 # 🎛️ Switch image
 echo "System will auto reboot if switch or update is done";
-bootc switch ghcr.io/mrgrappleman/aldehyde-lx:latest --apply
+bootc switch ghcr.io/mrgrappleman/aldehyde:latest --apply
 bootc upgrade --apply
 
 echo "The latest image for this repo is probably already running"
