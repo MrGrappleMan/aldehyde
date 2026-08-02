@@ -35,7 +35,8 @@ sysPkg- docker docker-compose moby-engine \
         firefox \
         code \
         @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal \
-        rpm-ostree
+        rpm-ostree \
+        wpa_supplicant
 echo " --- (-) Delete packages ---"
 
 # (@) PKG Distro derived versioning
@@ -78,10 +79,9 @@ sysPkg+ \
         tuned tuned-ppd tuned-utils-systemtap \
         zstd mission-center \
         \
-        hblock tor mosh tailscale openssh rsync rclone playit \
+        hblock tor mosh tailscale openssh rsync rclone playit iwd \
         \
-        podman podman-docker
-        \
+        podman podman-docker \
         kmod-ryzen-smu kernel-modules-extra
         
 

@@ -81,13 +81,12 @@ function sysdOff
 	end
 end
 
-timedatectl set-ntp true --no-ask-password
-
 # 🫥 Mask - never run
 systemctl mask \
   power-profiles-daemon \
   tlp tlp-pd \
-  auto-cpufreq
+  auto-cpufreq \
+  wpa_supplicant
 
 # 🙂 Unmask - allow to run
   systemctl unmask \
@@ -106,14 +105,13 @@ systemctl mask \
 sysdOff "gdm"
 
 # 🟢 Run at startup + Unmask
-sysdOn "systemd-timesyncd \
-        greetd \
-        podman podman.socket podman-auto-update.timer \
-        libvirtd libvirtd.socket \
-        tuned tuned-ppd systemd-rfkill systemd-rfkill.socket iwd \
-        uupd.timer bootc-fetch-apply-updates.timer \
-        fstrim.timer beesd@var-home \
-        systemd-bsod scx_loader \
-        sshd tailscaled tor hblock.timer"
-
-plymouth-set-default-theme bgrt
+sysdOn \
+    "systemd-timesyncd \
+    greetd \
+    podman podman.socket podman-auto-update.timer \
+    libvirtd libvirtd.socket \
+    tuned tuned-ppd systemd-rfkill systemd-rfkill.socket iwd \
+    uupd.timer bootc-fetch-apply-updates.timer \
+    fstrim.timer beesd@var-home \
+    systemd-bsod scx_loader \
+    sshd tailscaled tor hblock.timer"

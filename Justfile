@@ -42,7 +42,7 @@ clean:
     rm -f previous.manifest.json
     rm -f changelog.md
     rm -f output.env
-    rm -f output/
+    rm -rf output/
 
 # Sudo Clean Repo
 [group('Utility')]
@@ -304,7 +304,7 @@ lint:
         exit 1
     fi
     # Run shellcheck on all Bash scripts
-    /usr/bin/find . -iname "*.sh" -type f -exec shellcheck "{}" ';'
+    /usr/bin/find . -regextype posix-extended -regex ".*\.(sh|bash)" -type f -exec shellcheck "{}" ';'
 
 # Runs shfmt on all Bash scripts
 format:
@@ -316,4 +316,4 @@ format:
         exit 1
     fi
     # Run shfmt on all Bash scripts
-    /usr/bin/find . -iname "*.sh" -type f -exec shfmt --write "{}" ';'
+    /usr/bin/find . -regextype posix-extended -regex ".*\.(sh|bash)" -type f -exec shfmt --write "{}" ';'
