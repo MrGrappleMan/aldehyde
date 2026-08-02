@@ -1,5 +1,5 @@
 [Unit]
-Description=Create zram device
+Description=Create zram0 device
 Documentation=man:zram-generator(8) man:zram-generator.conf(5)
 After=dev-zram0.device
 DefaultDependencies=false

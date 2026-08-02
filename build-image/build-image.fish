@@ -49,18 +49,18 @@ echo "⭕ --- Cleanup directories ---"
 # -type f: Ensures that only regular files are deleted, not directories or symlinks.
 
 # nonempty-run-tmp
-find -depth -delete -mindepth 1 -type f /run/
-find -depth -delete -mindepth 1 -type f /tmp/
+rm -rf /run/
+rm -rf /tmp/
 
 # nonempty-boot
-find -depth -delete -mindepth 1 -type f /boot/
+rm -rf /boot/
 
 # var-log
-find -depth -delete -mindepth 1 -type f /var/log/
+rm -rf /var/log/
 
 # var-cache
-find -depth -delete -mindepth 1 -type f /var/cache/
-find -depth -delete -mindepth 1 -type f /var/tmp/
+rm -rf /var/cache/
+rm -rf /var/tmp/
 
 # etc-usretc
 rm -rf /usr/etc/

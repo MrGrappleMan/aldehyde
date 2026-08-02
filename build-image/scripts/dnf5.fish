@@ -77,7 +77,9 @@ sysPkg+ \
         fish zsh \
         tuned tuned-ppd tuned-utils-systemtap \
         zstd mission-center \
-        hblock tor mosh tailscale openssh rsync rclone \
+        \
+        hblock tor mosh tailscale openssh rsync rclone playit \
+        \
         podman podman-docker
         \
         kmod-ryzen-smu kernel-modules-extra
@@ -90,7 +92,7 @@ sysPkg+ \
 #pnpm
 #qemu-kvm qemu-kvm-core libvirt-daemon-kvm
 #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
-## CONFLICTS ## ( Format: ChosenPackages | ConflictingPackages )
+## CONFLICTS ## ( Format: ChosenPackages | ConflictingPackages (reason) )
 # NONE | fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, recognizing it as one will cause conflicts )
 # NONE | fedora-repos-rawhide ( only use repos in fsroot/usr/share/factory/etc/yum.repos.d or pre-packaged ones )
 # NONE | cosmic-config-fedora ( We have our own configs )

@@ -1,5 +1,5 @@
 [Unit]
-Description=🔄️ UUpd, Updates system to get possible latest changes, bug fixes, security patches
+Description=🔄️ UBlue Updates - Updates system to get possible latest changes, bug fixes, security patches
 Documentation=https://github.com/ublue-os/uupd
 After=network-online.target 
 Wants=network-online.target

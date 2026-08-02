@@ -1,5 +1,5 @@
 [Unit]
-Description=🔋 Automatic Power management commander, improves efficiency with minimal performance impact
+Description=🔋 Automatic Power management commander, favor energy efficiency with minimal performance impact
 After=basic.target
 Before=shutdown.target
 

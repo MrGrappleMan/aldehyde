@@ -1,0 +1,8 @@
+[playit]
+name=playit
+baseurl=https://packages.playit.gg/data/rpm/$basearch
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.playit.gg/keys/playit.gpg
+metadata_expire=1h
