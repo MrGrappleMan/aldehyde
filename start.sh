@@ -39,30 +39,31 @@ clear
 # Removal of any pinned images, layered packages and overrides and rpm-ostree related mutations
 # ------------------------------------------------------------------------------
 
-# ⛑️ No rpm-ostree redundancies
-echo "Cancel rpm-ostree operations"
-rpm-ostree cancel
+# Cancel any ongoing rpm-ostree operations
+    rpm-ostree cancel
 
-echo "Reset state via rpm-ostree"
-rpm-ostree reset -l -o -i
+# Remove any mutations
+    rpm-ostree reset -l -o -i
 
-echo "Unpin any pinned images"
-ostree admin pin -u 0
-ostree admin pin -u 1
-ostree admin pin -u 2
-ostree admin pin -u 3
-ostree admin pin -u 4
-ostree admin pin -u 5
-ostree admin pin -u 6
-ostree admin pin -u 7
-ostree admin pin -u 8
-ostree admin pin -u 9
+# Unpin any pinned images
+    ostree admin pin -u 0
+    ostree admin pin -u 1
+    ostree admin pin -u 2
+    ostree admin pin -u 3
+    ostree admin pin -u 4
+    ostree admin pin -u 5
+    ostree admin pin -u 6
+    ostree admin pin -u 7
+    ostree admin pin -u 8
+    ostree admin pin -u 9
 
 # ------------------------------------------------------------------------------
 # Switch image
 # ------------------------------------------------------------------------------
 
-bootc switch ghcr.io/mrgrappleman/aldehyde:latest
-bootc upgrade
+# Switch to the latest image or update if already present
+    bootc switch ghcr.io/mrgrappleman/aldehyde:latest
+    bootc upgrade
 
-echo "Switch to image has been applied, please reboot manully";
+# Reminder
+    echo "Switch to image has been applied, please reboot manully";

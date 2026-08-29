@@ -50,9 +50,9 @@ echo " --- (-) Delete packages ---"
 # and not just packages with a higher version that may not properly coordinate with each other.
 # Distro-sync also fixes conflicts and missing dependencies
 # May behave abnormally on rawhide versions. This is better for the bootc philosophy, overall.
-echo "⭕ --- (@) Sync packages ---"
+echo "⭕ --- (@) Sync packages"
 #dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
-echo " --- (@) Sync packages ---"
+echo " --- (@) Sync packages"
 
 # (^) PKG UPD
 # Use distro-sync instead of update
@@ -61,11 +61,11 @@ echo " --- (@) Sync packages ---"
 #echo " --- (^) Update packages ---"
 
 # (+) PKG ADD
-echo "⭕ --- (+) Add packages ---"
-sysPkg+ \
+    echo "⭕ --- (+) Add packages ---"
+    sysPkg+ \
         fedora-gpg-keys \
         dnf-plugins-core etckeeper-dnf dnf-repo
-sysPkg+ \
+    sysPkg+ \
         xdg-desktop-portal-cosmic cutecosmic-qt6 cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-notifications cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon cosmic-icon-theme cosmic-launcher \
         cosmic-reader cosmic-edit cosmic-player cosmic-files \
         cosmic-ext-applet-ollama cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness \
@@ -85,24 +85,24 @@ sysPkg+ \
         kmod-ryzen-smu kernel-modules-extra
         
 
-# Install your dev apps by flatpak or to distrobox,
-#amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
-#nvidia-gpu-firmware libva-nvidia-driver envytools nvidia-patch
-#host-spawn libei libei-utils
-#pnpm
-#qemu-kvm qemu-kvm-core libvirt-daemon-kvm
-#mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
-## CONFLICTS ## ( Format: ChosenPackages | ConflictingPackages (reason) )
-# NONE | fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, recognizing it as one will cause conflicts )
-# NONE | fedora-repos-rawhide ( only use repos in fsroot/usr/share/factory/etc/yum.repos.d or pre-packaged ones )
-# NONE | cosmic-config-fedora ( We have our own configs )
-# tuned tuned-ppd | power-profiles-daemon , tlp tlp-pd tlp-rdw , auto-cpufreq ( TuneD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability )
-echo " --- (+) Add packages ---"
+    # Install your dev apps by flatpak or to distrobox,
+        #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
+        #nvidia-gpu-firmware libva-nvidia-driver envytools nvidia-patch
+        #host-spawn libei libei-utils
+        #pnpm
+        #qemu-kvm qemu-kvm-core libvirt-daemon-kvm
+        #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
+    # CONFLICTS # ( Format: ChosenPackages | ConflictingPackages (reason) )
+        # NONE | fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, recognizing it as one will cause conflicts )
+        # NONE | fedora-repos-rawhide ( only use repos in fsroot/usr/share/factory/etc/yum.repos.d or pre-packaged ones )
+        # NONE | cosmic-config-fedora ( We have our own configs )
+        # tuned tuned-ppd | power-profiles-daemon , tlp tlp-pd tlp-rdw , auto-cpufreq ( TuneD better integrated w/ modern standards, drivers, pstate support, less breakage points by low configurability )
+    echo " --- (+) Add packages ---"
 
-# === Clean ===
-echo "⭕ --- (🧹) Clean DNF5 ---"
-dnf5 autoremove -y # Clean non essential packages
-dnf5 clean all -y # Clean all cached data
-echo " --- (🧹) Clean DNF5 ---"
+# Cleanup
+    echo "⭕ --- (🧹) Clean DNF5 ---"
+    dnf5 autoremove -y # Extra packages
+    dnf5 clean all -y # Cached data
+    echo " --- (🧹) Clean DNF5 ---"
 
 echo " --- Run 'dnf5.fish' ---"

@@ -2,5 +2,6 @@
 
 # 🖨️ fwupdmgr - Firmware Updates, OS independant
 
-fwupdmgr enable-remote -y lvfs
-fwupdmgr enable-remote -y lvfs-testing
+# Remote addition
+    fwupdmgr enable-remote -y lvfs
+    fwupdmgr enable-remote -y lvfs-testing
