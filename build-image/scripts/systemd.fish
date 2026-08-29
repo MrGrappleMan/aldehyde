@@ -101,10 +101,10 @@ systemctl mask \
 
 # The functions to opportunistically modify unit characteristics, if a unit fails to do so, its ignored and reported
 
-# 🟥 No run at startup
+# No run at startup
 sysdOff "gdm"
 
-# 🟢 Run at startup + Unmask
+# Run at startup + Unmask
 sysdOn \
     "systemd-timesyncd \
     greetd \

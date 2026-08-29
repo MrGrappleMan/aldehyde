@@ -1,19 +1,4 @@
-# <div align="center"> 🚀 Aldehyde - The Ultimate Workstation </div>
-
-<div align="center">
-  <img src="repo-res/media/logo.png" alt="Aldehyde Logo" width="500" />
-  <p><em> Speed  |  Efficiency  |  Work </em></p>
-  <p><em> Get things done, now on (a)steroids </em></p>
-</div>
-
-[![Image Type](https://img.shields.io/badge/Type-bootc-orange?style=for-the-badge&logo=linux)](https://github.com/containers/bootc)
-[![Base](https://img.shields.io/badge/Base-Fedora_Layered-darkblue?style=for-the-badge&logo=fedora)](https://fedoraproject.org/)
-
-![License](https://img.shields.io/github/license/MrGrappleMan/aldehyde-lx?style=for-the-badge)
-![Last Commit](https://img.shields.io/github/last-commit/MrGrappleMan/aldehyde-lx?style=for-the-badge)
-![Contributors](https://img.shields.io/github/contributors/MrGrappleMan/aldehyde-lx?style=for-the-badge)
-![Stars](https://img.shields.io/github/stars/MrGrappleMan/aldehyde-lx?style=for-the-badge)
-![Forks](https://img.shields.io/github/forks/MrGrappleMan/aldehyde-lx?style=for-the-badge)
+# Aldehyde
 
 ---
 

@@ -11,9 +11,6 @@ sudo pacman-key --lsign-key 3056513887B78AEB
 sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
 sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 
-# Replace basic cfg with main cfg here #
-rm -f /etc/pacman.conf
-cp /etc/pacman.conf.fyn-mod /etc/pacman.conf
 
 # Get paru
 

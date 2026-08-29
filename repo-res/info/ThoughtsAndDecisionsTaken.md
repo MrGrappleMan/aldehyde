@@ -1,8 +1,8 @@
-## Technical aspects and decisions
+# Technical aspects and decisions
 
 Explaining the reasons why a specific technical decision was taken
 
-### Stable VS Prerelease
+## Stable VS Prerelease
 
 Alias the word 'prerelease' as 'prl' for this section
 
@@ -41,7 +41,7 @@ contents are stored in different directories
 Warning, manually moving the contents or symlinking them to each other is prone
 to disasters like cookie and auth invalidation
 
-### BootC > RPM-OSTree
+## BootC > RPM-OSTree
 
 Transitioning to bootc is intended to move system management toward a pure
 image-based model,
@@ -57,7 +57,7 @@ philosophies, modern standards, performance, stability and efficiency
 requirements into the image as much as they can for best integration without
 excessive bloating.
 
-### AerynOS was interesting, didn't meet requirements
+## AerynOS was interesting, didn't meet requirements
 
 This was a cool experiment, an OS made from scratch, a specialized
 package manager, live updates. All a modern power user can ask for!
@@ -86,7 +86,7 @@ for privacy or letting something access a system level part is causing
 unfavourable or abnormal behaviour for that specific package.
 Snap is even worse.
 
-### TuneD > PPD > TLP > ACF
+## TuneD > PPD > TLP > ACF
 
 TuneD better integrated w/ modern standards, drivers, pstate support, less
 breakage points by low configurability, it works dynamically as per workload
@@ -97,7 +97,7 @@ ACF is ok, but management is only specific to CPU, but TLP covers a lot more
 things better. Though auto turbo management in ACF, modern hardware already does
 that well.
 
-### Pstate Active + balance_performance is better
+## Pstate Active + balance_performance is better
 
 [Gemini Chat](https://gemini.google.com/share/da75c4d35d82)
 
@@ -138,11 +138,11 @@ guided - guided autonomous, greater context of what is happening, based on the
 current workload (sensible with schedutil)
 passive - governor dictates the operating frequencies (slowest)
 
-### AMD/Intel PState > ACPI CPUFreq
+## AMD/Intel PState > ACPI CPUFreq
 
 Just modern, uses better CPU/hardware platform native drivers
 
-### S2idle/S0ix > hibernate > shutdown
+## S2idle/S0ix > hibernate > shutdown
 
 S2idle is built into modern CPUs for quick resume support, allows background
 activities to happen like updates, notifications with minimal energy drain
