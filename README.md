@@ -33,10 +33,7 @@ missing authenication keys, GIO errors. The image is based on it.
 
 
 ```bash
-curl -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache" -H "Expires: 0" -sSL https://raw.githubusercontent.com/MrGrappleMan/aldehyde-lx/refs/heads/main/start.bash | pkexec bash
+pkexec bash -c "$(curl -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache" -H "Expires: 0" -sSL https://raw.githubusercontent.com/MrGrappleMan/aldehyde/refs/heads/main/start.sh)"
 ```
 
-If you want to test this out or are intending to debug this image, please use a
-virtual machine, do not test it on a production device
-This is from experience, this image may break anytime as it is prone to breakage
-nor maintained very formally but safeguards are ensured
+Avoid on production devices and save important data, project is maintained informally.

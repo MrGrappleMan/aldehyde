@@ -26,12 +26,11 @@ clear
 # 3. Check for Root & Re-execute if necessary
     if [[ $EUID -ne 0 ]]; then
         echo "Error: You are not running as root." >&2
-        echo "Please insert the proper password for your user to proceed" >&2
-        echo ""
-        sleep 6
-        # Re-execute
+        echo "You need to be in sudoers and provide your password" >&2
+        echo "Retrying as root..."
+        sleep 5
         curl -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache" -H "Expires: 0" -sSL https://raw.githubusercontent.com/MrGrappleMan/aldehyde/refs/heads/main/start.bash | pkexec bash
-        exit $?
+        exit 1
     fi
 
 # ------------------------------------------------------------------------------
@@ -39,7 +38,7 @@ clear
 # Removal of any pinned images, layered packages and overrides and rpm-ostree related mutations
 # ------------------------------------------------------------------------------
 
-# Cancel any ongoing rpm-ostree operations
+# Cancel any ongoing rpm-ostree operations, doesn't matter if it fails
     rpm-ostree cancel
 
 # Remove any mutations
