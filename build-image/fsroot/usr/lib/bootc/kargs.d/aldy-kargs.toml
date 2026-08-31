@@ -44,23 +44,23 @@ kargs = [
 # Argument descriptions:
 # --------------------------------------------------------------------------------
 
-# quiet                      # 🤫 Simpler, focused debugging on errors than general noisy stats
+# quiet                      # 🤫 Suppress unnecessary log output
 # threadirqs                 # 🧵 Moves hardware interrupt handlers into threads, allowing the scheduler to granularly manage tasks.
-# sysrq_always_enabled=1     # 🔑 Provides a low-level interface to rescue a frozen system (e.g., REISUB), regardless of UI state.
-# consoleblank=300           # 🖥️ Prevents TTY from display burn in and efficiency
+# sysrq_always_enabled=1     # 🔑 Recovery from frozen systems via sysrq
+# consoleblank=0             # 🖥️ Prevents TTY from sleeping, under critical conditions
 # bluetooth.disable_ertm=0   # 📶 Enhanced Retransmission Mode for modern BT peripherals.
 # loglevel=3                 # 📉 Limits logging to 'Error' level; prevents the 'dmesg' buffer from being flooded by minor warnings.
 # preempt=full               # ⚡ Allows the kernel to be interrupted any time, better responsivenss and faster changing to workloads
 # zswap.enabled=1            # 🗜️ Intercepts pages moving to swap and compresses them in RAM to reduce physical Disk I/O.
-# zswap.shrinker_enabled=Y   # ♻️ Automatically evicts the coldest compressed pages to disk when RAM is needed elsewhere.
+# zswap.shrinker_enabled=Y   #    Automatically evicts the coldest compressed pages to disk when RAM is needed elsewhere.
 # zswap.zpool=zsmalloc       # 🏗️ Uses a highly efficient memory allocator that reduces fragmentation in compressed memory pools.
 # zswap.compressor=zstd      # 🚀 Offers a great balance between speed and compression; ideal for modern high-frequency
 # clocksource=tsc            # ⏱️ Forces the 'Time Stamp Counter'; the lowest latency method for the OS to track time on x86. HPET is a legacy method
 # pcie_aspm=on               # 🍃 Enables Active State Power Management; allows PCIe links to enter low-power states when idle.
-# amd_pstate=active          # 💎 Requests the hardware to manage its own clock speeds based on internal circuitry and stress.
+# amd_pstate=active          # 💎 Automatic CPU power regulation by hardware
 # amd_pstate.enable=1        # ✅ Activates the modern AMD P-State driver for finer-grained power/performance control on Zen CPUs.
 # amd_pstate.shared_mem=1    # 🧠 Allows the CPU and OS to communicate via shared memory for faster frequency transitions.
-# intel_pstate=active        # 🏎️ Uses Intel's hardware-managed P-states (HWP) for superior efficiency compared to legacy ACPI.
+# intel_pstate=active        # 🏎️ Automatic CPU power regulation by hardware
 # amdgpu.sg_display=1        # 📽️ Enables Scatter/Gather display; allows the GPU to use non-contiguous memory for frame buffers.
 # pci=realloc=on             # 🗺️ Allows the kernel to re-map PCI resources if the BIOS didn't allocate enough space (BAR).
 

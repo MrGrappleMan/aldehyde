@@ -62,17 +62,20 @@
 # INSTALL FISH
     RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade fish
 
-# BUILD IMAGE
+# Build image
     RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
         --mount=type=cache,dst=/var/cache \
         --mount=type=cache,dst=/var/log \
         --mount=type=tmpfs,dst=/tmp \
         fish /ctx/build-image.fish
 
-# LINTING
+# Force initramfs generation for the installed kernel version
+    RUN KERNEL_VER=$(ls /lib/modules | tail -n 1) && \
+        dracut --kver "$KERNEL_VER" --force --reproducible /boot/initramfs-"$KERNEL_VER".img
+
+# Linting
     RUN bootc container lint --no-truncate
-    # Verify final image and contents
-    # You will be warned if some locations are not empty
+    # Verify final image and contents for errors and warnings
 
 # LABELS
     # Image has been built at this point

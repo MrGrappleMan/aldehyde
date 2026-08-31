@@ -1,6 +1,0 @@
-# For headless mode
-kargs = [
-    "drm.edid_firmware=HDMI-A-1:edid/virtual_display.bin",
-    "video=HDMI-A-1:e"
-]
-match-architectures = ["x86_64"]

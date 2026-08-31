@@ -1,5 +1,5 @@
 [Unit]
-Description=🔄️ Fyn-sysfresh, tries to do what UUpd can't
+Description=🔄️ sysfresh, tries to do what UUpd can't
 After=network-online.target uupd.service
 Wants=network-online.target
 StartLimitBurst=3
