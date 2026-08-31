@@ -1,5 +1,5 @@
 ---
-name: ⚙️ Image auto build trigger
+name: ⚙️ Build image
 on:
   push:
     branches:

@@ -1,5 +1,5 @@
 ---
-name: 🖴 Build disk images
+name: 🖴 Build bootable installer image
 
 on:
   workflow_dispatch:
