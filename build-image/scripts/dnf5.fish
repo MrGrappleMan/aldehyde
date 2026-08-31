@@ -83,9 +83,9 @@ echo " --- (@) Sync packages"
         \
         waydroid waydroid-selinux \
         podman podman-docker \
-        distrobox \
-        \
-        kmod-ryzen-smu kernel-modules-extra
+        distrobox
+        
+        #kmod-ryzen-smu kernel-modules-extra
         
 
     # Install your dev apps by flatpak or to distrobox,

@@ -69,10 +69,6 @@
         --mount=type=tmpfs,dst=/tmp \
         fish /ctx/build-image.fish
 
-# Force initramfs generation for the installed kernel version
-    RUN KERNEL_VER=$(ls /lib/modules | tail -n 1) && \
-        dracut --kver "$KERNEL_VER" --force --reproducible /boot/initramfs-"$KERNEL_VER".img
-
 # Linting
     RUN bootc container lint --no-truncate
     # Verify final image and contents for errors and warnings
