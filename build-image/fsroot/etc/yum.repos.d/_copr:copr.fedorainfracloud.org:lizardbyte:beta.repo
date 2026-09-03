@@ -1,7 +1,0 @@
-[copr:copr.fedorainfracloud.org:lizardbyte:beta]
-name=C lizardbyte beta
-baseurl=https://download.copr.fedorainfracloud.org/results/lizardbyte/beta/fedora-$releasever-$basearch/
-gpgkey=https://download.copr.fedorainfracloud.org/results/lizardbyte/beta/pubkey.gpg
-type=rpm-md
-repo_gpgcheck=0
-enabled_metadata=1

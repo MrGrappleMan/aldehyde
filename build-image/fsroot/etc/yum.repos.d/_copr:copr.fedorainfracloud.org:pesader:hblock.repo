@@ -1,7 +1,0 @@
-[copr:copr.fedorainfracloud.org:pesader:hblock]
-name=C pesader hblock
-baseurl=https://download.copr.fedorainfracloud.org/results/pesader/hblock/fedora-$releasever-$basearch/
-gpgkey=https://download.copr.fedorainfracloud.org/results/pesader/hblock/pubkey.gpg
-type=rpm-md
-repo_gpgcheck=0
-enabled_metadata=1

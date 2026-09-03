@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Stop BOINC
-Comment=Stops the BOINC client service from computing till reboot
-# 'bash -c' allows us to run the command and then wait for input so the window doesn't disappear
-Exec=bash -c "pkexec systemctl stop boinc-client.service"
-Terminal=true
-Type=Application
-Categories=System;Settings;
-Keywords=boinc;science;stop;terminate;halt;

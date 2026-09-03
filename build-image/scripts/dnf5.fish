@@ -1,70 +1,77 @@
 #!/usr/bin/env fish
 echo "🚩 --- Run 'dnf5.fish' ---"
 
-# DNF5: Install only essential pkgs to the immutable base
+# Notes:
+    # Prefer updating/syncing system before installing packages.
+    # Sometimes updating/syncing can cause conflicts or missing dependencies.
+    # Specific packages with versions set from upstream base image may become broken.
+    # 
+    # ROCm and CUDA work in distrobox
+    # Install your dev files to home folder, distrobox or flatpak.
+    # They will probably work in any case.
+    # Just set it up with care as it is not a traditional system.
 
-### Notes:
-# Always update system before installing packages.
-# COSMIC - Modern DE, better performance and efficiency
-# 
-# ROCm and CUDA work in distrobox
-# Install your dev files to home folder, distrobox or flatpak. They will probably work in any case. Just set it up with care as it is not a traditional system.
+# Aliases
+    alias df5pkg- "dnf5 -y remove"
+    alias df5pkg+ "dnf5 -y install --skip-broken --skip-unavailable --allow-downgrade --allowerasing"
+    alias df5repo+ "dnf5 -y config-manager addrepo --overwrite --create-missing-dir"
 
-# 📛 Handling
-alias sysPkg- "dnf5 remove -y"
-function sysPkg+T -d "Fallback method to just make things install, reducing parallelism, avoid it, trace the core issue"
-    set -l pkgs (string split -n " " -- (string join " " $argv))
+# If the domain and its repo file is down, probably the package is not available to install as well. Even if you did mention the repo files there manually, it would not be able to retrieve the package itself.
+# Futhermore, if some parameters in the DNF file change, it lets the maintainer of the package do changes from one place, without relying on downstream maintainers. GPG keys change frequently for critical projects.
 
-    for pkg in $pkgs
-        echo "🛠️ Install try: $pkg"
-        dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade --allowerasing $pkg
-
-        if test $status -ne 0
-            echo "⚠️ $pkg install failed!"
-        else
-            echo "✅ $pkg installed"
-        end
-    end
-end
-alias sysPkg+ "dnf5 install -y --skip-broken --skip-unavailable --allow-downgrade --allowerasing" # Batches operations, faster builds
-alias sysPkgq "echo Ignored modifications list,"
-
-# (-) PKG DEL
-echo "⭕ --- (-) Delete packages ---"
-sysPkg- docker docker-compose moby-engine \
+# Packages Delete
+    echo "⭕ --- (-) Delete packages ---"
+    df5pkg- \
+        moby-engine \
         firefox \
         code \
         @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal \
         steam
-echo " --- (-) Delete packages ---"
 
-# (@) PKG Distro derived versioning
-# Distro-sync - Packages versions are set to the version meant for that version of the distro
-# for coordinated versioning.
-# 
-# Updating - Packages are bindly updated, but some may break compatibility
-# with each other and not coordinate
-# 
-# You want a system that works correctly,
-# and not just packages with a higher version that may not properly coordinate with each other.
-# Distro-sync also fixes conflicts and missing dependencies
-# May behave abnormally on rawhide versions. This is better for the bootc philosophy, overall.
-echo "⭕ --- (@) Sync packages"
-#dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
-echo " --- (@) Sync packages"
+# Repos add
+    df5pkg+ fedora-gpg-keys dnf-plugins-core etckeeper-dnf dnf-repo
+    df5repo+ --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
+    df5repo+ --from-repofile=https://packages.playit.gg/repo-files/playit-fedora.repo
+    df5repo+ --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
 
-# (^) PKG UPD
-# Use distro-sync instead of update
-#echo "⭕ --- (^) Update packages ---"
-#dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
-#echo " --- (^) Update packages ---"
+    dnf5 copr enable bieszczaders kernel-cachyos
+    dnf5 copr enable bieszczaders kernel-cachyos-addons
+    dnf5 copr enable ryanabx cosmic-epoch
+    dnf5 copr enable ligenix cosmic-ext
+    dnf5 copr enable lizardbyte beta
+    dnf5 copr enable pesader hblock
+    dnf5 copr enable elxreno preload
+    dnf5 copr enable pgdev ghostty
+    dnf5 copr enable ilyaas gemini-cli
+    dnf5 copr enable pgdev zed
+    dnf5 copr enable sneexy zen-browser
 
-# (+) PKG ADD
+    df5pkg+ --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+    df5pkg+ "https://repo.linrunner.de/fedora/tlp/repos/releases/tlp-release.fc$(rpm -E %fedora).noarch.rpm"
+    df5pkg+ https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# PackageSync
+    # Distro-sync - Packages versions are set to the version meant for that version of the distro
+    # for coordinated versioning.
+    # 
+    # Updating - Packages are bindly updated, but some may break compatibility
+    # with each other and not coordinate
+    # 
+    # You want a system that works correctly,
+    # and not just packages with a higher version that may not properly coordinate with each other.
+    # Distro-sync also fixes conflicts and missing dependencies
+    # Avoid on rawhide, use update instead there. 
+    #echo "⭕ --- (@) Sync packages"
+    #dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
+
+# PackageUpdate
+    # Use distro-sync instead of update
+    #echo "⭕ --- (^) Update packages ---"
+    #dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
+
+# Packages Add
     echo "⭕ --- (+) Add packages ---"
-    sysPkg+ \
-        fedora-gpg-keys \
-        dnf-plugins-core etckeeper-dnf dnf-repo
-    sysPkg+ \
+    df5pkg+ \
         xdg-desktop-portal-cosmic cutecosmic-qt6 cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-notifications cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon cosmic-icon-theme cosmic-launcher \
         cosmic-reader cosmic-edit cosmic-player cosmic-files \
         cosmic-ext-applet-ollama cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness \
@@ -83,7 +90,7 @@ echo " --- (@) Sync packages"
         \
         waydroid waydroid-selinux \
         cockpit-podman podman \
-        docker-cli \
+        docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
         distrobox
         
         #kmod-ryzen-smu kernel-modules-extra
