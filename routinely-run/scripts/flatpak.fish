@@ -5,28 +5,28 @@
 
 # 📛 Alias
     alias fpk "flatpak --system" # Main alias
-    alias fpkr1 "flatpak --system remote-add --if-not-exists" # Repository add
-    alias fpkr0 "flatpak --system remote-delete --force" # Repository remove
-    alias fpkp1 "flatpak --system install -y --noninteractive --or-update" # Package add
-    alias fpkp0 "flatpak --system uninstall -y --noninteractive" # Package remove
+    alias fpkrepo+ "flatpak --system remote-add --if-not-exists" # Repository add
+    alias fpkrepo- "flatpak --system remote-delete --force" # Repository remove
+    alias fpkpkg+ "flatpak --system install -y --noninteractive --or-update" # Package add
+    alias fpkpkg- "flatpak --system uninstall -y --noninteractive" # Package remove
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------
 
 # ADD REPOS +
-    fpkr1 flathub https://flathub.org/repo/flathub.flatpakrepo
-    fpkr1 flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-    fpkr1 cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
-    fpkr1 gnome-nightly https://nightly.gnome.org/gnome-nightly.flatpakrepo
-    fpkr1 igalia https://software.igalia.com/flatpak-refs/igalia.flatpakrepo
-    fpkr1 eos-apps https://ostree.endlessm.com/ostree/eos-apps
-    fpkr1 eos-sdk https://ostree.endlessm.com/ostree/eos-sdk
-    fpkr1 webkit https://software.igalia.com/flatpak-refs/webkit-sdk.flatpakrepo
-    fpkr1 webkit-sdk https://software.igalia.com/flatpak-refs/webkit-sdk.flatpakrepo
-    fpkr1 fedora oci+https://registry.fedoraproject.org
-    fpkr1 fedora-testing oci+https://registry.fedoraproject.org/#testing
-    fpkr1 rhel https://flatpaks.redhat.io/rhel.flatpakrepo
-    fpkr1 appcenter https://flatpak.elementary.io/repo.flatpakrepo
-    fpkr1 pureos https://store.puri.sm/repo/stable/pureos.flatpakrepo
+    fpkrepo+ flathub https://flathub.org/repo/flathub.flatpakrepo
+    fpkrepo+ flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+    fpkrepo+ cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
+    fpkrepo+ gnome-nightly https://nightly.gnome.org/gnome-nightly.flatpakrepo
+    fpkrepo+ igalia https://software.igalia.com/flatpak-refs/igalia.flatpakrepo
+    fpkrepo+ eos-apps https://ostree.endlessm.com/ostree/eos-apps
+    fpkrepo+ eos-sdk https://ostree.endlessm.com/ostree/eos-sdk
+    fpkrepo+ webkit https://software.igalia.com/flatpak-refs/webkit-sdk.flatpakrepo
+    fpkrepo+ webkit-sdk https://software.igalia.com/flatpak-refs/webkit-sdk.flatpakrepo
+    fpkrepo+ fedora oci+https://registry.fedoraproject.org
+    fpkrepo+ fedora-testing oci+https://registry.fedoraproject.org/#testing
+    fpkrepo+ rhel https://flatpaks.redhat.io/rhel.flatpakrepo
+    fpkrepo+ appcenter https://flatpak.elementary.io/repo.flatpakrepo
+    fpkrepo+ pureos https://store.puri.sm/repo/stable/pureos.flatpakrepo
 
 # Remove all user specific flatpak pkgs and repos, system wide installs standardize location, save storage, keep user data seperate
     flatpak uninstall -u --all -y --noninteractive --force-remove
@@ -36,7 +36,7 @@
 # ADD PKGS +
     # Avoid adding SDKs and runtimes manually unless for a specific reason
 
-    fpkp1 \
+    fpkpkg+ \
         org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08 org.freedesktop.Platform.VulkanLayer.lsfgvk//24.08 \
         org.freedesktop.Platform.VulkanLayer.gamescope org.freedesktop.Platform.VulkanLayer.MangoHud org.freedesktop.Platform.VulkanLayer.OBSVkCapture org.freedesktop.Platform.VulkanLayer.vkBasalt
 
@@ -44,7 +44,7 @@
 # "io.github.tobagin.karere" lightweight + native integration > "com.rtosta.zapzap" heavy
 # "org.equicord.equibop" More performant > "dev.vencord.Vesktop"
 
-    fpkp1 flathub \
+    fpkpkg+ flathub \
         com.rafaelmardojai.Blanket \
         io.github.flattool.Warehouse com.github.tchx84.Flatseal \
         org.gnome.Boxes com.ranfdev.DistroShelf \

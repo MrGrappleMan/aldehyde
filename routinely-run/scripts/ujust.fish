@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-# Visual Tweaks
+# Prevent password prediction
     ujust toggle-password-feedback off # Prevent password prediction
 
 # Boot process
@@ -8,10 +8,9 @@
     ujust configure-grub 1 # Hide GRUB if not dual booting
     ujust enable-automount-all # Automount
 
-# Cross platform
+# Compatibility
     #ujust setup-virtualization
     ujust setup-waydroid
 
-# Backend/Services
+# sunshine
     ujust setup-sunshine enable
-    ujust toggle-ssh enable

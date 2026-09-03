@@ -34,17 +34,17 @@ echo "🚩 --- Run 'dnf5.fish' ---"
     df5repo+ --from-repofile=https://packages.playit.gg/repo-files/playit-fedora.repo
     df5repo+ --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
 
-    dnf5 copr enable bieszczaders kernel-cachyos
-    dnf5 copr enable bieszczaders kernel-cachyos-addons
-    dnf5 copr enable ryanabx cosmic-epoch
-    dnf5 copr enable ligenix cosmic-ext
-    dnf5 copr enable lizardbyte beta
-    dnf5 copr enable pesader hblock
-    dnf5 copr enable elxreno preload
-    dnf5 copr enable pgdev ghostty
-    dnf5 copr enable ilyaas gemini-cli
-    dnf5 copr enable pgdev zed
-    dnf5 copr enable sneexy zen-browser
+    dnf5 copr enable bieszczaders/kernel-cachyos
+    dnf5 copr enable bieszczaders/kernel-cachyos-addons
+    dnf5 copr enable ryanabx/cosmic-epoch
+    dnf5 copr enable ligenix/cosmic-ext
+    dnf5 copr enable lizardbyte/beta
+    dnf5 copr enable pesader/hblock
+    dnf5 copr enable elxreno/preload
+    dnf5 copr enable pgdev/ghostty
+    dnf5 copr enable ilyaas/gemini-cli
+    dnf5 copr enable pgdev/zed
+    dnf5 copr enable sneexy/zen-browser
 
     df5pkg+ --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
     df5pkg+ "https://repo.linrunner.de/fedora/tlp/repos/releases/tlp-release.fc$(rpm -E %fedora).noarch.rpm"
