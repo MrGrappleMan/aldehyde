@@ -108,10 +108,12 @@ end
     sysdOn \
         "systemd-timesyncd \
         greetd \
-        podman podman.socket podman-auto-update.timer \
+        podman.socket podman-auto-update.timer \
+        docker containerd \
         libvirtd libvirtd.socket \
         tuned tuned-ppd systemd-rfkill systemd-rfkill.socket iwd \
         uupd.timer bootc-fetch-apply-updates.timer \
         fstrim.timer beesd@var-home \
         systemd-bsod scx_loader \
-        sshd tailscaled tor hblock.timer"
+        sshd tailscaled tor hblock.timer \
+        boinc-client"

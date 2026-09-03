@@ -82,7 +82,8 @@ echo " --- (@) Sync packages"
         hblock tor mosh tailscale openssh rsync rclone playit iwd \
         \
         waydroid waydroid-selinux \
-        podman podman-docker \
+        cockpit-podman podman \
+        docker-cli \
         distrobox
         
         #kmod-ryzen-smu kernel-modules-extra
