@@ -7,7 +7,7 @@ StartLimitIntervalSec=300
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/preload -n 19
+ExecStart=/usr/bin/preload
 User=root
 
 # CommonSnippet - Daemons

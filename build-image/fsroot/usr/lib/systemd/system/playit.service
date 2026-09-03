@@ -1,5 +1,5 @@
 [Unit]
-Description=PlayIt Agent for port forwarding
+Description=PlayIt Agent for server hosting on CGNAT networks
 Documentation=https://playit.gg
 Wants=network-online.target
 After=network-online.target
@@ -8,6 +8,7 @@ After=network-online.target
 ExecStart=/opt/playit/playit --secret_path /etc/playit/playit.toml start
 IOSchedulingPriority=6
 Restart=always
+RestartSec=20
 Nice=16
 User=root
 

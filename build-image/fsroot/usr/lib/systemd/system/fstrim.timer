@@ -7,9 +7,8 @@ ConditionPathExists=!/etc/initrd-release
 # discard=async is recommended for modern NVMe drives.
 
 [Timer]
-OnCalendar=hourly
-Persistent=true
-AccuracySec=1h
+OnBootSec=15min
+OnUnitInactiveSec=2h
 
 [Install]
 WantedBy=timers.target

@@ -10,8 +10,7 @@ StartLimitIntervalSec=600
 [Service]
 Type=oneshot
 User=root
-ExecStart=/usr/bin/bootc upgrade
-# Get w/o interuping user, reboot when they need to
+ExecStart=/usr/bin/bootc upgrade --quiet
 
 # CommonSnippet - Daemons
 IOSchedulingClass=2
@@ -22,6 +21,3 @@ RestrictRealtime=false
 RestartSec=60
 StartLimitBurst=5
 StartLimitIntervalSec=300
-
-[Install]
-WantedBy=multi-user.target

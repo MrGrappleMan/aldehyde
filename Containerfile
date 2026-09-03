@@ -13,12 +13,12 @@
   # Why not just link the repo root? This approach is cleaner.
 
 # GET BASE IMAGE
-    FROM quay.io/fedora/fedora-bootc
+    FROM ghcr.io/ublue-os/bazzite-gnome:testing
     # This is the image you want to begin modifying
-    # Base Image - fedora-bootc, it has a modern stack. Check the currently used one on your device with 'sudo bootc status'
-    # Avoiding Bazzite, as it has unnecessary bloat and complicates the build process
+    # Planned Base Image - fedora-bootc, it has a modern stack. Check the currently used one on your device with 'sudo bootc status'
+    # We avoided Bazzite initialy, as it has unnecessary bloat and complicates the build process, but it has a stable and featureful base to work on
     # uBlue Image list: https://github.com/orgs/ublue-os/packages
-    # reserved: ghcr.io/ublue-os/bazzite-gnome:testing
+    # reserved: quay.io/fedora/fedora-bootc
 
 # IMMUTABLE /opt
     RUN rm -rf /opt && mkdir /opt

@@ -1,6 +1,4 @@
-# Technical aspects and decisions
-
-Explaining the reasons why a specific technical decision was taken
+# Technical aspects, decisions, explanations
 
 ## Stable VS Prerelease
 
@@ -156,3 +154,38 @@ Shutdown requires the device to stop every process, unload everything. When the
 device is needed to be accessed again, the entire process of booting needs to
 take place, which is more inefficient in the long term. The image blocks the
 ability for you to even do this.
+
+## Better method to trigger a system update by systemd timers
+
+### Method A: - Monotonic, independent of wall/NTP clock (Better)
+
+With OnUnitInactiveSec, the system gets some 'x' time to rest after the service finishes.
+Updates are staggered across devices to avoid overloading the package download speeds.
+This is caused by factors like entropy, disk I/O, network parameters, etc.
+OnUnitInactiveSec does not care if the unit ended successfully or with an error.
+For OnUnitInactiveSec to actually work, it needs a reference time, else it will not trigger.
+OnBootSec helps resolve that by providing a definite timestamp.
+This is better for updates because,
+Your system gets a grace period from boot before the update is triggered.
+and between updates, the system has time to settle down.
+Furthermore, natural staggering helps load balance updates across devices.
+
+### Method B: - Real-time, based on wall/NTP clock
+
+AccuracySec allows timers to be auto-rescheduled and coalesced within the next 'x' hours/minutes/seconds.
+Persistent=true runs service immediately if it misses the scheduled time it was supposed to get activated at.
+OnCalendar=00,04,08,12,16,20:00:00 UTC attempt to run 6 times day, and this can be forced to follow a specific timezone, here UTC
+
+This is fine, but not optimal for updates because, lets assume the following scenario,
+You open your laptop for a quick task and the system is immediately faced with a huge update to apply.
+Heavy lag on boot, is not ideal.
+Also, if you start your device at 3:56 PM and an update is ongoing, an unnecessary update check will be triggered at 4:00 PM.
+It is blind to the fact that an update is already in progress and will trigger a new one, but one is already in progress or just ran a few minutes ago.
+Furthermore, server overloading is a common issue when using this method.
+
+### Method C: - Event-driven
+
+This is mostly impractical for consumer devices, but for mission critical devices, it is a good option.
+A server that hosts the update events and triggers updates on the devices immediately when they are available.
+No independent timers, but the risk is centralized failure. Even if the center fails, there is no way you can update anyways.
+However, if a P2P network is available, you can use it to distribute updates without a central server.

@@ -9,4 +9,4 @@
     setsebool -P container_use_devices true
 
 # LoginCtl
-loginctl enable-linger boinc
+    loginctl enable-linger boinc

@@ -1,13 +1,13 @@
 [Unit]
-Description=🔄️ sysfresh, tries to do what UUpd can't
-After=network-online.target uupd.service
+Description=Overrides some contents of users' folders and applies non-bootc custom changes
+After=network-online.target
 Wants=network-online.target
 StartLimitBurst=3
 StartLimitIntervalSec=600
 
 [Service]
 Type=oneshot
-ExecStart=/opt/fyn-scripts/sysfresh.fish
+ExecStart=/opt/aldyehyde-scripts/fs-override.fish
 User=root
 
 # CommonSnippet - Daemons
