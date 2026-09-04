@@ -83,6 +83,7 @@ end
 
 # 🫥 Mask - never run
     systemctl mask \
+        gdm \
         power-profiles-daemon \
         tlp tlp-pd \
         auto-cpufreq \
@@ -102,12 +103,12 @@ end
 # The functions to opportunistically modify unit characteristics, if a unit fails to do so, its ignored and reported
 
 # No run at startup
-    sysdOff "gdm"
+    
 
 # Run at startup + Unmask
     sysdOn \
         "systemd-timesyncd \
-        greetd \
+        cosmic-greeter \
         podman.socket podman-auto-update.timer \
         docker containerd \
         libvirtd libvirtd.socket \
