@@ -67,21 +67,32 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 # Packages Add
     echo "⭕ --- (+) Add packages ---"
     df5pkg+ \
-        xdg-desktop-portal-cosmic cutecosmic-qt6 cosmic-app-library cosmic-applets cosmic-panel cosmic-workspaces cosmic-bg cosmic-comp cosmic-notifications cosmic-desktop cosmic-greeter cosmic-idle cosmic-osd cosmic-session cosmic-randr cosmic-screenshot cosmic-settings cosmic-settings-daemon cosmic-icon-theme cosmic-launcher \
-        cosmic-reader cosmic-edit cosmic-player cosmic-files \
-        cosmic-ext-applet-ollama cosmic-ext-applet-tailscale cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness \
-        cosmic-ext-disks cosmic-ext-examine cosmic-ext-storage cosmic-ext-tasks cosmic-ext-tweaks cosmic-ext-camera cosmic-ext-calculator cosmic-ext-xcalendar \
+        cosmic-app-library cosmic-applets cosmic-bg cosmic-comp cosmic-desktop cosmic-greeter cosmic-icon-theme cosmic-idle cosmic-launcher cosmic-notifications \
+        cosmic-osd cosmic-panel cosmic-session cosmic-settings-daemon cosmic-workspaces cutecosmic-qt6 xdg-desktop-portal-cosmic \
+        \
+        cosmic-ext-applet-clipboard-manager cosmic-ext-applet-emoji-selector cosmic-ext-applet-external-monitor-brightness \
+        cosmic-ext-applet-logomenu cosmic-ext-applet-ollama cosmic-ext-applet-places-menu cosmic-ext-applet-sysinfo \
+        cosmic-ext-applet-system-monitor cosmic-ext-applet-tailscale \
+        \
+        cosmic-edit cosmic-ext-calculator cosmic-ext-camera cosmic-ext-disks cosmic-ext-examine cosmic-ext-noctua cosmic-ext-storage cosmic-ext-tasks \
+        cosmic-ext-tweaks cosmic-ext-xcalendar cosmic-files cosmic-monitor cosmic-player cosmic-screenshot cosmic-store cosmic-term cosmic-settings \
+        cosmic-viewer \
         \
         greetd greetd-selinux \
         \
-        xdg-desktop-portal flatpak flatseal flatpak-libs flatpak-selinux flatpak-session-helper libportal \
+        xdg-desktop-portal \
+        \
+        flatpak flatseal flatpak-libs flatpak-selinux flatpak-session-helper libportal \
         uutils-coreutils util-linux \
         fish zsh \
         tuned tuned-ppd tuned-utils-systemtap \
-        zstd mission-center \
+        zstd \
+        mission-center \
         bees \
         \
         hblock tor mosh tailscale openssh rsync rclone playit iwd \
+        \
+        zed \
         \
         waydroid waydroid-selinux \
         cockpit-podman podman \
