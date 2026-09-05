@@ -25,9 +25,10 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         moby-engine docker \
         firefox \
         code \
-        @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal \
-        steam \
-        tuned tuned-ppd power-profiles-daemon
+        @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal gdm \
+        steam
+
+#tuned tuned-ppd power-profiles-daemon
 
 # Repos add
     df5pkg+ fedora-gpg-keys dnf-plugins-core etckeeper-dnf dnf-repo
@@ -87,7 +88,6 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         flatpak flatseal flatpak-libs flatpak-selinux flatpak-session-helper libportal \
         uutils-coreutils util-linux \
         fish zsh \
-        tlp tlp-pd tlp-rdw \
         zstd \
         mission-center \
         bees \
@@ -98,10 +98,12 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         \
         waydroid waydroid-selinux \
         cockpit-podman podman podman-docker \
-        distrobox
+        distrobox \
+        kmod-ryzen-smu
         
-        #kmod-ryzen-smu kernel-modules-extra
+        # kernel-modules-extra
         
+#tlp tlp-pd tlp-rdw
 
     # Install your dev apps by flatpak or to distrobox,
         #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
