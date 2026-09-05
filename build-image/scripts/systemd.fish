@@ -83,8 +83,9 @@ end
 
 # 🫥 Mask - never run
     systemctl mask \
-        systemd-rfkill.service systemd-rfkill.socket \
         wpa_supplicant
+
+#systemd-rfkill.service systemd-rfkill.socket
 
 # 🙂 Unmask - allow to run
     #systemctl unmask
@@ -108,9 +109,12 @@ end
         podman.socket podman-auto-update.timer \
         docker.socket containerd \
         libvirtd libvirtd.socket \
-        tlp tlp-pd iwd \
+        iwd \
         uupd.timer bootc-fetch-apply-updates.timer \
         fstrim.timer beesd@var-home \
         systemd-bsod scx_loader \
         sshd tailscaled tor hblock.timer \
         boinc-client"
+
+#tlp tlp-pd
+
