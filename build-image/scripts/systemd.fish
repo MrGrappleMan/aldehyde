@@ -110,7 +110,7 @@ end
         "systemd-timesyncd \
         cosmic-greeter \
         podman.socket podman-auto-update.timer \
-        docker containerd \
+        docker.socket containerd \
         libvirtd libvirtd.socket \
         tuned tuned-ppd systemd-rfkill systemd-rfkill.socket iwd \
         uupd.timer bootc-fetch-apply-updates.timer \

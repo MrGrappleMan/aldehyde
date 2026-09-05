@@ -33,6 +33,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
     df5repo+ --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
     df5repo+ --from-repofile=https://packages.playit.gg/repo-files/playit-fedora.repo
     df5repo+ --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    df5repo+ --from-repofile=https://boinc.berkeley.edu/dl/linux/stable/fc42/boinc-stable-fc42.repo
 
     dnf5 copr enable ryanabx/cosmic-epoch
     dnf5 copr enable ligenix/cosmic-ext
