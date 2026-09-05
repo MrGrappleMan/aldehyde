@@ -2,40 +2,15 @@
 
 ## Stable VS Prerelease
 
-Alias the word 'prerelease' as 'prl' for this section
+Prefer stable software, unless there is a good reason to use a beta version and
+bake it into the image. For example, COSMIC cannot be ran directly through distrobox.
+Nested Wayland is only for debugging and not regular use.
 
-While MrGrappleMan, the creator of this project prefers prerelease software
-Some users might be frustrated that they have to manually install stable software
-if prl is bundled into the image.
-Totally understandable, we want a reliable workstation that is easy to use and
-even be suitable for use in production.
-So this project, and ideally any project shouldn't be using Rawhide repos by
-default in that case.
-
-Maybe the ability to let the users use another release tag or branch while
-rebasing to this image
-like rawhide(rawhide repos) instead of latest(stable)
-But a Traditional Fedora KVM can be better to debug in real time, or the user can
-use this bootc image itself in KVM with the rawhide tag
-and use the bootc usr-overlay command for a more accurate analysis on how the image
-might end up when deployed to the device
-
-Bundle stable software into the image that has a beta counterpart which the user
-can install via Distrobox(manually)
-provided that the software does not lose any access to the system's fundamental
-components like dbus
-
-Microsoft is literally testing in production right now, giving Windows 11 bad
-additions, but in bootc the risks as reduced
-as the ability to rollback is integrated and there is no way to disable it unless
-the image is non compliant in that way.
 And you can switch to another provider, so you do not have to be forced to use
 your OEM provided bootc image
 which they may compile on their side but may have components you do not like or
 some integrated proprietary disruptive applications
 
-Some things may not be a 100% compatible, like Brave and Brave Nightly where
-contents are stored in different directories
 Warning, manually moving the contents or symlinking them to each other is prone
 to disasters like cookie and auth invalidation
 
@@ -84,61 +59,57 @@ for privacy or letting something access a system level part is causing
 unfavourable or abnormal behaviour for that specific package.
 Snap is even worse.
 
-## TuneD > PPD > TLP > ACF
+## TLP > TuneD > PPD > ACF
 
-TuneD better integrated w/ modern standards, drivers, pstate support, less
+TuneD for modern standards, drivers, pstate support, less
 breakage points by low configurability, it works dynamically as per workload
 PPD is like TuneD but highly restrictive to just 3 power profiles
-TLP has extensive configurability, potential for better power management as per
-config but can be poor at handling some things like modern s2idle though configurable
-ACF is ok, but management is only specific to CPU, but TLP covers a lot more
-things better. Though auto turbo management in ACF, modern hardware already does
-that well.
+TLP has extensive configurability like 
+ACF can only do CPU-level power management
 
-## Pstate Active + balance_performance is better
+Running TLP and ACF(auto-cpufreq) together is possible but not recommended.
+Both tools attempt to write to the same /sys/devices/system/cpu/ files, leading to potential conflicts.
+It is recommended to use one tool at a time to prevent fluctuations and overhead.
 
-[Gemini Chat](https://gemini.google.com/share/da75c4d35d82)
+TLP is better than ACF
+Greater system power management control
+ACF just enables and disabled the allowance of Turbo Boost, not its enforcement
+ACF is a userspace tool, so it responds slowly to changes
 
-Pros of Guided:
-Guided is more contextually aware than Active, better level of manipulation by governor
-Governor has better control over energy scaling
-Niche compatibility cases
 
-Cons of Guided:
-Guided has more overhead
-Always has slower reaction time, well, unless the OS was built right into the
-ISA, the compositing logic or other things as instruction sets
+## PState active + balance_power
 
-The main reason for using Guided because schedutil is essentially what allows
-the CPU to indirectly understand
-the current workload happening in Linux by PELT.
-Else Guided without using schedutil is essentially somewhat pointless, and in
-that case you are better off just using Active.
-Unless there is a better governor than schedutil, this is always good.
-
-Pros of Active:
-Least overhead, all processing is done within the die contacting the OS only
-for EPP or EPB
-Most efficient and direct internal granularity
-Faster responses to energy changes and performance demands
-CPU adjusts itself w/o kernel dependance
-Better for race to idle philosophy
-Allows granular picking of power requiremements, like schedutil with certain
-biases and power-dire situations
-In power dire situations, this is the best at handling the job
-
-Cons of Active:
-Can be less understanding to actual OS tasks
-
-active - autonomous, good for hardware-based controlling, based on the energy
+Active is autonomous, good for hardware-based controlling, based on the energy
 performance preference (imagine schedutil but more granular as per energy demands)
-guided - guided autonomous, greater context of what is happening, based on the
-current workload (sensible with schedutil)
+Least overhead, all power management processing is done on the hardware
+OS contact is minimal, only for EPP or EPB. Internally granular.
+It is independent of the OS scheduler, so low latency.
+Good for race to idle philosophy. Availble for AMD and Intel.
+Only 2 sensible options are there, out of which only 1 is better
+
+Powersave governor + balance_power
+Lets the device use as much power as possible, but still bias to energy efficiency
+
+Powersave governor + balance_performance
+Same as Powersave governor + balance_power, but with a higher performance bias
+Can be less efficient
+
+Guided is just Active but with OS imposed restrictions, by legacy schedulers
+like conservative, performance with acpi_cpufreq. But they are not as aware as
+the hardware about what is actually needed to be done.
+The have room for misconfigurations, capping or overboosting performance by OS.
+Previously, I imagined schedutil+guided to be better, due to PELT awareness,
+but it was not as efficient as Active, and furthermore, greater complexity.
+PELT is only better in passive mode, but has more latency and overhead.
+
 passive - governor dictates the operating frequencies (slowest)
+
+Only in the case of something of MacOS, everything is integrated, by process
+awareness like PELT, with the added modulation of the hardware. Ideally the best.
 
 ## AMD/Intel PState > ACPI CPUFreq
 
-Just modern, uses better CPU/hardware platform native drivers
+Platform native control
 
 ## S2idle/S0ix > hibernate > shutdown
 

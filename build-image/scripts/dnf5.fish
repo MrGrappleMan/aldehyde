@@ -22,15 +22,15 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 # Packages Delete
     echo "⭕ --- (-) Delete packages ---"
     df5pkg- \
-        moby-engine \
+        moby-engine docker \
         firefox \
         code \
         @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal \
-        steam
+        steam \
+        tuned tuned-ppd power-profiles-daemon
 
 # Repos add
     df5pkg+ fedora-gpg-keys dnf-plugins-core etckeeper-dnf dnf-repo
-    df5repo+ --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
     df5repo+ --from-repofile=https://packages.playit.gg/repo-files/playit-fedora.repo
     df5repo+ --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     df5repo+ --from-repofile=https://boinc.berkeley.edu/dl/linux/stable/fc42/boinc-stable-fc42.repo
@@ -42,6 +42,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
     dnf5 copr enable elxreno/preload
     dnf5 copr enable pgdev/zed
 
+    df5pkg+ "https://repo.linrunner.de/fedora/tlp/repos/releases/tlp-release.fc$(rpm -E %fedora).noarch.rpm"
     df5pkg+ --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
     df5pkg+ "https://repo.linrunner.de/fedora/tlp/repos/releases/tlp-release.fc$(rpm -E %fedora).noarch.rpm"
     df5pkg+ https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -86,7 +87,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         flatpak flatseal flatpak-libs flatpak-selinux flatpak-session-helper libportal \
         uutils-coreutils util-linux \
         fish zsh \
-        tuned tuned-ppd tuned-utils-systemtap \
+        tlp tlp-pd tlp-rdw \
         zstd \
         mission-center \
         bees \
@@ -96,8 +97,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         zed \
         \
         waydroid waydroid-selinux \
-        cockpit-podman podman \
-        docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
+        cockpit-podman podman podman-docker \
         distrobox
         
         #kmod-ryzen-smu kernel-modules-extra

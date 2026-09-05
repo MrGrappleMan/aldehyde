@@ -83,15 +83,11 @@ end
 
 # 🫥 Mask - never run
     systemctl mask \
-        gdm \
-        power-profiles-daemon \
-        tlp tlp-pd \
-        auto-cpufreq \
+        systemd-rfkill.service systemd-rfkill.socket \
         wpa_supplicant
 
 # 🙂 Unmask - allow to run
-    systemctl unmask \
-        shutdown.target reboot.target poweroff.target halt.target
+    #systemctl unmask
 
 # Issues regarding below: https://chatgpt.com/share/695bf356-8140-800b-af74-448ee16bedb2
 # If any unit in the batch does not exist, is masked or has invalid install info,
@@ -112,7 +108,7 @@ end
         podman.socket podman-auto-update.timer \
         docker.socket containerd \
         libvirtd libvirtd.socket \
-        tuned tuned-ppd systemd-rfkill systemd-rfkill.socket iwd \
+        tlp tlp-pd iwd \
         uupd.timer bootc-fetch-apply-updates.timer \
         fstrim.timer beesd@var-home \
         systemd-bsod scx_loader \
