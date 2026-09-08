@@ -4,27 +4,22 @@
 
 ## 📖 Overview
 
-An efficent desktop with tweaks and essential tools, for power users.
-It cuts out the overhead to aim for a real world experience with
-tools you would actually need.
+A Bazzite based desktop built for power users with a modern and experimental stack.
+
 
 ## ✨ Extraoridnaries
 
-- **COSMIC Desktop** 🌌 --- Pre-tweaked for productivity. Custom keyboard
-shortcuts for quick switching, window management, and task automation.
+- **Desktop Environment** 🖥️ --- COSMIC, bundled with plenty of extensions and tweaked for productivity
 
-- **Custom TuneD profiles** ⚡ --- Prefers system efficiency by default
-Adjusts based on workload
+- **Power Management** ⚡ --- TuneD, default bias towards energy efficiency, while providing maximum potential performance
 
 - **Kernel Args + SysCtl** 🛠️ --- Extensively optimized for performance
 dynamics with efficiency in mind, utilizing modern provisions at their
 current safe maximum potential
 
-- **Sensible Configurations** 🧠 --- Modified for a logical system modus
-operandi, quitting QoS for good when it is not needed, parallelize tasks and not
-intentionally suffocate one for the benefit for the other. Prioritize, not block.
+- **Sensible Fixed Configs** 🧠 --- Modified for logical system operation, with advanced schedulers for both I/O and the CPU
 
-- **No nonsense** --- Straightforward, avoids compatibility overhead
+- **No nonsense** 🏹 --- Straightforward, avoids compatibility overhead, and Steam. Yeah, sry had to keep image size small for faster updates.
 
 ## Install
 
