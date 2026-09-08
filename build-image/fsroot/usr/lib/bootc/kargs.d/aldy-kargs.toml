@@ -64,10 +64,10 @@ kargs = [
 # amdgpu.sg_display=1        # 📽️ Enables Scatter/Gather display; allows the GPU to use non-contiguous memory for frame buffers.
 # pci=realloc=on             # 🗺️ Allows the kernel to re-map PCI resources if the BIOS didn't allocate enough space (BAR).
 
-# Remove:
-# systemd.zram=1             # 🛑 Never use with zswap
-# nomodeset                  # 🚫 Allows the kernel to use high-performance GPU drivers (KMS) instead of slow VESA fallbacks.
-# profile                    # 🚫 Stops the kernel from collecting profiling data, saving CPU cycles.
+# To avoid:
+# systemd.zram=1             # 🛑 
+# nomodeset                  # 🚫 Only a fallback for GPUs
+# profile                    # 🚫 Only enable for debugging or performance analysis.
 
 # --------------------------------------------------------------------------------
 # Explanations:
@@ -82,55 +82,53 @@ kargs = [
 # as it does preemption more intelligently VS voluntary.
 # Preempts immediately for RT tasks, delays for normal tasks
 
-# zRAM/ZSwap:____________________________________________________________________
+# Methods for memory compression:
+    # Sources:
+        # https://unix.stackexchange.com/questions/707108/is-increasing-the-max-pool-percent-parameter-for-zswap-a-smart-idea-to-combine-c?newreg=d31bfe61f00b40d3b3877eea9c5d4bef
+        # https://linuxblog.io/zswap-better-than-zram/
+        # https://www.youtube.com/watch?v=RGVt16xiERc&t=394s
+    # ZSwap ( Best )
+        # VS old Swap:
+            # Reduced drive wear, allow fast access from RAM cache
+        # VS ZRAM:
+            # Prevents OOMs by fallback to disk, coordinates better than just plain swap as falback for zram
+            # Even though you can use a traditional swap partition with ZRAM, zswap provides a more intelligent cache
+            # Handles incompressible data as required, prevents thrashing
+        # Cons VS ZRAM:
+            # Needs a real swap device.
+    # zram ( Avoid )
+        # VS ZSwap:
+            # Doesn't need a non-volatile swap device to work
+        # Cons VS ZRAM:
+            # CPU overhead compression algorithm trying find non-existent patterns
 
-# https://unix.stackexchange.com/questions/707108/is-increasing-the-max-pool-percent-parameter-for-zswap-a-smart-idea-to-combine-c?newreg=d31bfe61f00b40d3b3877eea9c5d4bef
-# https://linuxblog.io/zswap-better-than-zram/
-# https://www.youtube.com/watch?v=RGVt16xiERc&t=394 # At timestamp
 
-# ZSwap ( Best )
-# VS old Swap:
-# Reduced drive wear, allow fast access from RAM cache
-# VS ZRAM:
-# Prevents OOMs by fallback to disk, coordinates better than just plain swap as falback for zram
-# Even though you can use a traditional swap partition with ZRAM, zswap provides a more intelligent cache
-# Handles incompressible data as required, prevents thrashing
-# Cons VS ZRAM:
-# Needs a real swap device.
+    # Never use ZSWAP with ZRAM - they dont coordinate and add overhead
+    # One power user used both(zram was prioritized) in conjuction where the physical swap device(with zswap enabled, secondary)
+    # was used as the backing store for zram, providing a hybrid swap/cache solution
+    # Yet, zswap's compressed pool is enough and you add zram on top of that, causing pointless compression conflicts
+    # Always keep swap on a non-volatile device for sustained memory pressure and OOM prevention
+    # Even for phones, use the largest or automatically managed size for it.
 
-# Never use ZSWAP with ZRAM - they dont coordinate and add overhead
-# One power user used both(zram was prioritized) in conjuction where the physical swap device(with zswap enabled, secondary)
-# was used as the backing store for zram, providing a hybrid swap/cache solution
-# Yet, zswap's compressed pool is enough and you add zram on top of that, causing pointless compression conflicts
+    # Use swap files over swap partitions for better flexibility and storage savings
+    # It was said that swap files are slower than swap partitions, but this is no longer true,
+    # as modern systems have faster storage and swap files can be placed on any block device.
+    # systemd-swap has a feature called SwapFC that dynamically scales the swap size based on demand
+    # but this tool was abandoned altogether due to instability, unfortunately.
 
-# Always keep an on-disk swap partition to prevent RAM starvation and OOM killers(though the system doesnt panic here)
-# Enable Swap equivalents on phones, use the largest or automatic size for it.
+    # Keeping contents in RAM or the zswap cache that is in the RAM is always better than relying on the disk.
+    # Disk swapping is always slower and inefficient. IO activity is higher and latency is worse.
+    # Here our intention is for Zswap to act like a slightly more intelligent ZRAM. CPU overhead between processing compressing
+    # and accessing data is much less than with disk swapping. A disk's main intention is for storage, not for swapping.
+    # Swap is a fallback that is to be avoided but kept around.
+    # 50% zswap memory pool is a good balance between true memory usage and compressed data.
+    # A lockup is a case where the CPU processes the data instead of the actual applications you are running.
 
-# zram ( Avoid )
-# VS ZSwap:
-# Doesn't need a non-volatile swap device to work
-# Cons VS ZRAM:
-# CPU overhead compression algorithm trying find non-existent patterns
-
-# Use swap files over swap partitions for better flexibility and storage savings
-# It was said that swap files are slower than swap partitions, but this is no longer true,
-# as modern systems have faster storage and swap files can be placed on any block device.
-# systemd-swap has a feature called SwapFC that dynamically scales the swap size based on demand
-# but this tool was abandoned altogether due to instability, unfortunately.
-
-# Keeping contents in RAM or the zswap cache that is in the RAM is always better than relying on the disk.
-# Disk swapping is always slower and inefficient. IO activity is higher and latency is worse.
-# Here our intention is for Zswap to act like a slightly more intelligent ZRAM. CPU overhead between processing compressing
-# and accessing data is much less than with disk swapping. A disk's main intention is for storage, not for swapping.
-# Swap is a fallback that is to be avoided but kept around.
-# 50% zswap memory pool is a good balance between true memory usage and compressed data.
-# A lockup is a case where the CPU processes the data instead of the actual applications you are running.
-
-# 1. ZSTD - good speed, great compression ratio
-# May take up CPU resources sometimes
-# Efficient in the long term, allows most contents to stay in RAM, access immediate to uncompressed part when needed.
-# Great for database softwares as well
-# 2. LZ4 - good speed, okay compression ratio
-# Suitable for weak CPUs
-# Reduces intermediary hangups and internal lag spikes
-# 3. LZO or LZO-LRE is less efficient and old
+    # 1. ZSTD - good speed, great compression ratio
+        # May take up CPU resources sometimes
+        # Efficient in the long term, allows most contents to stay in RAM, access immediate to uncompressed part when needed.
+        # Great for database softwares as well
+    # 2. LZ4 - good speed, okay compression ratio
+        # Suitable for weak CPUs
+        # Reduces intermediary hangups and internal lag spikes
+    # 3. LZO or LZO-LRE - less efficient and old

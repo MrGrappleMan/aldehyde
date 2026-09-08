@@ -113,7 +113,7 @@ end
         uupd.timer bootc-fetch-apply-updates.timer \
         fstrim.timer beesd@var-home \
         systemd-bsod scx_loader \
-        sshd tailscaled tor hblock.timer \
+        sshd tailscaled tor cockpit.socket hblock.timer \
         boinc-client"
 
 #tlp tlp-pd

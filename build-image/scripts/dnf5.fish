@@ -93,13 +93,14 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         bees \
         \
         hblock tor mosh tailscale openssh rsync rclone playit iwd \
+        cockpit cockpit-system cockpit-machines cockpit-ostree \
         \
         zed \
         \
         waydroid waydroid-selinux \
         cockpit-podman podman podman-docker \
         distrobox \
-        kmod-ryzen-smu
+        amd-gpu-firmware amd-ucode-firmware amdsmi kmod-ryzen-smu ryzenadj
         
         # kernel-modules-extra
         

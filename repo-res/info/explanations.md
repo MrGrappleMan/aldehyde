@@ -2,17 +2,17 @@
 
 ## Stable VS Prerelease
 
-Prefer stable software, unless there is a good reason to use a beta version and
-bake it into the image. For example, COSMIC cannot be ran directly through distrobox.
+Prefer stable in the image, unless there is a good reason to use a beta version
+and bake it into the image. For example, COSMIC cannot be ran directly through distrobox.
 Nested Wayland is only for debugging and not regular use.
 
 And you can switch to another provider, so you do not have to be forced to use
-your OEM provided bootc image
-which they may compile on their side but may have components you do not like or
-some integrated proprietary disruptive applications
+your OEM provided bootc image which they may compile on their side but may have
+components you do not like or some integrated proprietary disruptive applications
 
-Warning, manually moving the contents or symlinking them to each other is prone
-to disasters like cookie and auth invalidation
+Interfering with browser contents or symlinking them to each other is prone
+to disasters like cookie and auth invalidation.
+Eg: Brave and Brave Beta symlinked into a single folder
 
 ## BootC > RPM-OSTree
 
@@ -160,3 +160,28 @@ This is mostly impractical for consumer devices, but for mission critical device
 A server that hosts the update events and triggers updates on the devices immediately when they are available.
 No independent timers, but the risk is centralized failure. Even if the center fails, there is no way you can update anyways.
 However, if a P2P network is available, you can use it to distribute updates without a central server.
+
+## PWAs vs CEF/Electron apps
+
+PWAs can run without any special tools or permissions or even updates.
+They are often much lighter on resources and energy, depending on the browser.
+Use these if you do not need the CEF/Electron app exclusive features.
+
+CEF/Electron apps have access to the full range of desktop features,
+but are also heavier on resources and energy.
+You should generally avoid these, unless the features are as integrative as Discord.
+Good for developers, bad for the end users.
+
+Eg:
+Whatsapp Web > Karere
+Equibop > Discord web version
+Youtube > VacuumTube - Use VacuumTube if on an HTPC/Console focused setup
+Spotify (CEF) ~ Spotify web version
+Steam (CEF) > Steam web version
+
+This is because the Spotify CEF app has like local playback and system tray integration.
+And obviously, Steam needs the local binary to play games in the first place.
+
+Tauri is a Rust-based framework for building cross-platform desktop applications.
+It is a good alternative to CEF/Electron apps, but it is still in development.
+Both light on resources and energy, but not as mature as CEF/Electron apps.

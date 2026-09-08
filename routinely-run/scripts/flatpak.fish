@@ -1,8 +1,5 @@
 #!/usr/bin/env fish
 
-# Notes:
-# Avoid electron-based apps for system resource efficiency
-
 # 📛 Alias
     alias fpk "flatpak --system" # Main alias
     alias fpkrepo+ "flatpak --system remote-add --if-not-exists" # Repository add
@@ -45,23 +42,22 @@
 # "org.equicord.equibop" More performant > "dev.vencord.Vesktop"
 
     fpkpkg+ flathub \
-        com.rafaelmardojai.Blanket \
         io.github.flattool.Warehouse com.github.tchx84.Flatseal \
+        com.rafaelmardojai.Blanket \
         org.gnome.Boxes com.ranfdev.DistroShelf \
-        com.nuclearplayer.Nuclear com.spotify.Client com.warlordsoftwares.youtube-downloader-4ktube io.github.ecotubehq.player \
+        com.nuclearplayer.Nuclear io.github.ecotubehq.player org.nickvision.tubeconverter \
         org.onlyoffice.desktopeditors \
-        io.ente.auth \
         io.frama.tractor.carburetor io.github.nozwock.Packet org.localsend.localsend_app com.brave.Browser \
         io.github.qwersyk.Newelle \
         org.kde.krita org.upscayl.Upscayl \
-        org.telegram.desktop io.github.tobagin.karere org.equicord.equibop org.gnome.Fractal rocks.shy.VacuumTube
+        org.telegram.desktop org.equicord.equibop org.gnome.Fractal
 
 # Other groups:
 # Dev: dev.zed.Zed-Preview io.github.pol_rivero.github-desktop-plus
 # Gaming: io.mrarm.mcpelauncher org.vinegarhq.Sober
 
 # Permission modifications
-    flatpak override -u --unset-env=ZED_FLATPAK_NO_ESCAPE dev.zed.Zed
+    #flatpak override -u --unset-env=ZED_FLATPAK_NO_ESCAPE dev.zed.Zed
     #export appid=rocks.shy.VacuumTube
     #mkdir -p ~/.config/lsfg-vk
     #flatpak override --user --filesystem=/home/$USER/.config/lsfg-vk:rw $appid
