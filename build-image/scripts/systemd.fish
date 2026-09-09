@@ -107,7 +107,6 @@ end
         "systemd-timesyncd \
         cosmic-greeter \
         podman.socket podman-auto-update.timer \
-        docker.socket containerd \
         libvirtd libvirtd.socket \
         iwd \
         uupd.timer bootc-fetch-apply-updates.timer \

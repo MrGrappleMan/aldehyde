@@ -95,12 +95,14 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         hblock tor mosh tailscale openssh rsync rclone playit iwd \
         cockpit cockpit-system cockpit-machines cockpit-ostree \
         \
+        clamd \
         zed \
         \
         waydroid waydroid-selinux \
         cockpit-podman podman podman-docker \
         distrobox \
-        amd-gpu-firmware amd-ucode-firmware amdsmi kmod-ryzen-smu ryzenadj
+        amd-gpu-firmware amd-ucode-firmware amdsmi kmod-ryzen-smu ryzenadj \
+        intel-lpmd intel-media-driver intel-mediasdk intel-metee
         
         # kernel-modules-extra
         
