@@ -85,8 +85,6 @@ end
     systemctl mask \
         wpa_supplicant
 
-#systemd-rfkill.service systemd-rfkill.socket
-
 # 🙂 Unmask - allow to run
     #systemctl unmask
 
@@ -114,6 +112,4 @@ end
         systemd-bsod scx_loader \
         sshd tailscaled tor cockpit.socket hblock.timer \
         boinc-client"
-
-#tlp tlp-pd
 
