@@ -28,13 +28,11 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal gdm \
         steam
 
-#tuned tuned-ppd power-profiles-daemon
-
 # Repos add
     df5pkg+ fedora-gpg-keys dnf-plugins-core etckeeper-dnf dnf-repo
     df5repo+ --from-repofile=https://packages.playit.gg/repo-files/playit-fedora.repo
     df5repo+ --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
-    df5repo+ --from-repofile=https://boinc.berkeley.edu/dl/linux/stable/fc42/boinc-stable-fc42.repo
+    df5repo+ --from-repofile=https://boinc.berkeley.edu/dl/linux/stable/fc44/boinc-stable-fc44.repo
 
     dnf5 copr enable ryanabx/cosmic-epoch
     dnf5 copr enable ligenix/cosmic-ext
@@ -105,8 +103,6 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         intel-lpmd intel-media-driver intel-mediasdk intel-metee
         
         # kernel-modules-extra
-        
-#tlp tlp-pd tlp-rdw
 
     # Install your dev apps by flatpak or to distrobox,
         #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
