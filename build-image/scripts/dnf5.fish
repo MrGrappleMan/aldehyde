@@ -22,13 +22,14 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 # Packages Delete
     echo "⭕ --- (-) Delete packages ---"
     df5pkg- \
-        moby-engine docker \
-        firefox \
-        code \
-        @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal gdm \
-        steam \
         plymouth \
         rpm-ostree
+
+# moby-engine docker 
+# firefox 
+# code 
+# @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal gdm 
+# steam 
 
 # Repos add
     df5pkg+ fedora-gpg-keys dnf-plugins-core etckeeper-dnf dnf-repo
@@ -48,25 +49,20 @@ echo "🚩 --- Run 'dnf5.fish' ---"
     df5pkg+ "https://repo.linrunner.de/fedora/tlp/repos/releases/tlp-release.fc$(rpm -E %fedora).noarch.rpm"
     df5pkg+ https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-# PackageSync
-    # Distro-sync - Packages versions are set to the version meant for that version of the distro
-    # for coordinated versioning.
-    # 
-    # Updating - Packages are bindly updated, but some may break compatibility
-    # with each other and not coordinate
-    # 
+# Updation
+    # Distro sync
+        # Packages versions are set to the version meant for that version of the distro
+        # for coordinated versioning. Also fixes conflicts and missing dependencies
+        #echo "⭕ --- (@) Sync packages"
+        dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
+    # Update
+        # Packages are bindly updated, but some may break compatibility
+        # with each other and not coordinate. Better for rawhide.
+        #echo "⭕ --- (^) Update packages ---"
+        #dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
     # You want a system that works correctly,
-    # and not just packages with a higher version that may not properly coordinate with each other.
-    # Distro-sync also fixes conflicts and missing dependencies
-    # Avoid on rawhide, use update instead there. 
-    #echo "⭕ --- (@) Sync packages"
-    #dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
-
-# PackageUpdate
-    # Use distro-sync instead of update
-    #echo "⭕ --- (^) Update packages ---"
-    #dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
-
+    # and not just higher versions that may not properly coordinate with each other.
+        
 # Packages Add
     echo "⭕ --- (+) Add packages ---"
     df5pkg+ \
@@ -89,8 +85,6 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         uutils-coreutils util-linux \
         fish zsh \
         zstd \
-        mission-center \
-        bees \
         \
         hblock tor mosh tailscale openssh rsync rclone playit iwd \
         cockpit cockpit-system cockpit-machines cockpit-ostree \
@@ -101,10 +95,15 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         waydroid waydroid-selinux \
         cockpit-podman podman podman-docker \
         distrobox \
+        libvirt libvirt-libs \
+        \
         amd-gpu-firmware amd-ucode-firmware amdsmi kmod-ryzen-smu ryzenadj \
-        intel-lpmd intel-media-driver intel-mediasdk intel-metee
+        intel-lpmd intel-media-driver intel-mediasdk intel-metee \
+        \
+        libimobiledevice libimobiledevice-utils ifuse usbmuxd
         
         # kernel-modules-extra
+        # bees
 
     # Install your dev apps by flatpak or to distrobox,
         #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils

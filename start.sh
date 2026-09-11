@@ -65,4 +65,4 @@ clear
     bootc upgrade
 
 # Reminder
-    echo "Switch to image has been applied, please reboot manully";
+    echo "Please reboot manually for the changes to take effect";

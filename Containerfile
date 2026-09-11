@@ -13,12 +13,12 @@
   # Why not just link the repo root? This approach is cleaner.
 
 # GET BASE IMAGE
-    FROM ghcr.io/ublue-os/bluefin
+    FROM quay.io/fedora/fedora-bootc
     # This is the image you want to begin modifying
     # Planned Base Image - fedora-bootc, it has a modern stack. Check the currently used one on your device with 'sudo bootc status'
     # Bluefin has a stable and featureful base to work on, for now.
     # uBlue Image list: https://github.com/orgs/ublue-os/packages
-    # reserved: quay.io/fedora/fedora-bootc
+    # reserved: ghcr.io/ublue-os/bluefin
 
 # IMMUTABLE /opt
     RUN rm -rf /opt && mkdir /opt
