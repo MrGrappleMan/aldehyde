@@ -107,10 +107,8 @@ end
         podman.socket podman-auto-update.timer \
         libvirtd libvirtd.socket \
         iwd \
-        bootc-fetch-apply-updates.timer \
-        fstrim.timer beesd@var-home \
+        uupd.timer bootc-fetch-apply-updates.timer \
+        fstrim.timere \
         systemd-bsod scx_loader \
         sshd tailscaled tor cockpit.socket hblock.timer \
         boinc-client"
-
-# uupd.timer

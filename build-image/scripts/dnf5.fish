@@ -22,14 +22,13 @@ echo "🚩 --- Run 'dnf5.fish' ---"
 # Packages Delete
     echo "⭕ --- (-) Delete packages ---"
     df5pkg- \
+        moby-engine docker \
+        firefox \
+        code \
+        @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal gdm \
+        steam \
         plymouth \
         rpm-ostree
-
-# moby-engine docker 
-# firefox 
-# code 
-# @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal gdm 
-# steam 
 
 # Repos add
     df5pkg+ fedora-gpg-keys dnf-plugins-core etckeeper-dnf dnf-repo
@@ -54,7 +53,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         # Packages versions are set to the version meant for that version of the distro
         # for coordinated versioning. Also fixes conflicts and missing dependencies
         #echo "⭕ --- (@) Sync packages"
-        dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
+        #dnf5 -y distro-sync --skip-unavailable --skip-broken --allowerasing
     # Update
         # Packages are bindly updated, but some may break compatibility
         # with each other and not coordinate. Better for rawhide.
