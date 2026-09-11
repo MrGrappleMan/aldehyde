@@ -13,10 +13,10 @@
   # Why not just link the repo root? This approach is cleaner.
 
 # GET BASE IMAGE
-    FROM ghcr.io/ublue-os/bazzite-gnome:testing
+    FROM ghcr.io/ublue-os/bluefin
     # This is the image you want to begin modifying
     # Planned Base Image - fedora-bootc, it has a modern stack. Check the currently used one on your device with 'sudo bootc status'
-    # We avoided Bazzite initialy, as it has unnecessary bloat and complicates the build process, but it has a stable and featureful base to work on
+    # Bluefin has a stable and featureful base to work on, for now.
     # uBlue Image list: https://github.com/orgs/ublue-os/packages
     # reserved: quay.io/fedora/fedora-bootc
 

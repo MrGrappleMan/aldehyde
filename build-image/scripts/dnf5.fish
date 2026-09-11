@@ -26,7 +26,9 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         firefox \
         code \
         @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal gdm \
-        steam
+        steam \
+        plymouth \
+        rpm-ostree
 
 # Repos add
     df5pkg+ fedora-gpg-keys dnf-plugins-core etckeeper-dnf dnf-repo
