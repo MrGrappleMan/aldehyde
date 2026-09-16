@@ -18,7 +18,7 @@ clear
 # 2. Check for BootC presence
     if ! command -v bootc &> /dev/null; then
         echo "Error: You are using a non-BootC-based host." >&2
-        echo "Please install Bazzite GNOME to use this script." >&2
+        echo "Please install Bluefin to use this script." >&2
         exit 1
     fi
 
@@ -60,9 +60,9 @@ clear
 # Switch image
 # ------------------------------------------------------------------------------
 
-# Switch to the latest image or update if already present
+# Switch to image or upgrade
     bootc switch ghcr.io/mrgrappleman/aldehyde:latest
     bootc upgrade
 
-# Reminder
+# Remind to reboot
     echo "Please reboot manually for the changes to take effect";
