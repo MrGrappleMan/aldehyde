@@ -1,18 +1,18 @@
 # Containerfile
 
-# LINK ESSENTIAL FILES
+# Link essential files
     FROM scratch AS ctx
     # 'ctx' means context
     # The FROM action here explicitly appends the 'ctx' name to the target=/ctx folder, is where that directory name actually comes from.
     # This path only exists for usage during build time, as a "portal" for your file into the image
 
-# COPY BUILD IMAGE
-  COPY /build-image/ / 
+# Copy image build files
+  COPY /build-image/ /
   # The COPY action copies the contents of the 'build-image' folder in the repo to the /ctx/ path in the image for build time
   # Whenever you want reference anything from /ctx/ from the Containerfile with RUN, always include '--mount=type=bind,from=ctx,source=/,target=/ctx'
   # Why not just link the repo root? This approach is cleaner.
 
-# GET BASE IMAGE
+# Derive from base image
     FROM ghcr.io/ublue-os/bluefin
     # This is the image you want to begin modifying
     # Planned Base Image - fedora-bootc, it has a modern stack. Check the currently used one on your device with 'sudo bootc status'
@@ -20,7 +20,7 @@
     # uBlue Image list: https://github.com/orgs/ublue-os/packages
     # reserved: quay.io/fedora/fedora-bootc
 
-# IMMUTABLE /opt
+# Allow /opt declaration by image
     RUN rm -rf /opt && mkdir /opt
     # In other images, /opt is symlinked to /var/opt, to allow changes in it by the user
     # Some pkgs need this path to get installed into it
@@ -41,11 +41,10 @@
 
 # DEBUG
   # To know of any errors that might occur, uncomment them if you need to for reference
-
-# The below lists our that our repo to ctx copy was successful
-#RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
-#    tree /ctx/
-#RUN uname -a
+  # The below lists our that our repo to ctx copy was successful
+  #RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+  #    tree /ctx/
+  #RUN uname -a
 
 # MODIFICATIONS TO IMAGE
     # You can modify the image by modifying the build-image.fish script and its subscripts
@@ -59,10 +58,10 @@
     # Despite correct shebang, forcefully call fish
     # Never make $home as /tmp, it is not the correct way to do it
 
-# INSTALL FISH
+# Install fish prior true build
     RUN dnf5 install -y --skip-broken --allowerasing --allowerasing --allow-downgrade fish
 
-# Build image
+# Build image mega script
     RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
         --mount=type=cache,dst=/var/cache \
         --mount=type=cache,dst=/var/log \
@@ -73,7 +72,7 @@
     RUN bootc container lint --no-truncate
     # Verify final image and contents for errors and warnings
 
-# LABELS
+# Labels
     # Image has been built at this point
     # The labels below are used by artifacthub
     LABEL containers.bootc 1
