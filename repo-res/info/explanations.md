@@ -46,7 +46,7 @@ packages, resulting in failures. Distrobox exists, homebrew, VMs. They still
 dont catch the vibe of it. BootC should have the ability to perform delta
 updates at a granular level, all I can ask for and parallel layer downloads.
 
-### Issues regarding Flatpak
+## Issues regarding Flatpak
 
 Flatpak is bad in terms of architecture due to lower efficiency, storage/RAM
 consumption and lower system integration and slower execution.
@@ -175,7 +175,7 @@ Good for developers, bad for the end users.
 Eg:
 Whatsapp Web > Karere
 Equibop > Discord web version
-Youtube > VacuumTube - Use VacuumTube if on an HTPC/Console focused setup
+VacuumTube > Youtube - Despite seperate electron session, ot has seamless adblock bypasses
 Spotify (CEF) ~ Spotify web version
 Steam (CEF) > Steam web version
 
@@ -183,5 +183,19 @@ This is because the Spotify CEF app has like local playback and system tray inte
 And obviously, Steam needs the local binary to play games in the first place.
 
 Tauri is a Rust-based framework for building cross-platform desktop applications.
-It is a good alternative to CEF/Electron apps, but it is still in development.
-Both light on resources and energy, but not as mature as CEF/Electron apps.
+It is a good alternative to CEF/Electron apps, and light on resources and energy.
+
+## Handling rawhide repos
+
+Stable 'fedora' 'updates' 'updates-testing'
+Rawhide 'rawhide'
+
+You should either enable stable or the rawhide repos.
+Do not use them together.
+# Despite flags like, --skip-broken --skip-unavailable --allow-downgrade --allowerasing
+# it prevents package conflicts and allow dedicated version specific intent based management.
+# You might think that enabling both and setting Rawhide at a higher priority might let you use stable pkgs as fallbacks, but it leads to conflicts.
+# Even Rawhide itself is unrefined and may be the source of multiple conflicts.
+# We are already using Fedora, it is known for being bleeding edge while providing a ready to use base.
+# You usually don't need Rawhide unless you really are a contributor.
+# updates-testing is acceptable.
