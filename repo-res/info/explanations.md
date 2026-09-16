@@ -192,10 +192,10 @@ Rawhide 'rawhide'
 
 You should either enable stable or the rawhide repos.
 Do not use them together.
-# Despite flags like, --skip-broken --skip-unavailable --allow-downgrade --allowerasing
-# it prevents package conflicts and allow dedicated version specific intent based management.
-# You might think that enabling both and setting Rawhide at a higher priority might let you use stable pkgs as fallbacks, but it leads to conflicts.
-# Even Rawhide itself is unrefined and may be the source of multiple conflicts.
-# We are already using Fedora, it is known for being bleeding edge while providing a ready to use base.
-# You usually don't need Rawhide unless you really are a contributor.
-# updates-testing is acceptable.
+Despite flags like, --skip-broken --skip-unavailable --allow-downgrade --allowerasing
+it prevents package conflicts and allow dedicated version specific intent based management.
+You might think that enabling both and setting Rawhide at a higher priority might let you use stable pkgs as fallbacks, but it leads to conflicts.
+Even Rawhide itself is unrefined and may be the source of multiple conflicts.
+We are already using Fedora, it is known for being bleeding edge while providing a ready to use base.
+You usually don't need Rawhide unless you really are a contributor.
+updates-testing is acceptable.
