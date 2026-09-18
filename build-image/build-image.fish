@@ -7,7 +7,6 @@ echo "🚩 --- Run 'build-image.fish' ---"
     echo "'✅' --- Section within a script ends"
     echo "'🚩' --- Script starts"
     echo "'🏁' --- Script ends"
-    echo "Denoted by the build scripts"
 
 # Image modification
     # Copy /ctx/fsroot/ contents into the image
@@ -26,10 +25,10 @@ echo "🚩 --- Run 'build-image.fish' ---"
 
 # Satisfy linter
     echo "⭕ --- Cleanup directories"
-    
-    # rm -rf (Top-Down): If rm hits a directory that is locked, in use, or lacks write permissions, 
+
+    # rm -rf (Top-Down): If rm hits a directory that is locked, in use, or lacks write permissions,
     # it can fail immediately on that directory descriptor and skip processing the entire nested path underneath it.
-    # 
+    #
     # find -depth -delete (Bottom-Up): By processing leaf nodes first, find ensures that every individual file is evaluated independently.
     # If a parent directory is locked or in use, find has already successfully purged all of its children before it even attempts
     # (and potentially fails) to delete that parent.

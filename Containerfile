@@ -22,31 +22,20 @@
 
 # Allow /opt declaration by image
     RUN rm -rf /opt && mkdir /opt
-    # In other images, /opt is symlinked to /var/opt, to allow changes in it by the user
-    # Some pkgs need this path to get installed into it
-    # However since it is symlinked to /var/, it is all useless as /var/ is wiped out after building and thus /var/opt is wiped out too
-    # And the user won't be able to install anything to it, there's no point in leaving it mutable. This made sense when rpm-ostree was used to layer packages.
-    # Thus, some of those needed /opt to be mutable
-    # Comment line below to allow modifications to it when user will be using the image, but its pointless - they can just use distrobox or other solutions
-    # It makes the /opt/ directory genuine and not just a symlink
-    # Brave and its keyring work best when it is inside /opt/ and is not a Flatpak
-    #
-    # Legacy OSTree systems symlink /opt -> /var/opt to allow runtime changes with apply-live or even layering packages on the user side.
-    # In a bootc build, this causes RPMs to install data into /var (that's /var/opt/) , which is
-    # discarded during deployment, leaving the application missing at on the user end.
-    #
-    # By forcing /opt to be a real directory, we ensure that Brave Browser and
-    # other /opt-resident packages are captured in the immutable image layers.
-    # host-side mutability is deferred to Distrobox/Containers.
+    # In some cases, /opt is symlinked to /var/opt, to allow changes in it by the user and allowing some programs to install themselves there
+    # that are not integrated with the system image(when rpm-ostree layering is used). However for user-side mutations, we have to sacrifice this
+    # path for bootc not being able to add packages to it during build time and it not carrying over to the final image. But, we want a single source of truth for /opt
+    # so we create it as a real directory and not a symlink. The user can simply use distrobox to install those packages themselves.
+    # Despite being not in the image, programs like Brave depend to be placed in /opt/ for proper functionality.
 
-# DEBUG
-  # To know of any errors that might occur, uncomment them if you need to for reference
-  # The below lists our that our repo to ctx copy was successful
-  #RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
-  #    tree /ctx/
-  #RUN uname -a
+# Debug
+    # To know of any errors that might occur, uncomment them if you need to for reference
+    # The below lists our that our repo to ctx copy was successful
+    #RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    #    tree /ctx/
+    #RUN uname -a
 
-# MODIFICATIONS TO IMAGE
+# Guide to modifying the image
     # You can modify the image by modifying the build-image.fish script and its subscripts
     # The RUN directive below handles "main.fish" execution as recommended and maps the usual UNIX file paths
     # avoid doing stuff from the Containerfile to avoid complexities, only minimal initialization

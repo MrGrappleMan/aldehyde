@@ -4,8 +4,7 @@
 
 ## 📖 Overview
 
-A Bazzite based desktop built for power users with a modern and experimental stack.
-
+A Bluefin based desktop built for power users with a modern and experimental stack.
 
 ## ✨ Extraoridnaries
 
@@ -13,19 +12,19 @@ A Bazzite based desktop built for power users with a modern and experimental sta
 
 - **Power Management** ⚡ --- TuneD, default bias towards energy efficiency, while providing maximum potential performance
 
-- **Kernel Args + SysCtl** 🛠️ --- Extensively optimized for performance
-dynamics with efficiency in mind, utilizing modern provisions at their
-current safe maximum potential
+- **Kernel Args + SysCtl** 🛠️ --- Extensively optimized for performance dynamic \
+ with efficiency in mind, utilizing modern provisions at their \
+ current safe maximum potential \
+
 
 - **Sensible Fixed Configs** 🧠 --- Modified for logical system operation, with advanced schedulers for both I/O and the CPU
 
-- **No nonsense** 🏹 --- Straightforward, avoids compatibility overhead, and Steam. Yeah, sry had to keep image size small for faster updates.
+- **No nonsense** 🏹 --- Fixed sensible defaults
 
 ## Install
 
-Run this script on a fresh install of Bazzite GNOME, else there may be issues like
-missing authenication keys, GIO errors. The image is based on it.
-
+Run this script on any BootC-based host with GNOME, else there may be issues like
+missing authenication keys, GIO errors.
 
 ```bash
 pkexec bash -c "$(curl -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache" -H "Expires: 0" -sSL https://raw.githubusercontent.com/MrGrappleMan/aldehyde/refs/heads/main/start.sh)"

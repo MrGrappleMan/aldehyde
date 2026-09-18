@@ -5,7 +5,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
     # Prefer updating/syncing system before installing packages.
     # Sometimes updating/syncing can cause conflicts or missing dependencies.
     # Specific packages with versions set from upstream base image may become broken.
-    # 
+    #
     # ROCm and CUDA work in distrobox
     # Install your dev files to home folder, distrobox or flatpak.
     # They will probably work in any case.
@@ -27,7 +27,6 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         code \
         @gnome-desktop gnome-shell gdm mutter gnome-session gnome-control-center gnome-randr gnome-initial-setup nautilus gnome-terminal gdm \
         steam \
-        plymouth \
         rpm-ostree
 
 # Repos add
@@ -43,9 +42,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
     dnf5 copr enable elxreno/preload
     dnf5 copr enable pgdev/zed
 
-    df5pkg+ "https://repo.linrunner.de/fedora/tlp/repos/releases/tlp-release.fc$(rpm -E %fedora).noarch.rpm"
     df5pkg+ --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
-    df5pkg+ "https://repo.linrunner.de/fedora/tlp/repos/releases/tlp-release.fc$(rpm -E %fedora).noarch.rpm"
     df5pkg+ https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 # Updation
@@ -61,7 +58,7 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         #dnf5 update -y --skip-unavailable --allow-downgrade --allowerasing
     # You want a system that works correctly,
     # and not just higher versions that may not properly coordinate with each other.
-        
+
 # Packages Add
     echo "⭕ --- (+) Add packages ---"
     df5pkg+ \
@@ -100,18 +97,16 @@ echo "🚩 --- Run 'dnf5.fish' ---"
         intel-lpmd intel-media-driver intel-mediasdk intel-metee \
         \
         libimobiledevice libimobiledevice-utils ifuse usbmuxd
-        
-        # kernel-modules-extra
-        # bees
 
-    # Install your dev apps by flatpak or to distrobox,
+        # kernel-modules-extra
+
         #amd-gpu-firmware amd-ucode-firmware amdsmi am-utils
         #nvidia-gpu-firmware libva-nvidia-driver envytools nvidia-patch
         #host-spawn libei libei-utils
         #pnpm
         #qemu-kvm qemu-kvm-core libvirt-daemon-kvm
         #mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld mesa-vulkan-drivers-freeworld mesa-dri-drivers mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers mesa-libOSMesa mesa-compat-libOSMesa
-    # CONFLICTS # ( Format: ChosenPackages | ConflictingPackages (reason) )
+    # CONFLICTS ( Format: ChosenPackages | ConflictingPackages (reason) )
         # NONE | fedora-release-identity-cosmic-atomic fedora-release-cosmic-atomic ( this independent image is NOT cosmic atomic, recognizing it as one will cause conflicts )
         # NONE | fedora-repos-rawhide ( only use repos in fsroot/usr/share/factory/etc/yum.repos.d or pre-packaged ones )
         # NONE | cosmic-config-fedora ( We have our own configs )
