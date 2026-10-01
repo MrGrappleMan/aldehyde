@@ -13,10 +13,11 @@
   # Why not just link the repo root? This approach is cleaner.
 
 # Derive from base image
-    FROM ghcr.io/ublue-os/bluefin-dx:latest
+    FROM ghcr.io/ublue-os/bluefin-dx:stable-daily
     # This is the image you want to begin modifying
-    # Planned Base Image - fedora-bootc, it has a modern stack. Check the currently used one on your device with 'sudo bootc status'
-    # Bluefin DX has proper Docker support
+    # Check the currently used one on your device with 'sudo bootc status'
+    # Planned - fedora-bootc, low bloat and a clean slate
+    # Current - bluefin-dx:stable-daily, has good Docker support
     # uBlue Image list: https://github.com/orgs/ublue-os/packages
     # reserved: quay.io/fedora/fedora-bootc
 
