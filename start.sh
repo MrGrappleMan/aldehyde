@@ -1,36 +1,50 @@
 #!/usr/bin/env bash
+set -euo pipefail
 clear
 
-# Linux only
-    if [[ "$OSTYPE" != "linux-gnu"* ]]; then
-        echo "Error: This script is for Linux" >&2
-        echo "Try our project https://github.com/MrGrappleMan/bento for macOS!"
-        exit 1
-    fi
-
-# Require BootC
-    if ! command -v bootc &> /dev/null; then
-        echo "Error: You are using a non-BootC-based host." >&2
-        echo "Please install Bluefin to use this script." >&2
-        exit 1
-    fi
-
-
-# Require root
-    if [[ $EUID -ne 0 ]]; then
-        echo "Error: You are not running as root." >&2
-        echo "You need to be in sudoers and provide your password" >&2
-        echo "Retrying as root..."
-        sleep 5
-        curl -H "Cache-Control: no-cache, no-store, must-revalidate" -H "Pragma: no-cache" -H "Expires: 0" -sSL https://raw.githubusercontent.com/MrGrappleMan/aldehyde/refs/heads/main/start.bash | pkexec bash
-        exit 1
-    fi
-
-# Cancel any ongoing rpm-ostree operations, doesn't matter if it fails
-    rpm-ostree cancel
-
-# Remove any mutations like layered packages and overrides and rpm-ostree related mutations
-    rpm-ostree reset -l -o -i
+# Requirements
+    # Linux only
+        req_linux=0
+        if [[ "$(uname -s)" == "Linux" ]]; then
+            req_linux=1
+        fi
+    # bootc only
+        req_bootc=0
+        if [[ -f /run/ostree-booted ]] || command -v bootc &>/dev/null; then
+            req_bootc=1
+        fi
+    # Run as root
+        req_root=0
+        if [ "$(id -u)" -eq 0 ]; then
+            req_root=1
+        fi
+    # Verify
+        readonly TICK="✓"
+        readonly CROSS="✗"
+        # Helper function to print formatted status
+            print_check() {
+                local flag="$1"
+                local description="$2"
+                if (( flag == 1 )); then
+                    printf "[ %b ] %s\n" "\033[32m${TICK}\033[0m" "$description"
+                else
+                    printf "[ %b ] %s\n" "\033[31m${CROSS}\033[0m" "$description"
+                fi
+            }
+        
+        echo "Requirements check:"
+        print_check "$req_linux" "Is Linux"
+        print_check "$req_bootc" "System is bootc based"
+        print_check "$req_root" "Run as root"
+        
+        echo
+        if (( req_linux == 1 && req_bootc == 1 && req_root == 1 )); then
+            echo "All system requirements were met, proceeding"
+        else
+            echo "Requirements were not met, please ensure your system is"
+            echo "https://projectbluefin.io/dakota/"
+            echo "to proceed further."
+        fi
 
 # Unpin any pinned images
     ostree admin pin -u 0
