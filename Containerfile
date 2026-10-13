@@ -13,13 +13,16 @@
   # Why not just link the repo root? This approach is cleaner.
 
 # Derive from base image
-    FROM ghcr.io/ublue-os/bluefin-dx:stable-daily
-    # This is the image you want to begin modifying
-    # Check the currently used one on your device with 'sudo bootc status'
-    # Planned - fedora-bootc, low bloat and a clean slate
-    # Current - bluefin-dx:stable-daily, has good Docker support
-    # uBlue Image list: https://github.com/orgs/ublue-os/packages
-    # reserved: quay.io/fedora/fedora-bootc
+    FROM ghcr.io/projectbluefin/dakota:testing
+    # This is the image you want use as a template for making your image
+    # Check the one you currently use with 'sudo bootc status'
+    # uBlue image reference list: https://github.com/orgs/ublue-os/packages
+    # Planned - quay.io/fedora/fedora-bootc - low bloat and a clean and modern slate
+    # Current - ghcr.io/projectbluefin/dakota:testing - aligns heavily with this project
+    # Warning, not all images use the same bases.
+    # Some may be based on Fedora, CentOS, RHEL. Desktop environment switching may conflict.
+    # Take caution and follow the guide as per the image distributor.
+    # GRUB based images switching to systemd-boot can be catastrophic
 
 # Allow /opt declaration by image
     RUN rm -rf /opt && mkdir /opt

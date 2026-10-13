@@ -1,8 +1,11 @@
 # Technical aspects, decisions, explanations
 
-## Stable VS Prerelease
+## Stable vs Testing software in base images
 
-Prefer stable in the image, unless there is a good reason to use a beta version
+The default branch in an image should have stable components.
+An optional side branch can be used for experimentation and newer software.
+Keep the image minimal unless the component functions better or has to be \
+installed to the system properly. For native packages, cargo and brew can help
 and bake it into the image. For example, COSMIC cannot be ran directly through distrobox.
 Nested Wayland is only for debugging and not regular use.
 
@@ -57,7 +60,6 @@ Yet it is a solid choice for its ability to isolate programs, letting the user
 to install userland apps, and granularly control every app's permissions
 for privacy or letting something access a system level part is causing
 unfavourable or abnormal behaviour for that specific package.
-Snap is even worse.
 
 ## TLP > TuneD > PPD > ACF
 
@@ -75,7 +77,6 @@ TLP is better than ACF
 Greater system power management control
 ACF just enables and disabled the allowance of Turbo Boost, not its enforcement
 ACF is a userspace tool, so it responds slowly to changes
-
 
 ## PState active + balance_power
 

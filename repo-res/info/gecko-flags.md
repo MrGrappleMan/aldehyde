@@ -1,6 +1,6 @@
 # about:config options
 
-| Flag | Value | Reason |
+| Option | Value | Reason |
 | --- | --- | --- |
 | dom.event.clipboardevents.enabled | true |  |
 | keyword.enabled, browser.urlbar.suggest.searches | true |  |
