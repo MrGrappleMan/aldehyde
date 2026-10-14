@@ -1,17 +1,17 @@
 ---
-name: ⚙️ Build image
+name: Build
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "build-image/**" # Most relevant path
+  workflow_dispatch: # Let builds be made when triggered
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
+    paths-ignore: # don't rebuild on documentation change
+      - '**.md'
   schedule:
     - cron: "00 00 * * *" # Daily
-  workflow_dispatch:
 
 env:
   IMAGE_DESC: "A workstation that focuses on modernity and performance"
